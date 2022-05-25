@@ -1,0 +1,99 @@
+{
+  "props": [
+    {
+      "name": "Black",
+      "type": "color",
+      "value": "#010101",
+      "category": "color",
+      "meta": {
+        "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+        "id": "yr1dE_U7BXXxgm"
+      }
+    },
+    {
+      "name": "Font",
+      "type": "fontfamily",
+      "value": "VT323",
+      "category": "fontfamily",
+      "meta": {
+        "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+        "id": "-BGala8GD"
+      }
+    },
+    {
+      "name": "White",
+      "type": "color",
+      "value": "#FCFBFB",
+      "category": "color",
+      "meta": {
+        "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+        "id": "GQDOf6FevecNcO"
+      }
+    },
+    {
+      "name": "Yellow hover",
+      "type": "color",
+      "value": "#EFEC03",
+      "category": "color",
+      "meta": {
+        "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+        "id": "C2tCRFszE3qcJM"
+      }
+    },
+    {
+      "name": "button",
+      "type": "color",
+      "value": "#FF85B4",
+      "category": "color",
+      "meta": {
+        "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+        "id": "BVke4w4TRtVs3d"
+      }
+    },
+    {
+      "name": "green",
+      "type": "color",
+      "value": "#00A95A",
+      "category": "color",
+      "meta": {
+        "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+        "id": "MsEUi5Dr2ZFora"
+      }
+    },
+    {
+      "name": "hover",
+      "type": "color",
+      "value": "#CB3A0899",
+      "category": "color",
+      "meta": {
+        "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+        "id": "3K88ziJCc5oU_y"
+      }
+    },
+    {
+      "name": "hover pink",
+      "type": "color",
+      "value": "#FF3985",
+      "category": "color",
+      "meta": {
+        "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+        "id": "wD-8Cj4ip-d-Ug"
+      }
+    },
+    {
+      "name": "shadows",
+      "type": "color",
+      "value": "#FDFB75",
+      "category": "color",
+      "meta": {
+        "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+        "id": "6oY6cvhED6IV-Z"
+      }
+    }
+  ],
+  "global": {
+    "meta": {
+      "source": "plasmic.app"
+    }
+  }
+}

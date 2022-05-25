@@ -1,0 +1,377 @@
+{
+  "platform": "react",
+  "code": {
+    "lang": "ts",
+    "scheme": "blackbox",
+    "reactRuntime": "classic"
+  },
+  "style": {
+    "scheme": "css-modules",
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.css"
+  },
+  "images": {
+    "scheme": "files",
+    "publicDir": "../../public",
+    "publicUrlPrefix": "/static/"
+  },
+  "tokens": {
+    "scheme": "theo",
+    "tokensFilePath": "plasmic-tokens.theo.json"
+  },
+  "srcDir": "src/components",
+  "defaultPlasmicDir": "./plasmic",
+  "projects": [
+    {
+      "projectId": "szjgMQpPpxhmkjnaBvZQJG",
+      "projectApiToken": "xBIsrWHdWZ9kVgFEGUt29LOZPWfm0XidYqRHqPhQXsEjDHevjIbp44nEYMIZ46YOoxrN8anfXjreTkDtFjTA",
+      "projectName": "react-parallax-tilt",
+      "version": "1.0.4",
+      "cssFilePath": "plasmic/react_parallax_tilt/plasmic_react_parallax_tilt.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "codeComponents": [
+        {
+          "id": "PfY466VIuq",
+          "name": "Tilt",
+          "componentImportPath": "@plasmicpkgs/react-parallax-tilt"
+        }
+      ]
+    },
+    {
+      "projectId": "58GpZjZCWTaJ8AUhpCwt2K",
+      "projectApiToken": "DIkcfhBwjMCJSjcxfBkMuy4NImyytq5EWylxVcpS9t9EpdhnPQuBgBGxmk00AB1itMFa1KXTxOKnrjN2PN9nlA",
+      "projectName": "react-awesome-reveal",
+      "version": "2.1.2",
+      "cssFilePath": "plasmic/react_awesome_reveal/plasmic_react_awesome_reveal.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "codeComponents": [
+        {
+          "id": "R6s1FdhksG",
+          "name": "Reveal",
+          "componentImportPath": "@plasmicpkgs/react-awesome-reveal"
+        }
+      ]
+    },
+    {
+      "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+      "projectApiToken": "7YBihX2saa1VwBJAg9fG8XumDQlOjO8Lydl0YbI2YQX1CqpTUW6P3JYq8oMqcsXhKlYyMBbEGDWlaTf23A",
+      "projectName": "Influencer Campaign Page",
+      "version": "latest",
+      "cssFilePath": "plasmic/influencer_campaign_page/plasmic_influencer_campaign_page.module.css",
+      "components": [
+        {
+          "id": "S20px5CzyEuzZP",
+          "name": "Button",
+          "type": "managed",
+          "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+          "renderModuleFilePath": "plasmic/influencer_campaign_page/PlasmicButton.tsx",
+          "importSpec": {
+            "modulePath": "Button.tsx"
+          },
+          "cssFilePath": "plasmic/influencer_campaign_page/PlasmicButton.module.css",
+          "scheme": "blackbox",
+          "componentType": "component",
+          "plumeType": "button"
+        },
+        {
+          "id": "cpYU5wUK7lP6LN",
+          "name": "Select",
+          "type": "managed",
+          "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+          "renderModuleFilePath": "plasmic/influencer_campaign_page/PlasmicSelect.tsx",
+          "importSpec": {
+            "modulePath": "Select.tsx"
+          },
+          "cssFilePath": "plasmic/influencer_campaign_page/PlasmicSelect.module.css",
+          "scheme": "blackbox",
+          "componentType": "component",
+          "plumeType": "select"
+        },
+        {
+          "id": "LTBbkVGBYra5OY",
+          "name": "Select__Option",
+          "type": "managed",
+          "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+          "renderModuleFilePath": "plasmic/influencer_campaign_page/PlasmicSelect__Option.tsx",
+          "importSpec": {
+            "modulePath": "Select__Option.tsx"
+          },
+          "cssFilePath": "plasmic/influencer_campaign_page/PlasmicSelect__Option.module.css",
+          "scheme": "blackbox",
+          "componentType": "component",
+          "plumeType": "select-option"
+        },
+        {
+          "id": "xhYwCOvawVLQzw",
+          "name": "Select__OptionGroup",
+          "type": "managed",
+          "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+          "renderModuleFilePath": "plasmic/influencer_campaign_page/PlasmicSelect__OptionGroup.tsx",
+          "importSpec": {
+            "modulePath": "Select__OptionGroup.tsx"
+          },
+          "cssFilePath": "plasmic/influencer_campaign_page/PlasmicSelect__OptionGroup.module.css",
+          "scheme": "blackbox",
+          "componentType": "component",
+          "plumeType": "select-option-group"
+        },
+        {
+          "id": "tA99duboCCefN-",
+          "name": "Select__Overlay",
+          "type": "managed",
+          "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+          "renderModuleFilePath": "plasmic/influencer_campaign_page/PlasmicSelect__Overlay.tsx",
+          "importSpec": {
+            "modulePath": "Select__Overlay.tsx"
+          },
+          "cssFilePath": "plasmic/influencer_campaign_page/PlasmicSelect__Overlay.module.css",
+          "scheme": "blackbox",
+          "componentType": "component",
+          "plumeType": "triggered-overlay"
+        },
+        {
+          "id": "EYLZW5oNmE",
+          "name": "Home",
+          "type": "managed",
+          "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+          "renderModuleFilePath": "plasmic/influencer_campaign_page/PlasmicHome.tsx",
+          "importSpec": {
+            "modulePath": "Home.tsx"
+          },
+          "cssFilePath": "plasmic/influencer_campaign_page/PlasmicHome.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
+        },
+        {
+          "id": "_q4tup-702",
+          "name": "About",
+          "type": "managed",
+          "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+          "renderModuleFilePath": "plasmic/influencer_campaign_page/PlasmicAbout.tsx",
+          "importSpec": {
+            "modulePath": "About.tsx"
+          },
+          "cssFilePath": "plasmic/influencer_campaign_page/PlasmicAbout.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
+        },
+        {
+          "id": "1NPCYKvqMbV",
+          "name": "Nav",
+          "type": "managed",
+          "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+          "renderModuleFilePath": "plasmic/influencer_campaign_page/PlasmicNav.tsx",
+          "importSpec": {
+            "modulePath": "Nav.tsx"
+          },
+          "cssFilePath": "plasmic/influencer_campaign_page/PlasmicNav.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        }
+      ],
+      "icons": [
+        {
+          "id": "F-2UjxyFUYtBFl",
+          "name": "IconIcon",
+          "moduleFilePath": "plasmic/influencer_campaign_page/icons/PlasmicIcon__Icon.tsx"
+        },
+        {
+          "id": "yOncxZkGAz-c6D",
+          "name": "_8520334RainbowForecastNightLightBeautyIconsvgIcon",
+          "moduleFilePath": "plasmic/influencer_campaign_page/icons/PlasmicIcon___8520334RainbowForecastNightLightBeautyIconsvg.tsx"
+        },
+        {
+          "id": "eb8VEsuDGWpods",
+          "name": "PlayingCardHeartShapesvgIcon",
+          "moduleFilePath": "plasmic/influencer_campaign_page/icons/PlasmicIcon__PlayingCardHeartShapesvg.tsx"
+        },
+        {
+          "id": "j9BxXMDoB-CiVw",
+          "name": "CartSvgrepoComsvgIcon",
+          "moduleFilePath": "plasmic/influencer_campaign_page/icons/PlasmicIcon__CartSvgrepoComsvg.tsx"
+        },
+        {
+          "id": "KUDfYZwrWRvTDC",
+          "name": "Icon6Icon",
+          "moduleFilePath": "plasmic/influencer_campaign_page/icons/PlasmicIcon__Icon6.tsx"
+        },
+        {
+          "id": "yxBFPX9oLwlnFz",
+          "name": "Icon5Icon",
+          "moduleFilePath": "plasmic/influencer_campaign_page/icons/PlasmicIcon__Icon5.tsx"
+        },
+        {
+          "id": "IradBadVvV69_r",
+          "name": "ChecksvgIcon",
+          "moduleFilePath": "plasmic/influencer_campaign_page/icons/PlasmicIcon__Checksvg.tsx"
+        },
+        {
+          "id": "Xf7EckiSKK-eKU",
+          "name": "ChevronDownsvgIcon",
+          "moduleFilePath": "plasmic/influencer_campaign_page/icons/PlasmicIcon__ChevronDownsvg.tsx"
+        },
+        {
+          "id": "uHyTvaySnM5wDP",
+          "name": "ChevronUpsvgIcon",
+          "moduleFilePath": "plasmic/influencer_campaign_page/icons/PlasmicIcon__ChevronUpsvg.tsx"
+        },
+        {
+          "id": "sftnhYtKwUwnuk",
+          "name": "BlackCommentsBubbleSvgrepoComsvgIcon",
+          "moduleFilePath": "plasmic/influencer_campaign_page/icons/PlasmicIcon__BlackCommentsBubbleSvgrepoComsvg.tsx"
+        },
+        {
+          "id": "oDtqcoglz4hZXl",
+          "name": "CartOSvgrepoComsvgIcon",
+          "moduleFilePath": "plasmic/influencer_campaign_page/icons/PlasmicIcon__CartOSvgrepoComsvg.tsx"
+        }
+      ],
+      "images": [
+        {
+          "id": "4gALtcFWDKaEQv",
+          "name": "debora-cardenas-KPyXMkJ0UQU-unsplash.jpg",
+          "filePath": "plasmic/influencer_campaign_page/images/deboraCardenasKPyXMkJ0UquUnsplashjpg.jpeg"
+        },
+        {
+          "id": "BpnMrimbBkKSsD",
+          "name": "fluxweed-1kBlbt8dq1s-unsplash.jpg",
+          "filePath": "plasmic/influencer_campaign_page/images/fluxweed1KBlbt8Dq1SUnsplashjpg.jpeg"
+        },
+        {
+          "id": "Y7wom6eOFXgMPZ",
+          "name": "jayson-hinrichsen-qLs4WYXqLNY-unsplash.jpg",
+          "filePath": "plasmic/influencer_campaign_page/images/jaysonHinrichsenQLs4WyXqLnyUnsplashjpg.jpeg"
+        },
+        {
+          "id": "F9OKKp29RFSMD7",
+          "name": "maude-frederique-lavoie-EDSTj4kCUcw-unsplash.jpg",
+          "filePath": "plasmic/influencer_campaign_page/images/maudeFrederiqueLavoieEdsTj4KCUcwUnsplashjpg.jpeg"
+        },
+        {
+          "id": "zwCEpLml2uj8qa",
+          "name": "thirteen-j-6qj9o7a2DFE-unsplash.jpg",
+          "filePath": "plasmic/influencer_campaign_page/images/thirteenJ6Qj9O7A2DfeUnsplashjpg.jpeg"
+        },
+        {
+          "id": "WIvfcNFwZBX0gC",
+          "name": "fahad-waseem-AdjyrNhFVPI-unsplash.jpg",
+          "filePath": "plasmic/influencer_campaign_page/images/fahadWaseemAdjyrNhFvpiUnsplashjpg.jpeg"
+        },
+        {
+          "id": "7XXAcRXMyiyiM9",
+          "name": "laura-chouette-VsmszkYR13E-unsplash.jpg",
+          "filePath": "plasmic/influencer_campaign_page/images/lauraChouetteVsmszkYr13EUnsplashjpg.jpeg"
+        },
+        {
+          "id": "eJt-JOwUJ-qvVZ",
+          "name": "logo-dummy.png",
+          "filePath": "plasmic/influencer_campaign_page/images/logoDummypng.png"
+        },
+        {
+          "id": "dvLe-xXgwEolNX",
+          "name": "sprinkles-2.d589e9e9 (1).svg",
+          "filePath": "plasmic/influencer_campaign_page/images/sprinkles2D589E9E91Svg.svg"
+        },
+        {
+          "id": "PIuKpfiX4081Rq",
+          "name": "sprinkles-3.5ed71774 (1).svg",
+          "filePath": "plasmic/influencer_campaign_page/images/sprinkles35Ed717741Svg.svg"
+        },
+        {
+          "id": "GNh-7mptN3Bi01",
+          "name": "sprinkles-1.cd2da2a2.svg",
+          "filePath": "plasmic/influencer_campaign_page/images/sprinkles1Cd2Da2A2Svg.svg"
+        },
+        {
+          "id": "ZRUbDWtUgRmfzf",
+          "name": "hero-img (1).jpg",
+          "filePath": "plasmic/influencer_campaign_page/images/heroImg1Jpg.jpeg"
+        },
+        {
+          "id": "RElACmiK48TKj4",
+          "name": "df8255dfccf0cbb191bddce574f8a58eb85dd9c25ea915d2834bc_loafer_edit (1).png",
+          "filePath": "plasmic/influencer_campaign_page/images/df8255Dfccf0Cbb191Bddce574F8A58Eb85Dd9C25Ea915D2834BcLoaferEdit1Png.png"
+        },
+        {
+          "id": "kza7Yb-sC082D8",
+          "name": "7a4b3ff539878cee33b963aa983119282f8fd3d25ea87a442580e_hat_edit.png",
+          "filePath": "plasmic/influencer_campaign_page/images/_7A4B3Ff539878Cee33B963Aa983119282F8Fd3D25Ea87A442580EHatEditpng.png"
+        },
+        {
+          "id": "fawsxKzqDsWDJy",
+          "name": "c8325d0c6663e63f7ecc8af7eede5a388569a5d95ea915f9770fb_bikini_edit.png",
+          "filePath": "plasmic/influencer_campaign_page/images/c8325D0C6663E63F7Ecc8Af7Eede5A388569A5D95Ea915F9770FbBikiniEditpng.png"
+        },
+        {
+          "id": "gMcNhfHR9uaUhD",
+          "name": "ebd9a5d5ff6dae26080afe7624d3ebbce110fc9f5ea915a466b98_pants_edit 1.png",
+          "filePath": "plasmic/influencer_campaign_page/images/ebd9A5D5Ff6Dae26080Afe7624D3Ebbce110Fc9F5Ea915A466B98PantsEdit1Png.jpeg"
+        },
+        {
+          "id": "Nixh4s8qBWqNUK",
+          "name": "length1.png",
+          "filePath": "plasmic/influencer_campaign_page/images/length1Png.png"
+        },
+        {
+          "id": "wa-8LMyXCSwKKS",
+          "name": "d369b1cf1f71c85252a1ce0c80392e5c736b769e5ea9161b589b5_blazer_edit 1.png",
+          "filePath": "plasmic/influencer_campaign_page/images/d369B1Cf1F71C85252A1Ce0C80392E5C736B769E5Ea9161B589B5BlazerEdit1Png.jpeg"
+        },
+        {
+          "id": "05Fy_R4Fn_FWbY",
+          "name": "short-1.png",
+          "filePath": "plasmic/influencer_campaign_page/images/short1Png.png"
+        },
+        {
+          "id": "lLqTrnnwh_xs7z",
+          "name": "Ankle.png",
+          "filePath": "plasmic/influencer_campaign_page/images/anklepng.png"
+        },
+        {
+          "id": "1Xi8SBLKpDJKW1",
+          "name": "sprinkles-3.5ed71774.svg",
+          "filePath": "plasmic/influencer_campaign_page/images/sprinkles35Ed71774Svg.svg"
+        },
+        {
+          "id": "eVpKEBtWJ",
+          "name": "image",
+          "filePath": "plasmic/influencer_campaign_page/images/image.png"
+        },
+        {
+          "id": "mIHSelbVr",
+          "name": "image 2",
+          "filePath": "plasmic/influencer_campaign_page/images/image2.png"
+        }
+      ],
+      "indirect": false,
+      "globalContextsFilePath": "",
+      "codeComponents": []
+    }
+  ],
+  "globalVariants": {
+    "variantGroups": [
+      {
+        "id": "ckLLdnw4lO",
+        "name": "Screen",
+        "projectId": "szjgMQpPpxhmkjnaBvZQJG",
+        "contextFilePath": "plasmic/react_parallax_tilt/PlasmicGlobalVariant__Screen.tsx"
+      },
+      {
+        "id": "E9M6Sv34sLfhdD",
+        "name": "Screen",
+        "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+        "contextFilePath": "plasmic/influencer_campaign_page/PlasmicGlobalVariant__Screen.tsx"
+      }
+    ]
+  },
+  "wrapPagesWithGlobalContexts": true,
+  "cliVersion": "0.1.178",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.178/dist/plasmic.schema.json"
+}
