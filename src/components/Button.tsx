@@ -9,7 +9,10 @@ import {
   HtmlButtonOnlyProps
 } from "@plasmicapp/react-web";
 
-interface ButtonProps extends DefaultButtonProps {}
+interface ButtonProps extends DefaultButtonProps {
+  children?: never;
+  onClick?: () => void;
+}
 
 function Button_(props: ButtonProps, ref: ButtonRef) {
   const { plasmicProps } = PlasmicButton.useBehavior<ButtonProps>(props, ref);

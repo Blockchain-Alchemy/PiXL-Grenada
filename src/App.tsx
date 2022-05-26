@@ -23,6 +23,9 @@ function App() {
         <Route path={'/missions'}>
           <Missions />
         </Route>
+        <Route path={'/play'}>
+          <Missions />
+        </Route>
         <Route path={'/'}>
           <Home />
         </Route>
