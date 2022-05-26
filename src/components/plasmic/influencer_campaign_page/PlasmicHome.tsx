@@ -181,7 +181,7 @@ function PlasmicHome__RenderFunc(props: {
                             "__wab_instance",
                             sty.button__hcXk0
                           )}
-                          color={"blue" as const}
+                          color={"red" as const}
                         >
                           <div
                             className={classNames(
