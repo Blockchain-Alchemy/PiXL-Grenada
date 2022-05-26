@@ -279,7 +279,7 @@ function PlasmicHome__RenderFunc(props: {
                                 )}
                               >
                                 {
-                                  "In PiXL you battle dirty NFTs \n\nPiXL is the first evolving NFT RPG. It’s a love letter to Tezos - the technology, the artists, the community and the planet. It’s a play-to-earn game that changes every week - accessible to all (with an Entry Coin)."
+                                  "In PiXL you battle dirty NFTs\n\nPiXL is the first evolving NFT RPG. It’s a love letter to Tezos - the technology, the artists, the community and the planet. It’s a play-to-earn game that changes every week - accessible to all (with an Entry Coin)."
                                 }
                               </div>
                             </Reveal>
