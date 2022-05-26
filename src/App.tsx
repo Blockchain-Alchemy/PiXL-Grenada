@@ -1,8 +1,18 @@
 
+import { Route, Switch } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import Home from './components/Home';
 
 function App() {
-  return (<Home />);
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path={'/'}>
+          <Home />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
 }
 
 export default App;
