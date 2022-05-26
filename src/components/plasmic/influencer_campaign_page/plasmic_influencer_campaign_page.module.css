@@ -19,6 +19,8 @@
   --plasmic-token-yellow-hover: var(--token-C2tCRFszE3qcJM);
   --token--BGala8GD: VT323;
   --plasmic-token-font: var(--token--BGala8GD);
+  --token-vdltiBPm4: #0d61ff;
+  --plasmic-token-tezos: var(--token-vdltiBPm4);
 }
 
 .plasmic_default_styles {

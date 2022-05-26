@@ -151,7 +151,7 @@ function PlasmicNav__RenderFunc(props: {
         ) : null}
         {true ? (
           <Button
-            className={classNames("__wab_instance", sty.button__ynUuJ)}
+            className={classNames("__wab_instance", sty.button__rTYny)}
             color={"blue" as const}
             link={"/about" as const}
           >
@@ -160,16 +160,27 @@ function PlasmicNav__RenderFunc(props: {
         ) : null}
         {true ? (
           <Button
+            className={classNames("__wab_instance", sty.button__ynUuJ)}
+            color={"blue" as const}
+            link={"/day-pass" as const}
+          >
+            {"Buy day pass"}
+          </Button>
+        ) : null}
+        {(hasVariant(globalVariants, "screen", "mobileOnly") ? true : true) ? (
+          <Button
             className={classNames("__wab_instance", sty.button__vEbLh)}
             color={"blue" as const}
+            link={"/items" as const}
           >
             {"items"}
           </Button>
         ) : null}
-        {true ? (
+        {(hasVariant(globalVariants, "screen", "mobileOnly") ? true : true) ? (
           <Button
             className={classNames("__wab_instance", sty.button__fqR2T)}
             color={"blue" as const}
+            link={"/missions" as const}
           >
             {"missions"}
           </Button>
@@ -193,6 +204,28 @@ function PlasmicNav__RenderFunc(props: {
             color={"blue" as const}
           >
             {"Your Player"}
+          </Button>
+        ) : null}
+        {(
+          hasVariant(variants, "synced", "synced") &&
+          hasVariant(globalVariants, "screen", "mobileOnly")
+            ? true
+            : hasVariant(variants, "synced", "synced")
+            ? true
+            : false
+        ) ? (
+          <Button
+            className={classNames("__wab_instance", sty.button__av88F, {
+              [sty.buttonsynced__av88Fr2Qli]: hasVariant(
+                variants,
+                "synced",
+                "synced"
+              )
+            })}
+            color={"red" as const}
+            link={"/play" as const}
+          >
+            {"PLAY"}
           </Button>
         ) : null}
         {(hasVariant(globalVariants, "screen", "mobileOnly") ? true : true) ? (

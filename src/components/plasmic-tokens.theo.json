@@ -21,6 +21,16 @@
       }
     },
     {
+      "name": "Tezos",
+      "type": "color",
+      "value": "#0D61FF",
+      "category": "color",
+      "meta": {
+        "projectId": "oYWp5DRpUvyyRAKjSJya8K",
+        "id": "vdltiBPm4"
+      }
+    },
+    {
       "name": "White",
       "type": "color",
       "value": "#FCFBFB",

@@ -35,6 +35,7 @@ import Nav from "../../Nav"; // plasmic-import: 1NPCYKvqMbV/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal"; // plasmic-import: R6s1FdhksG/codeComponent
 import Button from "../../Button"; // plasmic-import: S20px5CzyEuzZP/component
 import Select from "../../Select"; // plasmic-import: cpYU5wUK7lP6LN/component
+import Tilt from "@plasmicpkgs/react-parallax-tilt"; // plasmic-import: PfY466VIuq/codeComponent
 
 import { useScreenVariants as useScreenVariantse9M6Sv34SLfhdD } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: E9M6Sv34sLfhdD/globalVariant
 
@@ -46,7 +47,7 @@ import sty from "./PlasmicHome.module.css"; // plasmic-import: EYLZW5oNmE/css
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: IradBadVvV69_r/icon
 import sprinkles1Cd2Da2A2SvgGNh7MptN3Bi01 from "./images/sprinkles1Cd2Da2A2Svg.svg"; // plasmic-import: GNh-7mptN3Bi01/picture
 import sprinkles2D589E9E91SvgDvLeXXgwEolNx from "./images/sprinkles2D589E9E91Svg.svg"; // plasmic-import: dvLe-xXgwEolNX/picture
-import anklepngLLqTrnnwhXs7Z from "./images/anklepng.png"; // plasmic-import: lLqTrnnwh_xs7z/picture
+import image3AfarJgvX from "../pi_xl_a/images/image3.png"; // plasmic-import: AfarJGV-x/picture
 import sprinkles35Ed717741SvgPIuKpfiX4081Rq from "./images/sprinkles35Ed717741Svg.svg"; // plasmic-import: PIuKpfiX4081Rq/picture
 
 export type PlasmicHome__VariantMembers = {
@@ -69,6 +70,7 @@ export type PlasmicHome__OverridesType = {
   nav?: p.Flex<typeof Nav>;
   hero?: p.Flex<"div">;
   body1?: p.Flex<"div">;
+  tilt?: p.Flex<typeof Tilt>;
   httpsstudioplasmicapp?: p.Flex<"a">;
 };
 
@@ -181,7 +183,7 @@ function PlasmicHome__RenderFunc(props: {
                             "__wab_instance",
                             sty.button__hcXk0
                           )}
-                          color={"red" as const}
+                          color={"blue" as const}
                         >
                           <div
                             className={classNames(
@@ -480,23 +482,28 @@ function PlasmicHome__RenderFunc(props: {
                             sty.column___2U0L7
                           )}
                         >
-                          <p.PlasmicImg
-                            alt={""}
-                            className={classNames(sty.img__jBlTz)}
-                            displayHeight={"100%" as const}
-                            displayMaxHeight={"none" as const}
-                            displayMaxWidth={"100%" as const}
-                            displayMinHeight={"0" as const}
-                            displayMinWidth={"0" as const}
-                            displayWidth={"auto" as const}
-                            loading={"lazy" as const}
-                            src={{
-                              src: anklepngLLqTrnnwhXs7Z,
-                              fullWidth: 740,
-                              fullHeight: 1000,
-                              aspectRatio: undefined
-                            }}
-                          />
+                          <Tilt
+                            data-plasmic-name={"tilt"}
+                            data-plasmic-override={overrides.tilt}
+                            className={classNames("__wab_instance", sty.tilt)}
+                          >
+                            <p.PlasmicImg
+                              alt={""}
+                              className={classNames(sty.img__kpJmm)}
+                              displayHeight={"auto" as const}
+                              displayMaxHeight={"none" as const}
+                              displayMaxWidth={"none" as const}
+                              displayMinHeight={"0" as const}
+                              displayMinWidth={"0" as const}
+                              displayWidth={"auto" as const}
+                              src={{
+                                src: image3AfarJgvX,
+                                fullWidth: 512,
+                                fullHeight: 512,
+                                aspectRatio: undefined
+                              }}
+                            />
+                          </Tilt>
                         </div>
                       </p.Stack>
                     </div>
@@ -1206,10 +1213,11 @@ function PlasmicHome__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "nav", "hero", "body1", "httpsstudioplasmicapp"],
+  root: ["root", "nav", "hero", "body1", "tilt", "httpsstudioplasmicapp"],
   nav: ["nav"],
   hero: ["hero"],
   body1: ["body1"],
+  tilt: ["tilt"],
   httpsstudioplasmicapp: ["httpsstudioplasmicapp"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -1220,6 +1228,7 @@ type NodeDefaultElementType = {
   nav: typeof Nav;
   hero: "div";
   body1: "div";
+  tilt: typeof Tilt;
   httpsstudioplasmicapp: "a";
 };
 
@@ -1283,6 +1292,7 @@ export const PlasmicHome = Object.assign(
     nav: makeNodeComponent("nav"),
     hero: makeNodeComponent("hero"),
     body1: makeNodeComponent("body1"),
+    tilt: makeNodeComponent("tilt"),
     httpsstudioplasmicapp: makeNodeComponent("httpsstudioplasmicapp"),
 
     // Metadata about props expected for PlasmicHome
