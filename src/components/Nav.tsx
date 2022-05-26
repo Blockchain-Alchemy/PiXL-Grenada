@@ -3,7 +3,7 @@
 import * as React from "react";
 import {
   PlasmicNav,
-  DefaultNavProps
+  DefaultNavProps,
 } from "./plasmic/influencer_campaign_page/PlasmicNav";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
@@ -38,7 +38,13 @@ function Nav_(props: NavProps, ref: HTMLElementRefOf<"div">) {
   // By default, we are just piping all NavProps here, but feel free
   // to do whatever works for you.
 
-  return <PlasmicNav root={{ ref }} {...props} />;
+  return (
+    <PlasmicNav
+      root={{ ref }}
+      syncButton={{ onClick: () => console.log("sync") }}
+      {...props}
+    />
+  );
 }
 
 const Nav = React.forwardRef(Nav_);
