@@ -255,13 +255,13 @@
   width: 1em;
   height: 1em;
 }
-.button__gxBr:global(.__wab_instance) {
+.syncButton:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
   margin-bottom: 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .button__gxBr:global(.__wab_instance) {
+  .syncButton:global(.__wab_instance) {
     display: none;
   }
 }

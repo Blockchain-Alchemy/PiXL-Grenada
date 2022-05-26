@@ -64,6 +64,7 @@ export type PlasmicNav__OverridesType = {
   link?: p.Flex<"a">;
   img?: p.Flex<typeof p.PlasmicImg>;
   spacer?: p.Flex<"div">;
+  syncButton?: p.Flex<typeof Button>;
   text?: p.Flex<"div">;
   svg?: p.Flex<"svg">;
 };
@@ -230,7 +231,9 @@ function PlasmicNav__RenderFunc(props: {
         ) : null}
         {(hasVariant(globalVariants, "screen", "mobileOnly") ? true : true) ? (
           <Button
-            className={classNames("__wab_instance", sty.button__gxBr)}
+            data-plasmic-name={"syncButton"}
+            data-plasmic-override={overrides.syncButton}
+            className={classNames("__wab_instance", sty.syncButton)}
             color={"blue" as const}
             endIcon={
               <ChecksvgIcon
@@ -261,11 +264,21 @@ function PlasmicNav__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox", "link", "img", "spacer", "text", "svg"],
-  freeBox: ["freeBox", "link", "img", "spacer", "text", "svg"],
+  root: [
+    "root",
+    "freeBox",
+    "link",
+    "img",
+    "spacer",
+    "syncButton",
+    "text",
+    "svg"
+  ],
+  freeBox: ["freeBox", "link", "img", "spacer", "syncButton", "text", "svg"],
   link: ["link", "img"],
   img: ["img"],
   spacer: ["spacer"],
+  syncButton: ["syncButton", "text", "svg"],
   text: ["text"],
   svg: ["svg"]
 } as const;
@@ -278,6 +291,7 @@ type NodeDefaultElementType = {
   link: "a";
   img: typeof p.PlasmicImg;
   spacer: "div";
+  syncButton: typeof Button;
   text: "div";
   svg: "svg";
 };
@@ -343,6 +357,7 @@ export const PlasmicNav = Object.assign(
     link: makeNodeComponent("link"),
     img: makeNodeComponent("img"),
     spacer: makeNodeComponent("spacer"),
+    syncButton: makeNodeComponent("syncButton"),
     text: makeNodeComponent("text"),
     svg: makeNodeComponent("svg"),
 
