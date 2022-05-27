@@ -137,120 +137,130 @@ function PlasmicHome__RenderFunc(props: {
               }
             />
 
-            <ParallaxWrapper
-              className={classNames(
-                "__wab_instance",
-                sty.scrollParallax__p2Ewc
-              )}
-              speed={70 as const}
-            >
-              <p.PlasmicImg
-                alt={""}
-                className={classNames(sty.img___19Yrv)}
-                displayHeight={"auto" as const}
-                displayMaxHeight={"none" as const}
-                displayMaxWidth={
-                  hasVariant(globalVariants, "screen", "mobileOnly")
-                    ? ("150px" as const)
-                    : ("200px" as const)
-                }
-                displayMinHeight={"0" as const}
-                displayMinWidth={"0" as const}
-                displayWidth={"auto" as const}
-                loading={"lazy" as const}
-                src={{
-                  src: sprinkles1Cd2Da2A2SvgGNh7MptN3Bi01,
-                  fullWidth: 180,
-                  fullHeight: 150,
-                  aspectRatio: 1.198795
-                }}
-              />
-            </ParallaxWrapper>
-
-            <ParallaxWrapper
-              className={classNames("__wab_instance", sty.scrollParallax__iiFd)}
-              speed={60 as const}
-            >
-              <p.PlasmicImg
-                alt={""}
-                className={classNames(sty.img__vDv)}
-                displayHeight={"auto" as const}
-                displayMaxHeight={"none" as const}
-                displayMaxWidth={
-                  hasVariant(globalVariants, "screen", "mobileOnly")
-                    ? ("150px" as const)
-                    : ("200px" as const)
-                }
-                displayMinHeight={"0" as const}
-                displayMinWidth={"0" as const}
-                displayWidth={"auto" as const}
-                loading={"lazy" as const}
-                src={{
-                  src: sprinkles1Cd2Da2A2SvgGNh7MptN3Bi01,
-                  fullWidth: 180,
-                  fullHeight: 150,
-                  aspectRatio: 1.198795
-                }}
-              />
-            </ParallaxWrapper>
-
-            <ParallaxWrapper
-              className={classNames("__wab_instance", sty.scrollParallax__epQb)}
-              speed={20 as const}
-            >
-              <p.PlasmicImg
-                alt={""}
-                className={classNames(sty.img___5TIzU)}
-                displayHeight={"auto" as const}
-                displayMaxHeight={"none" as const}
-                displayMaxWidth={
-                  hasVariant(globalVariants, "screen", "mobileOnly")
-                    ? ("90px" as const)
-                    : ("106px" as const)
-                }
-                displayMinHeight={"0" as const}
-                displayMinWidth={"0" as const}
-                displayWidth={"auto" as const}
-                loading={"lazy" as const}
-                src={{
-                  src: sprinkles2D589E9E91SvgDvLeXXgwEolNx,
-                  fullWidth: 138,
-                  fullHeight: 150,
-                  aspectRatio: 0.921739
-                }}
-              />
-            </ParallaxWrapper>
-
-            <ParallaxWrapper
-              className={classNames(
-                "__wab_instance",
-                sty.scrollParallax__y6T4N
-              )}
-              speed={30 as const}
-            >
-              <p.PlasmicImg
-                alt={""}
-                className={classNames(sty.img__wmhj9)}
-                displayHeight={"auto" as const}
-                displayMaxHeight={"none" as const}
-                displayMaxWidth={
-                  hasVariant(globalVariants, "screen", "mobileOnly")
-                    ? ("90px" as const)
-                    : ("106px" as const)
-                }
-                displayMinHeight={"0" as const}
-                displayMinWidth={"0" as const}
-                displayWidth={"auto" as const}
-                loading={"lazy" as const}
-                src={{
-                  src: sprinkles2D589E9E91SvgDvLeXXgwEolNx,
-                  fullWidth: 138,
-                  fullHeight: 150,
-                  aspectRatio: 0.921739
-                }}
-              />
-            </ParallaxWrapper>
-
+            {true ? (
+              <ParallaxWrapper
+                className={classNames(
+                  "__wab_instance",
+                  sty.scrollParallax__p2Ewc
+                )}
+                speed={70 as const}
+              >
+                <p.PlasmicImg
+                  alt={""}
+                  className={classNames(sty.img___19Yrv)}
+                  displayHeight={"auto" as const}
+                  displayMaxHeight={"none" as const}
+                  displayMaxWidth={
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? ("150px" as const)
+                      : ("200px" as const)
+                  }
+                  displayMinHeight={"0" as const}
+                  displayMinWidth={"0" as const}
+                  displayWidth={"auto" as const}
+                  loading={"lazy" as const}
+                  src={{
+                    src: sprinkles1Cd2Da2A2SvgGNh7MptN3Bi01,
+                    fullWidth: 180,
+                    fullHeight: 150,
+                    aspectRatio: 1.198795
+                  }}
+                />
+              </ParallaxWrapper>
+            ) : null}
+            {true ? (
+              <ParallaxWrapper
+                className={classNames(
+                  "__wab_instance",
+                  sty.scrollParallax__iiFd
+                )}
+                speed={60 as const}
+              >
+                <p.PlasmicImg
+                  alt={""}
+                  className={classNames(sty.img__vDv)}
+                  displayHeight={"auto" as const}
+                  displayMaxHeight={"none" as const}
+                  displayMaxWidth={
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? ("150px" as const)
+                      : ("200px" as const)
+                  }
+                  displayMinHeight={"0" as const}
+                  displayMinWidth={"0" as const}
+                  displayWidth={"auto" as const}
+                  loading={"lazy" as const}
+                  src={{
+                    src: sprinkles1Cd2Da2A2SvgGNh7MptN3Bi01,
+                    fullWidth: 180,
+                    fullHeight: 150,
+                    aspectRatio: 1.198795
+                  }}
+                />
+              </ParallaxWrapper>
+            ) : null}
+            {true ? (
+              <ParallaxWrapper
+                className={classNames(
+                  "__wab_instance",
+                  sty.scrollParallax__epQb
+                )}
+                speed={20 as const}
+              >
+                <p.PlasmicImg
+                  alt={""}
+                  className={classNames(sty.img___5TIzU)}
+                  displayHeight={"auto" as const}
+                  displayMaxHeight={"none" as const}
+                  displayMaxWidth={
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? ("90px" as const)
+                      : ("106px" as const)
+                  }
+                  displayMinHeight={"0" as const}
+                  displayMinWidth={"0" as const}
+                  displayWidth={"auto" as const}
+                  loading={"lazy" as const}
+                  src={{
+                    src: sprinkles2D589E9E91SvgDvLeXXgwEolNx,
+                    fullWidth: 138,
+                    fullHeight: 150,
+                    aspectRatio: 0.921739
+                  }}
+                />
+              </ParallaxWrapper>
+            ) : null}
+            {true ? (
+              <ParallaxWrapper
+                className={classNames(
+                  "__wab_instance",
+                  sty.scrollParallax__y6T4N
+                )}
+                speed={30 as const}
+              >
+                <p.PlasmicImg
+                  alt={""}
+                  className={classNames(sty.img__wmhj9)}
+                  displayHeight={"auto" as const}
+                  displayMaxHeight={"none" as const}
+                  displayMaxWidth={
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? ("90px" as const)
+                      : ("106px" as const)
+                  }
+                  displayMinHeight={"0" as const}
+                  displayMinWidth={"0" as const}
+                  displayWidth={"auto" as const}
+                  loading={"lazy" as const}
+                  src={{
+                    src: sprinkles2D589E9E91SvgDvLeXXgwEolNx,
+                    fullWidth: 138,
+                    fullHeight: 150,
+                    aspectRatio: 0.921739
+                  }}
+                />
+              </ParallaxWrapper>
+            ) : null}
             {(
               hasVariant(globalVariants, "screen", "mobileOnly") ? true : true
             ) ? (
