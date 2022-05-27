@@ -72,7 +72,7 @@
   right: 158px;
   flex-grow: 0;
   transform: none;
-  display: none;
+  display: flex;
 }
 .img___19Yrv {
   position: relative;
@@ -102,7 +102,7 @@
   left: 83px;
   top: 800px;
   z-index: 1;
-  display: none;
+  display: flex;
 }
 .img__vDv {
   position: relative;
@@ -132,7 +132,7 @@
   top: 704px;
   z-index: 1;
   right: 143px;
-  display: none;
+  display: flex;
 }
 .img___5TIzU {
   position: relative;
@@ -161,7 +161,7 @@
   left: 181px;
   top: 1200px;
   z-index: 1;
-  display: none;
+  display: flex;
 }
 .img__wmhj9 {
   position: relative;
