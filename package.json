@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@airgap/beacon-sdk": "^3.1.0",
     "@ledgerhq/hw-transport-u2f": "^5.36.0-deprecated",
     "@plasmicapp/cli": "^0.1.178",
     "@plasmicapp/host": "^1.0.47",

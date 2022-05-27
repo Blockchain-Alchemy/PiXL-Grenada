@@ -1,31 +1,33 @@
 import React, { createContext, useState } from 'react'
-import { TezosToolkit } from '@taquito/taquito';
+import { ContractAbstraction, TezosToolkit, Wallet } from '@taquito/taquito';
 import { BeaconWallet } from "@taquito/beacon-wallet";
+import { PermissionScope } from "@airgap/beacon-sdk";
 import {
+  NetworkType,
   BeaconEvent,
-  PermissionScope,
   defaultEventCallbacks
 } from "@airgap/beacon-sdk";
 import Network from "config";
+import { BeaconContextApi } from './types'
 import { useEffect } from 'react';
 
-export const BeaconContext = createContext();
+export const BeaconContext = createContext<BeaconContextApi>({} as BeaconContextApi)
 
-const scopes = [
+const scopes: PermissionScope[] = [
   PermissionScope.OPERATION_REQUEST,
   PermissionScope.SIGN,
 ];
 
-export const BeaconProvider = ({ children }) => {
-  const [tezos, setTezos] = useState(undefined)
-  const [networkType, setNetworkType] = useState(Network.networkType)
+export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
+  const [tezos, setTezos] = useState<TezosToolkit | undefined>(undefined)
+  const [networkType, setNetworkType] = useState<NetworkType>(Network.networkType)
   const [rpcUrl, setRpcUrl] = useState(Network.rpcUrl);
 
   const [loading, setLoading] = useState(false);
-  const [wallet, setWallet] = useState(undefined);
-  const [address, setAddress] = useState(undefined);
-  const [connected, setConnected] = useState(false);
-  const [contract, setContract] = useState(undefined);
+  const [wallet, setWallet] = useState<BeaconWallet | undefined>(undefined);
+  const [address, setAddress] = useState<string | undefined>(undefined);
+  const [connected, setConnected] = useState<boolean>(false);
+  const [contract, setContract] = useState<ContractAbstraction<Wallet> | undefined>(undefined);
 
   useEffect(() => {
     console.log("create toolkit", rpcUrl)
@@ -40,7 +42,7 @@ export const BeaconProvider = ({ children }) => {
     if (tezos)  {
       console.log("create wallet", networkType)
       const _wallet = new BeaconWallet({
-        name: "GRAT",
+        name: "Teo Run",
         preferredNetwork: networkType,
         disableDefaultEvents: true, // Disable all events / UI. This also disables the pairing alert.
         eventHandlers: {
@@ -59,7 +61,7 @@ export const BeaconProvider = ({ children }) => {
     }
   }, [tezos, networkType, setWallet])
 
-  const connectWallet = async () => {
+  const connectWallet = async (): Promise<void> => {
     try {
       if (!wallet || !tezos) {
         return;
@@ -79,9 +81,9 @@ export const BeaconProvider = ({ children }) => {
       console.log("userAddress", address)
       setAddress(address)
 
-      //const contract = await tezos.wallet.at(Network.contractAddress)
-      //console.log("contract", contract);
-      //setContract(contract);
+      const contract = await tezos.wallet.at(Network.contractAddress)
+      console.log("contract", contract);
+      setContract(contract);
       
       setConnected(true);
     }
@@ -94,7 +96,7 @@ export const BeaconProvider = ({ children }) => {
     }
   };
 
-  const disconnectWallet = async () => {
+  const disconnectWallet = async (): Promise<void> => {
     setConnected(false);
     /*if (wallet) {
       await wallet.client.removeAllAccounts();
