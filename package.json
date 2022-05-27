@@ -9,6 +9,7 @@
     "@plasmicapp/react-web": "^0.2.97",
     "@plasmicpkgs/react-awesome-reveal": "^3.8.47",
     "@plasmicpkgs/react-parallax-tilt": "^0.0.45",
+    "@plasmicpkgs/react-scroll-parallax": "^0.0.52",
     "@taquito/beacon-wallet": "^11.2.0",
     "@taquito/ledger-signer": "^11.2.0",
     "@taquito/taquito": "^11.2.0",
