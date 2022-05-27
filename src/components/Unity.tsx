@@ -7,7 +7,7 @@ import { Tzip16Module } from "@taquito/tzip16";
 // import { MintProvider } from "../../services/mintProvider";
 // import { QuestProvider } from "../../services/questProvider";
 // import { GraveyardProvider } from "../../services/graveyardProvider";
-// import toast, { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 // import LoadingComponent from "./loading";
 // import Items from "./Items";
 // import HelpMessage from "./HelpMessage";
@@ -31,7 +31,23 @@ const unityContext = new UnityContext({
 });
 
 const UnityComponent = () => {
-  
+  return (
+    <>
+      <div className="flex flex-col items-center ml-auto mr-auto unity-container">
+        <Toaster />
+        <Unity
+          unityContext={unityContext}
+          style={{
+            height: "100%",
+            width: 950,
+            border: "2px solid black",
+            background: "grey",
+          }}
+        />
+        {/* {progression < 1 && <LoadingBar progression={progression} />} */}
+      </div>
+    </>
+  );
 };
 
 export default UnityComponent;
