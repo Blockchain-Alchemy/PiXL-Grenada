@@ -410,8 +410,32 @@
         }
       ],
       "indirect": false,
-      "globalContextsFilePath": "",
+      "globalContextsFilePath": "plasmic/pi_xl_a/PlasmicGlobalContextsProvider.tsx",
       "codeComponents": []
+    },
+    {
+      "projectId": "84wxoth5npGrp6RRXPL88z",
+      "projectApiToken": "hOzXksPB8gkTrKnfJeV9VDS8m8dnIXQn1xxDQZ5MHxv9orQY6JNgwmk6aDMZPLkocV2KtD9gNJXv5JwIbbzIQ",
+      "projectName": "react-scroll-parallax-global",
+      "version": "4.0.1",
+      "cssFilePath": "plasmic/react_scroll_parallax_global/plasmic_react_scroll_parallax_global.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "plasmic/react_scroll_parallax_global/PlasmicGlobalContextsProvider.tsx",
+      "codeComponents": [
+        {
+          "id": "bozP4lLlAZ",
+          "name": "ParallaxWrapper",
+          "componentImportPath": "@plasmicpkgs/react-scroll-parallax"
+        },
+        {
+          "id": "L6MfauX2Cw",
+          "name": "ParallaxProviderWrapper",
+          "componentImportPath": "@plasmicpkgs/react-scroll-parallax"
+        }
+      ]
     }
   ],
   "globalVariants": {
