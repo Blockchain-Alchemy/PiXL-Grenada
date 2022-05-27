@@ -32,11 +32,14 @@ import {
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import Nav from "../../Nav"; // plasmic-import: 1NPCYKvqMbV/component
+import Button from "../../Button"; // plasmic-import: S20px5CzyEuzZP/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import projectcss from "../influencer_campaign_page/plasmic_influencer_campaign_page.module.css"; // plasmic-import: oYWp5DRpUvyyRAKjSJya8K/projectcss
 import sty from "./PlasmicDayPass.module.css"; // plasmic-import: 9dcKxjGUEU/css
+
+import ChecksvgIcon from "../influencer_campaign_page/icons/PlasmicIcon__Checksvg"; // plasmic-import: IradBadVvV69_r/icon
 
 export type PlasmicDayPass__VariantMembers = {};
 
@@ -51,6 +54,8 @@ export const PlasmicDayPass__ArgProps = new Array<ArgPropType>();
 export type PlasmicDayPass__OverridesType = {
   root?: p.Flex<"div">;
   nav?: p.Flex<typeof Nav>;
+  button?: p.Flex<typeof Button>;
+  text?: p.Flex<"div">;
 };
 
 export interface DefaultDayPassProps {
@@ -95,6 +100,25 @@ function PlasmicDayPass__RenderFunc(props: {
             data-plasmic-override={overrides.nav}
             className={classNames("__wab_instance", sty.nav)}
           />
+
+          <Button
+            data-plasmic-name={"button"}
+            data-plasmic-override={overrides.button}
+            className={classNames("__wab_instance", sty.button)}
+            color={"blue" as const}
+          >
+            <div
+              data-plasmic-name={"text"}
+              data-plasmic-override={overrides.text}
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text
+              )}
+            >
+              {"BUY DAY PASS"}
+            </div>
+          </Button>
         </div>
       </div>
     </React.Fragment>
@@ -102,8 +126,10 @@ function PlasmicDayPass__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "nav"],
-  nav: ["nav"]
+  root: ["root", "nav", "button", "text"],
+  nav: ["nav"],
+  button: ["button", "text"],
+  text: ["text"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -111,6 +137,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   nav: typeof Nav;
+  button: typeof Button;
+  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -171,6 +199,8 @@ export const PlasmicDayPass = Object.assign(
   {
     // Helper components rendering sub-elements
     nav: makeNodeComponent("nav"),
+    button: makeNodeComponent("button"),
+    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicDayPass
     internalVariantProps: PlasmicDayPass__VariantProps,

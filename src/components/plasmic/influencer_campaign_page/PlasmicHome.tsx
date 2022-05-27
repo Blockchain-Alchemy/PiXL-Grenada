@@ -32,6 +32,7 @@ import {
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import Nav from "../../Nav"; // plasmic-import: 1NPCYKvqMbV/component
+import { ParallaxWrapper } from "@plasmicpkgs/react-scroll-parallax"; // plasmic-import: bozP4lLlAZ/codeComponent
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal"; // plasmic-import: R6s1FdhksG/codeComponent
 import Button from "../../Button"; // plasmic-import: S20px5CzyEuzZP/component
 import Select from "../../Select"; // plasmic-import: cpYU5wUK7lP6LN/component
@@ -136,6 +137,130 @@ function PlasmicHome__RenderFunc(props: {
               }
             />
 
+            {true ? (
+              <ParallaxWrapper
+                className={classNames(
+                  "__wab_instance",
+                  sty.scrollParallax__p2Ewc
+                )}
+                speed={70 as const}
+              >
+                <p.PlasmicImg
+                  alt={""}
+                  className={classNames(sty.img___19Yrv)}
+                  displayHeight={"auto" as const}
+                  displayMaxHeight={"none" as const}
+                  displayMaxWidth={
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? ("150px" as const)
+                      : ("200px" as const)
+                  }
+                  displayMinHeight={"0" as const}
+                  displayMinWidth={"0" as const}
+                  displayWidth={"auto" as const}
+                  loading={"lazy" as const}
+                  src={{
+                    src: sprinkles1Cd2Da2A2SvgGNh7MptN3Bi01,
+                    fullWidth: 180,
+                    fullHeight: 150,
+                    aspectRatio: 1.198795
+                  }}
+                />
+              </ParallaxWrapper>
+            ) : null}
+            {true ? (
+              <ParallaxWrapper
+                className={classNames(
+                  "__wab_instance",
+                  sty.scrollParallax__iiFd
+                )}
+                speed={60 as const}
+              >
+                <p.PlasmicImg
+                  alt={""}
+                  className={classNames(sty.img__vDv)}
+                  displayHeight={"auto" as const}
+                  displayMaxHeight={"none" as const}
+                  displayMaxWidth={
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? ("150px" as const)
+                      : ("200px" as const)
+                  }
+                  displayMinHeight={"0" as const}
+                  displayMinWidth={"0" as const}
+                  displayWidth={"auto" as const}
+                  loading={"lazy" as const}
+                  src={{
+                    src: sprinkles1Cd2Da2A2SvgGNh7MptN3Bi01,
+                    fullWidth: 180,
+                    fullHeight: 150,
+                    aspectRatio: 1.198795
+                  }}
+                />
+              </ParallaxWrapper>
+            ) : null}
+            {true ? (
+              <ParallaxWrapper
+                className={classNames(
+                  "__wab_instance",
+                  sty.scrollParallax__epQb
+                )}
+                speed={20 as const}
+              >
+                <p.PlasmicImg
+                  alt={""}
+                  className={classNames(sty.img___5TIzU)}
+                  displayHeight={"auto" as const}
+                  displayMaxHeight={"none" as const}
+                  displayMaxWidth={
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? ("90px" as const)
+                      : ("106px" as const)
+                  }
+                  displayMinHeight={"0" as const}
+                  displayMinWidth={"0" as const}
+                  displayWidth={"auto" as const}
+                  loading={"lazy" as const}
+                  src={{
+                    src: sprinkles2D589E9E91SvgDvLeXXgwEolNx,
+                    fullWidth: 138,
+                    fullHeight: 150,
+                    aspectRatio: 0.921739
+                  }}
+                />
+              </ParallaxWrapper>
+            ) : null}
+            {true ? (
+              <ParallaxWrapper
+                className={classNames(
+                  "__wab_instance",
+                  sty.scrollParallax__y6T4N
+                )}
+                speed={30 as const}
+              >
+                <p.PlasmicImg
+                  alt={""}
+                  className={classNames(sty.img__wmhj9)}
+                  displayHeight={"auto" as const}
+                  displayMaxHeight={"none" as const}
+                  displayMaxWidth={
+                    hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? ("90px" as const)
+                      : ("106px" as const)
+                  }
+                  displayMinHeight={"0" as const}
+                  displayMinWidth={"0" as const}
+                  displayWidth={"auto" as const}
+                  loading={"lazy" as const}
+                  src={{
+                    src: sprinkles2D589E9E91SvgDvLeXXgwEolNx,
+                    fullWidth: 138,
+                    fullHeight: 150,
+                    aspectRatio: 0.921739
+                  }}
+                />
+              </ParallaxWrapper>
+            ) : null}
             {(
               hasVariant(globalVariants, "screen", "mobileOnly") ? true : true
             ) ? (
@@ -217,32 +342,14 @@ function PlasmicHome__RenderFunc(props: {
                 data-plasmic-override={overrides.body1}
                 className={classNames(projectcss.all, sty.body1)}
               >
-                <div className={classNames(projectcss.all, sty.freeBox__eqGAm)}>
-                  <p.PlasmicImg
-                    alt={""}
-                    className={classNames(sty.img___19Yrv)}
-                    displayHeight={"auto" as const}
-                    displayMaxHeight={"none" as const}
-                    displayMaxWidth={
-                      hasVariant(globalVariants, "screen", "mobileOnly")
-                        ? ("150px" as const)
-                        : ("200px" as const)
-                    }
-                    displayMinHeight={"0" as const}
-                    displayMinWidth={"0" as const}
-                    displayWidth={"auto" as const}
-                    loading={"lazy" as const}
-                    src={{
-                      src: sprinkles1Cd2Da2A2SvgGNh7MptN3Bi01,
-                      fullWidth: 180,
-                      fullHeight: 150,
-                      aspectRatio: 1.198795
-                    }}
-                  />
-                </div>
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__eqGAm)}
+                />
               </div>
             ) : null}
-            {true ? (
+            {(
+              hasVariant(globalVariants, "screen", "mobileOnly") ? true : true
+            ) ? (
               <div className={classNames(projectcss.all, sty.freeBox__vj96X)}>
                 {true ? (
                   <div
@@ -285,35 +392,15 @@ function PlasmicHome__RenderFunc(props: {
                             </Reveal>
                           </div>
                         ) : null}
-
-                        <p.PlasmicImg
-                          alt={""}
-                          className={classNames(sty.img___5TIzU)}
-                          displayHeight={"auto" as const}
-                          displayMaxHeight={"none" as const}
-                          displayMaxWidth={
-                            hasVariant(globalVariants, "screen", "mobileOnly")
-                              ? ("90px" as const)
-                              : ("106px" as const)
-                          }
-                          displayMinHeight={"0" as const}
-                          displayMinWidth={"0" as const}
-                          displayWidth={"auto" as const}
-                          loading={"lazy" as const}
-                          src={{
-                            src: sprinkles2D589E9E91SvgDvLeXXgwEolNx,
-                            fullWidth: 138,
-                            fullHeight: 150,
-                            aspectRatio: 0.921739
-                          }}
-                        />
                       </p.Stack>
                     ) : null}
                   </div>
                 ) : null}
               </div>
             ) : null}
-            {true ? (
+            {(
+              hasVariant(globalVariants, "screen", "mobileOnly") ? true : true
+            ) ? (
               <div className={classNames(projectcss.all, sty.freeBox__lGcvZ)} />
             ) : null}
             {true ? (
@@ -460,6 +547,7 @@ function PlasmicHome__RenderFunc(props: {
                                     sty.button__le0ZQ
                                   )}
                                   color={"yellow" as const}
+                                  link={"/day-pass" as const}
                                 >
                                   <div
                                     className={classNames(
@@ -468,7 +556,7 @@ function PlasmicHome__RenderFunc(props: {
                                       sty.text__gqp0G
                                     )}
                                   >
-                                    {"ADD TO CART"}
+                                    {"BUY DAY PASS"}
                                   </div>
                                 </Button>
                               </div>
@@ -738,7 +826,9 @@ function PlasmicHome__RenderFunc(props: {
                 />
               </p.Stack>
             ) : null}
-            {true ? (
+            {(
+              hasVariant(globalVariants, "screen", "mobileOnly") ? true : true
+            ) ? (
               <div
                 className={classNames(projectcss.all, sty.freeBox___0PcGu)}
               />

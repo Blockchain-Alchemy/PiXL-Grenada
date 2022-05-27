@@ -114,7 +114,9 @@ function PlasmicNav__RenderFunc(props: {
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
         hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox)}
+        className={classNames(projectcss.all, sty.freeBox, {
+          [sty.freeBoxsynced]: hasVariant(variants, "synced", "synced")
+        })}
       >
         <a
           data-plasmic-name={"link"}
@@ -233,7 +235,9 @@ function PlasmicNav__RenderFunc(props: {
           <Button
             data-plasmic-name={"syncButton"}
             data-plasmic-override={overrides.syncButton}
-            className={classNames("__wab_instance", sty.syncButton)}
+            className={classNames("__wab_instance", sty.syncButton, {
+              [sty.syncButtonsynced]: hasVariant(variants, "synced", "synced")
+            })}
             color={"blue" as const}
             endIcon={
               <ChecksvgIcon
