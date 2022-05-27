@@ -7,7 +7,7 @@ import {
   BeaconEvent,
   defaultEventCallbacks,
 } from "@airgap/beacon-sdk";
-import Network from "config";
+import Config from "config";
 import { BeaconContextApi } from "./types";
 import { useEffect } from "react";
 
@@ -22,10 +22,8 @@ const scopes: PermissionScope[] = [
 
 export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
   const [tezos, setTezos] = useState<TezosToolkit | undefined>(undefined);
-  const [networkType, setNetworkType] = useState<NetworkType>(
-    Network.networkType
-  );
-  const [rpcUrl, setRpcUrl] = useState(Network.rpcUrl);
+  const [networkType, setNetworkType] = useState<NetworkType>(Config.NetworkType);
+  const [rpcUrl, setRpcUrl] = useState(Config.RpcUrl);
 
   const [loading, setLoading] = useState(false);
   const [wallet, setWallet] = useState<BeaconWallet | undefined>(undefined);
@@ -86,7 +84,7 @@ export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
       console.log("userAddress", address);
       setAddress(address);
 
-      const contract = await tezos.wallet.at(Network.contractAddress);
+      const contract = await tezos.wallet.at(Config.ContractAddress);
       console.log("contract", contract);
       setContract(contract);
 

@@ -10,16 +10,17 @@ export interface NavProps extends DefaultNavProps {}
 
 function Nav_(props: NavProps, ref: HTMLElementRefOf<"div">) {
   const { connected, connectWallet, disconnectWallet } = useBeacon();
+  console.log('connected', connected)
 
   return (
     <>
     {
       connected? (
         <PlasmicNav
-          synced
           root={{ ref }}
           syncButton={{ onClick: () => disconnectWallet() }}
           {...props}
+          synced
         />
       ) : (
         <PlasmicNav

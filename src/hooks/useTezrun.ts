@@ -1,5 +1,5 @@
-import Network from "config";
-import {useCallback, useState} from "react";
+import Config from "config";
+import {useCallback} from "react";
 import useBeacon from "./useBeacon";
 
 const useTezrun = () => {
@@ -37,7 +37,7 @@ const useTezrun = () => {
     setLoading(true);
 
     return contract?.methods
-      .placeBetByToken(amount, horseId, payout, raceId, Network.tokenId)
+      .placeBetByToken(amount, horseId, payout, raceId, Config.TokenId)
       .send()
       .then((result) => {
         console.info("placeBetByToken", result);
