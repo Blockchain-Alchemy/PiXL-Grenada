@@ -1,17 +1,19 @@
-import React, { createContext, useState } from 'react'
-import { ContractAbstraction, TezosToolkit, Wallet } from '@taquito/taquito';
+import React, { createContext, useState } from "react";
+import { ContractAbstraction, TezosToolkit, Wallet } from "@taquito/taquito";
 import { BeaconWallet } from "@taquito/beacon-wallet";
-import { PermissionScope } from "@airgap/beacon-sdk";
 import {
   NetworkType,
+  PermissionScope,
   BeaconEvent,
-  defaultEventCallbacks
+  defaultEventCallbacks,
 } from "@airgap/beacon-sdk";
 import Network from "config";
-import { BeaconContextApi } from './types'
-import { useEffect } from 'react';
+import { BeaconContextApi } from "./types";
+import { useEffect } from "react";
 
-export const BeaconContext = createContext<BeaconContextApi>({} as BeaconContextApi)
+export const BeaconContext = createContext<BeaconContextApi>(
+  {} as BeaconContextApi
+);
 
 const scopes: PermissionScope[] = [
   PermissionScope.OPERATION_REQUEST,
@@ -19,47 +21,50 @@ const scopes: PermissionScope[] = [
 ];
 
 export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
-  const [tezos, setTezos] = useState<TezosToolkit | undefined>(undefined)
-  const [networkType, setNetworkType] = useState<NetworkType>(Network.networkType)
+  const [tezos, setTezos] = useState<TezosToolkit | undefined>(undefined);
+  const [networkType, setNetworkType] = useState<NetworkType>(
+    Network.networkType
+  );
   const [rpcUrl, setRpcUrl] = useState(Network.rpcUrl);
 
   const [loading, setLoading] = useState(false);
   const [wallet, setWallet] = useState<BeaconWallet | undefined>(undefined);
   const [address, setAddress] = useState<string | undefined>(undefined);
   const [connected, setConnected] = useState<boolean>(false);
-  const [contract, setContract] = useState<ContractAbstraction<Wallet> | undefined>(undefined);
+  const [contract, setContract] = useState<
+    ContractAbstraction<Wallet> | undefined
+  >(undefined);
 
   useEffect(() => {
-    console.log("create toolkit", rpcUrl)
+    console.log("create toolkit", rpcUrl);
     setWallet(undefined);
     setAddress(undefined);
     setConnected(false);
     setContract(undefined);
     setTezos(new TezosToolkit(rpcUrl));
-  }, [rpcUrl, setTezos])
+  }, [rpcUrl, setTezos]);
 
   useEffect(() => {
-    if (tezos)  {
-      console.log("create wallet", networkType)
+    if (tezos) {
       const _wallet = new BeaconWallet({
-        name: "Teo Run",
+        name: "PiXL - Grenada",
         preferredNetwork: networkType,
         disableDefaultEvents: true, // Disable all events / UI. This also disables the pairing alert.
         eventHandlers: {
           // To keep the pairing alert, we have to add the following default event handlers back
           [BeaconEvent.PAIR_INIT]: {
-            handler: defaultEventCallbacks.PAIR_INIT
+            handler: defaultEventCallbacks.PAIR_INIT,
           },
           [BeaconEvent.PAIR_SUCCESS]: {
-            handler: data => console.log(data.publicKey)
-          }
-        }
+            handler: (data) => console.log(data.publicKey),
+          },
+        },
       });
       tezos?.setWalletProvider(_wallet);
       setWallet(_wallet);
       console.log("Tezos.setWalletProvider", _wallet, tezos);
     }
-  }, [tezos, networkType, setWallet])
+  }, [tezos, networkType, setWallet]);
 
   const connectWallet = async (): Promise<void> => {
     try {
@@ -74,24 +79,22 @@ export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
           type: networkType,
           rpcUrl: rpcUrl,
         },
-        scopes
+        scopes,
       });
 
-      const address = await wallet.getPKH()
-      console.log("userAddress", address)
-      setAddress(address)
+      const address = await wallet.getPKH();
+      console.log("userAddress", address);
+      setAddress(address);
 
-      const contract = await tezos.wallet.at(Network.contractAddress)
+      const contract = await tezos.wallet.at(Network.contractAddress);
       console.log("contract", contract);
       setContract(contract);
-      
+
       setConnected(true);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
       setConnected(false);
-    }
-    finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -106,21 +109,23 @@ export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
   };
 
   return (
-    <BeaconContext.Provider value={{
-      tezos,
-      wallet,
-      loading,
-      connected,
-      address,
-      contract,
-      rpcUrl,
-      connectWallet,
-      disconnectWallet,
-      setLoading,
-      setNetworkType,
-      setRpcUrl,
-    }}>
+    <BeaconContext.Provider
+      value={{
+        tezos,
+        wallet,
+        loading,
+        connected,
+        address,
+        contract,
+        rpcUrl,
+        connectWallet,
+        disconnectWallet,
+        setLoading,
+        setNetworkType,
+        setRpcUrl,
+      }}
+    >
       {children}
     </BeaconContext.Provider>
-  )
-}
+  );
+};
