@@ -228,19 +228,6 @@
           "cssFilePath": "plasmic/pi_xl_a/PlasmicPlay.module.css",
           "scheme": "blackbox",
           "componentType": "page"
-        },
-        {
-          "id": "30pT1P3pcW",
-          "name": "LoadingBar",
-          "type": "managed",
-          "projectId": "oYWp5DRpUvyyRAKjSJya8K",
-          "renderModuleFilePath": "plasmic/pi_xl_a/PlasmicLoadingBar.tsx",
-          "importSpec": {
-            "modulePath": "LoadingBar.tsx"
-          },
-          "cssFilePath": "plasmic/pi_xl_a/PlasmicLoadingBar.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
         }
       ],
       "icons": [
@@ -420,11 +407,27 @@
           "id": "AfarJGV-x",
           "name": "image 3",
           "filePath": "plasmic/pi_xl_a/images/image3.png"
+        },
+        {
+          "id": "Kb9Khcgdx",
+          "name": "LOGO-PIXL.png",
+          "filePath": "plasmic/pi_xl_a/images/logoPixLpng.png"
         }
       ],
       "indirect": false,
       "globalContextsFilePath": "plasmic/pi_xl_a/PlasmicGlobalContextsProvider.tsx",
-      "codeComponents": []
+      "codeComponents": [
+        {
+          "id": "P8taC2K9Tg",
+          "name": "CompP8TaC2K9Tg",
+          "componentImportPath": ""
+        },
+        {
+          "id": "b2hX0Kahvc",
+          "name": "Compb2HX0Kahvc",
+          "componentImportPath": ""
+        }
+      ]
     },
     {
       "projectId": "84wxoth5npGrp6RRXPL88z",

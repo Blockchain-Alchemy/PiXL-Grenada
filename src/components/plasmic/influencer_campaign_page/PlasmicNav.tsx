@@ -41,7 +41,7 @@ import projectcss from "./plasmic_influencer_campaign_page.module.css"; // plasm
 import sty from "./PlasmicNav.module.css"; // plasmic-import: 1NPCYKvqMbV/css
 
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: IradBadVvV69_r/icon
-import image2MIhSelbVr from "./images/image2.png"; // plasmic-import: mIHSelbVr/picture
+import logoPixLpngKb9Khcgdx from "../pi_xl_a/images/logoPixLpng.png"; // plasmic-import: Kb9Khcgdx/picture
 
 export type PlasmicNav__VariantMembers = {
   synced: "synced";
@@ -137,9 +137,9 @@ function PlasmicNav__RenderFunc(props: {
             displayWidth={"77px" as const}
             loading={"lazy" as const}
             src={{
-              src: image2MIhSelbVr,
-              fullWidth: 75,
-              fullHeight: 75,
+              src: logoPixLpngKb9Khcgdx,
+              fullWidth: 750,
+              fullHeight: 750,
               aspectRatio: undefined
             }}
           />

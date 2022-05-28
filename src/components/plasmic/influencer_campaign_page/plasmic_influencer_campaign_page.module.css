@@ -31,6 +31,8 @@
   --plasmic-token-greens-dark: var(--token-QEWRsY0Wl);
   --token-T4TXS7e2a: #7deb86;
   --plasmic-token-greens-bright: var(--token-T4TXS7e2a);
+  --token-RClZ_17eG: 1px;
+  --plasmic-token-unnamed-style-token: var(--token-RClZ_17eG);
 }
 
 .plasmic_default_styles {

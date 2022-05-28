@@ -101,12 +101,12 @@
         {
           "type": "renderModule",
           "assetId": "EYLZW5oNmE",
-          "checksum": "59ed95370520d12ebf41ed8ac2d8a8f6"
+          "checksum": "447d11db575cb25bfb70529ab38841e5"
         },
         {
           "type": "cssRules",
           "assetId": "EYLZW5oNmE",
-          "checksum": "59ed95370520d12ebf41ed8ac2d8a8f6"
+          "checksum": "447d11db575cb25bfb70529ab38841e5"
         },
         {
           "type": "renderModule",
@@ -121,12 +121,12 @@
         {
           "type": "renderModule",
           "assetId": "1NPCYKvqMbV",
-          "checksum": "64d03c1dd6ecb9b7faf1ab3101ba247d"
+          "checksum": "504145a85ed47b7c913010ce320af4a3"
         },
         {
           "type": "cssRules",
           "assetId": "1NPCYKvqMbV",
-          "checksum": "64d03c1dd6ecb9b7faf1ab3101ba247d"
+          "checksum": "504145a85ed47b7c913010ce320af4a3"
         },
         {
           "type": "icon",
@@ -331,12 +331,12 @@
         {
           "type": "renderModule",
           "assetId": "DYCjsGhQCR",
-          "checksum": "91368fd697d0aeed5b77a45f54711d32"
+          "checksum": "fb1155c87a93e8be02524b3e14f8c355"
         },
         {
           "type": "cssRules",
           "assetId": "DYCjsGhQCR",
-          "checksum": "91368fd697d0aeed5b77a45f54711d32"
+          "checksum": "fb1155c87a93e8be02524b3e14f8c355"
         },
         {
           "type": "image",
@@ -351,17 +351,12 @@
         {
           "assetId": "oYWp5DRpUvyyRAKjSJya8K",
           "type": "projectCss",
-          "checksum": "57d154146655cdd06ea10bfab780dd9c"
+          "checksum": "c5116dd7fca374bc056c8b89e92544a7"
         },
         {
-          "type": "renderModule",
-          "assetId": "30pT1P3pcW",
-          "checksum": "1890c1c9fd59f5024ca11d0571681a0e"
-        },
-        {
-          "type": "cssRules",
-          "assetId": "30pT1P3pcW",
-          "checksum": "1890c1c9fd59f5024ca11d0571681a0e"
+          "type": "image",
+          "assetId": "Kb9Khcgdx",
+          "checksum": "10e74eab120ac4c574f3cb89f6efdbd3"
         }
       ],
       "codegenVersion": "0.0.1"

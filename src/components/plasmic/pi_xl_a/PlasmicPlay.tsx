@@ -32,6 +32,7 @@ import {
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import Nav from "../../Nav"; // plasmic-import: 1NPCYKvqMbV/component
+import { Compb2HX0Kahvc } from ""; // plasmic-import: b2hX0Kahvc/codeComponent
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -51,6 +52,8 @@ export const PlasmicPlay__ArgProps = new Array<ArgPropType>();
 export type PlasmicPlay__OverridesType = {
   root?: p.Flex<"div">;
   nav?: p.Flex<typeof Nav>;
+  unity?: p.Flex<"div">;
+  unityComponent?: p.Flex<typeof Compb2HX0Kahvc>;
 };
 
 export interface DefaultPlayProps {
@@ -95,6 +98,18 @@ function PlasmicPlay__RenderFunc(props: {
             data-plasmic-override={overrides.nav}
             className={classNames("__wab_instance", sty.nav)}
           />
+
+          <div
+            data-plasmic-name={"unity"}
+            data-plasmic-override={overrides.unity}
+            className={classNames(projectcss.all, sty.unity)}
+          >
+            <Compb2HX0Kahvc
+              data-plasmic-name={"unityComponent"}
+              data-plasmic-override={overrides.unityComponent}
+              className={classNames("__wab_instance", sty.unityComponent)}
+            />
+          </div>
         </div>
       </div>
     </React.Fragment>
@@ -102,8 +117,10 @@ function PlasmicPlay__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "nav"],
-  nav: ["nav"]
+  root: ["root", "nav", "unity", "unityComponent"],
+  nav: ["nav"],
+  unity: ["unity", "unityComponent"],
+  unityComponent: ["unityComponent"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -111,6 +128,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   nav: typeof Nav;
+  unity: "div";
+  unityComponent: typeof Compb2HX0Kahvc;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -171,6 +190,8 @@ export const PlasmicPlay = Object.assign(
   {
     // Helper components rendering sub-elements
     nav: makeNodeComponent("nav"),
+    unity: makeNodeComponent("unity"),
+    unityComponent: makeNodeComponent("unityComponent"),
 
     // Metadata about props expected for PlasmicPlay
     internalVariantProps: PlasmicPlay__VariantProps,

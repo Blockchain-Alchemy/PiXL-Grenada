@@ -35,8 +35,8 @@ import Nav from "../../Nav"; // plasmic-import: 1NPCYKvqMbV/component
 import { ParallaxWrapper } from "@plasmicpkgs/react-scroll-parallax"; // plasmic-import: bozP4lLlAZ/codeComponent
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal"; // plasmic-import: R6s1FdhksG/codeComponent
 import Button from "../../Button"; // plasmic-import: S20px5CzyEuzZP/component
-import Select from "../../Select"; // plasmic-import: cpYU5wUK7lP6LN/component
 import Tilt from "@plasmicpkgs/react-parallax-tilt"; // plasmic-import: PfY466VIuq/codeComponent
+import Select from "../../Select"; // plasmic-import: cpYU5wUK7lP6LN/component
 
 import { useScreenVariants as useScreenVariantse9M6Sv34SLfhdD } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: E9M6Sv34sLfhdD/globalVariant
 
@@ -71,8 +71,10 @@ export type PlasmicHome__OverridesType = {
   nav?: p.Flex<typeof Nav>;
   hero?: p.Flex<"div">;
   body1?: p.Flex<"div">;
+  getDayPass?: p.Flex<"div">;
+  h1?: p.Flex<"h1">;
   tilt?: p.Flex<typeof Tilt>;
-  httpsstudioplasmicapp?: p.Flex<"a">;
+  features?: p.Flex<"div">;
 };
 
 export interface DefaultHomeProps {
@@ -342,69 +344,54 @@ function PlasmicHome__RenderFunc(props: {
                 data-plasmic-override={overrides.body1}
                 className={classNames(projectcss.all, sty.body1)}
               >
-                <div
-                  className={classNames(projectcss.all, sty.freeBox__eqGAm)}
-                />
-              </div>
-            ) : null}
-            {(
-              hasVariant(globalVariants, "screen", "mobileOnly") ? true : true
-            ) ? (
-              <div className={classNames(projectcss.all, sty.freeBox__vj96X)}>
                 {true ? (
                   <div
-                    className={classNames(projectcss.all, sty.freeBox__mSooo)}
+                    className={classNames(projectcss.all, sty.freeBox__eqGAm)}
+                  />
+                ) : null}
+                {(
+                  hasVariant(globalVariants, "screen", "mobileOnly")
+                    ? true
+                    : true
+                ) ? (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__vj96X)}
                   >
-                    {true ? (
-                      <p.Stack
-                        as={"div"}
-                        hasGap={true}
+                    <Reveal
+                      className={classNames("__wab_instance", sty.reveal__vUcD)}
+                      triggerOnce={true}
+                    >
+                      <div
                         className={classNames(
                           projectcss.all,
-                          sty.freeBox__q7I1O
+                          projectcss.__wab_text,
+                          sty.text__nbtI
                         )}
                       >
-                        {true ? (
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__ve10
-                            )}
-                          >
-                            <Reveal
-                              className={classNames(
-                                "__wab_instance",
-                                sty.reveal__vUcD
-                              )}
-                              triggerOnce={true}
-                            >
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__nbtI
-                                )}
-                              >
-                                {
-                                  "In PiXL you battle dirty NFTs\n\nPiXL is the first evolving NFT RPG. It’s a love letter to Tezos - the technology, the artists, the community and the planet. It’s a play-to-earn game that changes every week - accessible to all (with an Entry Coin)."
-                                }
-                              </div>
-                            </Reveal>
-                          </div>
-                        ) : null}
-                      </p.Stack>
-                    ) : null}
+                        {
+                          "In PiXL you battle dirty NFTs\n\nPiXL is the first evolving NFT RPG. It’s a love letter to Tezos - the technology, the artists, the community and the planet. It’s a play-to-earn game that changes every week - accessible to all (with an Entry Coin)."
+                        }
+                      </div>
+                    </Reveal>
                   </div>
                 ) : null}
               </div>
             ) : null}
-            {(
-              hasVariant(globalVariants, "screen", "mobileOnly") ? true : true
-            ) ? (
-              <div className={classNames(projectcss.all, sty.freeBox__lGcvZ)} />
-            ) : null}
             {true ? (
-              <div className={classNames(projectcss.all, sty.freeBox__zY1N)}>
+              <div
+                data-plasmic-name={"getDayPass"}
+                data-plasmic-override={overrides.getDayPass}
+                className={classNames(projectcss.all, sty.getDayPass)}
+              >
+                {(
+                  hasVariant(globalVariants, "screen", "mobileOnly")
+                    ? true
+                    : true
+                ) ? (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__lGcvZ)}
+                  />
+                ) : null}
                 {true ? (
                   <div
                     className={classNames(projectcss.all, sty.freeBox__qnEPj)}
@@ -443,7 +430,20 @@ function PlasmicHome__RenderFunc(props: {
                                 projectcss.all,
                                 sty.freeBox__os20I
                               )}
-                            />
+                            >
+                              <h1
+                                data-plasmic-name={"h1"}
+                                data-plasmic-override={overrides.h1}
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.h1,
+                                  projectcss.__wab_text,
+                                  sty.h1
+                                )}
+                              >
+                                {"Get a Day Pass!"}
+                              </h1>
+                            </div>
                           </h2>
 
                           <div
@@ -451,7 +451,17 @@ function PlasmicHome__RenderFunc(props: {
                               projectcss.all,
                               sty.freeBox__tJtVb
                             )}
-                          />
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text___1RPup
+                              )}
+                            >
+                              {"Get access to PiXL for 24 hours"}
+                            </div>
+                          </div>
 
                           <div
                             className={classNames(
@@ -477,7 +487,19 @@ function PlasmicHome__RenderFunc(props: {
                                     projectcss.all,
                                     sty.freeBox__wa2GF
                                   )}
-                                />
+                                >
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.__wab_text,
+                                      sty.text__hWp1U
+                                    )}
+                                  >
+                                    {
+                                      "You keep all your winnings and are are able to explore the whole PiXL world for 24 hours!"
+                                    }
+                                  </div>
+                                </div>
                               </h6>
 
                               <div
@@ -500,38 +522,6 @@ function PlasmicHome__RenderFunc(props: {
                             <div
                               className={classNames(
                                 projectcss.all,
-                                sty.column__p7TqA
-                              )}
-                            >
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.freeBox__lBfsE
-                                )}
-                              >
-                                <Select
-                                  className={classNames(
-                                    "__wab_instance",
-                                    sty.select__sEQmY
-                                  )}
-                                  placeholder={
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        projectcss.__wab_text,
-                                        sty.text__st2Od
-                                      )}
-                                    >
-                                      {"1"}
-                                    </div>
-                                  }
-                                />
-                              </div>
-                            </div>
-
-                            <div
-                              className={classNames(
-                                projectcss.all,
                                 sty.column__bClh
                               )}
                             >
@@ -546,7 +536,7 @@ function PlasmicHome__RenderFunc(props: {
                                     "__wab_instance",
                                     sty.button__le0ZQ
                                   )}
-                                  color={"yellow" as const}
+                                  color={"blue" as const}
                                   link={"/day-pass" as const}
                                 >
                                   <div
@@ -575,40 +565,48 @@ function PlasmicHome__RenderFunc(props: {
                             data-plasmic-override={overrides.tilt}
                             className={classNames("__wab_instance", sty.tilt)}
                           >
-                            <p.PlasmicImg
-                              alt={""}
-                              className={classNames(sty.img__kpJmm)}
-                              displayHeight={"auto" as const}
-                              displayMaxHeight={"none" as const}
-                              displayMaxWidth={"none" as const}
-                              displayMinHeight={"0" as const}
-                              displayMinWidth={"0" as const}
-                              displayWidth={"auto" as const}
-                              src={{
-                                src: image3AfarJgvX,
-                                fullWidth: 512,
-                                fullHeight: 512,
-                                aspectRatio: undefined
-                              }}
-                            />
+                            {(
+                              hasVariant(globalVariants, "screen", "mobileOnly")
+                                ? true
+                                : true
+                            ) ? (
+                              <p.PlasmicImg
+                                alt={""}
+                                className={classNames(sty.img__kpJmm)}
+                                displayHeight={"auto" as const}
+                                displayMaxHeight={"none" as const}
+                                displayMaxWidth={"none" as const}
+                                displayMinHeight={"0" as const}
+                                displayMinWidth={"0" as const}
+                                displayWidth={"auto" as const}
+                                src={{
+                                  src: image3AfarJgvX,
+                                  fullWidth: 512,
+                                  fullHeight: 512,
+                                  aspectRatio: undefined
+                                }}
+                              />
+                            ) : null}
                           </Tilt>
                         </div>
                       </p.Stack>
                     </div>
                   </div>
                 ) : null}
+                {true ? (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox___6Uevv)}
+                  />
+                ) : null}
               </div>
-            ) : null}
-            {true ? (
-              <div
-                className={classNames(projectcss.all, sty.freeBox___6Uevv)}
-              />
             ) : null}
             {true ? (
               <p.Stack
                 as={"div"}
+                data-plasmic-name={"features"}
+                data-plasmic-override={overrides.features}
                 hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__j146X)}
+                className={classNames(projectcss.all, sty.features)}
               >
                 {true ? (
                   <div
@@ -645,28 +643,6 @@ function PlasmicHome__RenderFunc(props: {
                             sty.column__rzUpk
                           )}
                         >
-                          <p.PlasmicImg
-                            alt={""}
-                            className={classNames(sty.img__yX6C)}
-                            displayHeight={"auto" as const}
-                            displayMaxHeight={"none" as const}
-                            displayMaxWidth={
-                              hasVariant(globalVariants, "screen", "mobileOnly")
-                                ? ("150px" as const)
-                                : ("200px" as const)
-                            }
-                            displayMinHeight={"0" as const}
-                            displayMinWidth={"0" as const}
-                            displayWidth={"auto" as const}
-                            loading={"lazy" as const}
-                            src={{
-                              src: sprinkles1Cd2Da2A2SvgGNh7MptN3Bi01,
-                              fullWidth: 180,
-                              fullHeight: 150,
-                              aspectRatio: 1.198795
-                            }}
-                          />
-
                           <h2
                             className={classNames(
                               projectcss.all,
@@ -744,25 +720,7 @@ function PlasmicHome__RenderFunc(props: {
                                   projectcss.all,
                                   sty.freeBox__f0LFf
                                 )}
-                              >
-                                <Select
-                                  className={classNames(
-                                    "__wab_instance",
-                                    sty.select__xyNgx
-                                  )}
-                                  placeholder={
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        projectcss.__wab_text,
-                                        sty.text__tpXw4
-                                      )}
-                                    >
-                                      {"1"}
-                                    </div>
-                                  }
-                                />
-                              </div>
+                              />
                             </div>
 
                             <div
@@ -776,25 +734,7 @@ function PlasmicHome__RenderFunc(props: {
                                   projectcss.all,
                                   sty.freeBox__jmnIp
                                 )}
-                              >
-                                <Button
-                                  className={classNames(
-                                    "__wab_instance",
-                                    sty.button__p5CyQ
-                                  )}
-                                  color={"pink" as const}
-                                >
-                                  <div
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.__wab_text,
-                                      sty.text__uhlcn
-                                    )}
-                                  >
-                                    {"ADD TO CART"}
-                                  </div>
-                                </Button>
-                              </div>
+                              />
                             </div>
                           </p.Stack>
                         </p.Stack>
@@ -802,28 +742,6 @@ function PlasmicHome__RenderFunc(props: {
                     </div>
                   </div>
                 ) : null}
-
-                <p.PlasmicImg
-                  alt={""}
-                  className={classNames(sty.img__fthMj)}
-                  displayHeight={"auto" as const}
-                  displayMaxHeight={"none" as const}
-                  displayMaxWidth={
-                    hasVariant(globalVariants, "screen", "mobileOnly")
-                      ? ("90px" as const)
-                      : ("106px" as const)
-                  }
-                  displayMinHeight={"0" as const}
-                  displayMinWidth={"0" as const}
-                  displayWidth={"auto" as const}
-                  loading={"lazy" as const}
-                  src={{
-                    src: sprinkles2D589E9E91SvgDvLeXXgwEolNx,
-                    fullWidth: 138,
-                    fullHeight: 150,
-                    aspectRatio: 0.921739
-                  }}
-                />
               </p.Stack>
             ) : null}
             {(
@@ -1266,31 +1184,8 @@ function PlasmicHome__RenderFunc(props: {
                         sty.text___5MCi
                       )}
                     >
-                      {
-                        "© Company. All rights reserved. This site proudly built with  "
-                      }
+                      {"© BLOCKCHAIN ALCHEMY"}
                     </div>
-                  </p.Stack>
-
-                  <p.Stack
-                    as={"div"}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.freeBox__i1ZWo)}
-                  >
-                    <a
-                      data-plasmic-name={"httpsstudioplasmicapp"}
-                      data-plasmic-override={overrides.httpsstudioplasmicapp}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.a,
-                        projectcss.__wab_text,
-                        sty.httpsstudioplasmicapp,
-                        "" as const
-                      )}
-                      href={"https://studio.plasmic.app/" as const}
-                    >
-                      {"Plasmic"}
-                    </a>
                   </p.Stack>
                 </div>
               ) : null}
@@ -1303,12 +1198,23 @@ function PlasmicHome__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "nav", "hero", "body1", "tilt", "httpsstudioplasmicapp"],
+  root: [
+    "root",
+    "nav",
+    "hero",
+    "body1",
+    "getDayPass",
+    "h1",
+    "tilt",
+    "features"
+  ],
   nav: ["nav"],
   hero: ["hero"],
   body1: ["body1"],
+  getDayPass: ["getDayPass", "h1", "tilt"],
+  h1: ["h1"],
   tilt: ["tilt"],
-  httpsstudioplasmicapp: ["httpsstudioplasmicapp"]
+  features: ["features"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1318,8 +1224,10 @@ type NodeDefaultElementType = {
   nav: typeof Nav;
   hero: "div";
   body1: "div";
+  getDayPass: "div";
+  h1: "h1";
   tilt: typeof Tilt;
-  httpsstudioplasmicapp: "a";
+  features: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1382,8 +1290,10 @@ export const PlasmicHome = Object.assign(
     nav: makeNodeComponent("nav"),
     hero: makeNodeComponent("hero"),
     body1: makeNodeComponent("body1"),
+    getDayPass: makeNodeComponent("getDayPass"),
+    h1: makeNodeComponent("h1"),
     tilt: makeNodeComponent("tilt"),
-    httpsstudioplasmicapp: makeNodeComponent("httpsstudioplasmicapp"),
+    features: makeNodeComponent("features"),
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,
