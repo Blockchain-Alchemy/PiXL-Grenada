@@ -6,7 +6,7 @@ import { Tzip16Module } from '@taquito/tzip16';
 import toast, { Toaster } from 'react-hot-toast';
 import Lang from 'lang/en';
 import Loading from './Loading';
-// import Items from "./Items";
+import GameItems from './GameItems';
 import HelpMessage from './HelpMessage';
 import EntryCoin from './EntryCoin';
 import LoadingBar from './LoadingBar';
@@ -315,9 +315,9 @@ const UnityComponent = () => {
         <EntryCoin coin={coin} sendCoin={sendCoin}></EntryCoin>
       )}
       {/* show other Items */}
-      {/* {items.length > 0 && progression === 1 && connected && (
-        <Items items={items} addCard={addCard}></Items>
-      )} */}
+      {gameItems.length > 0 && progression === 1 && connected && (
+        <GameItems items={gameItems} addCard={addCard}></GameItems>
+      )}
       {(isLoadingCards || progression < 1 || !walletReady) && (
         <Loading></Loading>
       )}
