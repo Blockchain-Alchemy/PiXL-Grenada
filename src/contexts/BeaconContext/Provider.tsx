@@ -29,16 +29,12 @@ export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
   const [wallet, setWallet] = useState<BeaconWallet | undefined>(undefined);
   const [address, setAddress] = useState<string | undefined>(undefined);
   const [connected, setConnected] = useState<boolean>(false);
-  const [contract, setContract] = useState<
-    ContractAbstraction<Wallet> | undefined
-  >(undefined);
 
   useEffect(() => {
     console.log("create toolkit", rpcUrl);
     setWallet(undefined);
     setAddress(undefined);
     setConnected(false);
-    setContract(undefined);
     setTezos(new TezosToolkit(rpcUrl));
   }, [rpcUrl, setTezos]);
 
@@ -84,10 +80,6 @@ export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
       console.log("userAddress", address);
       setAddress(address);
 
-      const contract = await tezos.wallet.at(Config.ContractAddress);
-      console.log("contract", contract);
-      setContract(contract);
-
       setConnected(true);
     } catch (error) {
       console.log(error);
@@ -114,7 +106,6 @@ export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
         loading,
         connected,
         address,
-        contract,
         rpcUrl,
         connectWallet,
         disconnectWallet,

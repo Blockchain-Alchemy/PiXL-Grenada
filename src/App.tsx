@@ -30,7 +30,7 @@ function App() {
             <UnityComponent />
           </Route>
           <Route path="/plasmic-host" render={() => <PlasmicCanvasHost />} />
-          <Route path="/">
+          <Route path="/" exact>
             <Home />
           </Route>
         </Switch>

@@ -8,6 +8,7 @@ import {
   REACT_APP_OBJKT_CONTRACT,
 } from "../config";
 import { getLegderKeys } from "./ledger";
+import Lang from "lang/en";
 
 const RequestedItemArray = [
   { value: "Beets Token", tokenId: 10000, contract: "k1...." },
@@ -161,8 +162,7 @@ export const getRequestedItem = async (
     (item) => item.value === requestedToken
   );
   if (requestedTokenArray) {
-    let coin: { name: string; imageSrc: string; alt: string; id: number }[] =
-      [];
+    const coins: { name: string; imageSrc: string; alt: string; id: number }[] = [];
     const contractAddress = REACT_APP_INITCOIN_CONTRACT;
     const tokenId = 1;
     const contract = await Tezos.contract.at(
@@ -179,15 +179,15 @@ export const getRequestedItem = async (
       return;
     }
     if (val2) {
-      coin.push({
-        name: "entry token",
+      coins.push({
+        name: Lang.entryToken,
         imageSrc:
           "https://cloudflare-ipfs.com/ipfs/QmeHk5t7csY793KM9sRiWwsGENhzhf5jJoiZrjweSw2AQB",
-        alt: "entry Token",
+        alt: Lang.entryToken,
         id: 1,
       });
     }
-    return coin;
+    return coins;
   } else {
     return undefined;
   }
