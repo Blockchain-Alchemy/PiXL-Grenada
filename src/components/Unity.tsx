@@ -12,7 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 // import Items from "./Items";
 // import HelpMessage from "./HelpMessage";
 // import EntryCoin from "./EntryCoin";
-// import LoadingBar from "./LoadingBar";
+import LoadingBar from "./LoadingBar";
 // import { CommonProvider, TokenInfo } from "../../services/common";
 
 export type ItemType = {
@@ -31,6 +31,12 @@ const unityContext = new UnityContext({
 });
 
 const UnityComponent = () => {
+  const [progression, setProgression] = useState(0);
+
+  unityContext.on("progress", function (progression) {
+    setProgression(progression);
+  });
+
   return (
     <>
       <div className="flex flex-col items-center ml-auto mr-auto unity-container">
@@ -44,7 +50,7 @@ const UnityComponent = () => {
             background: "grey",
           }}
         />
-        {/* {progression < 1 && <LoadingBar progression={progression} />} */}
+        {/* {progression < 1 && <LoadingBar progression={1} />} */}
       </div>
     </>
   );
