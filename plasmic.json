@@ -228,19 +228,6 @@
           "cssFilePath": "plasmic/pi_xl_a/PlasmicPlay.module.css",
           "scheme": "blackbox",
           "componentType": "page"
-        },
-        {
-          "id": "30pT1P3pcW",
-          "name": "LoadingBar",
-          "type": "managed",
-          "projectId": "oYWp5DRpUvyyRAKjSJya8K",
-          "renderModuleFilePath": "plasmic/pi_xl_a/PlasmicLoadingBar.tsx",
-          "importSpec": {
-            "modulePath": "LoadingBar.tsx"
-          },
-          "cssFilePath": "plasmic/pi_xl_a/PlasmicLoadingBar.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
         }
       ],
       "icons": [

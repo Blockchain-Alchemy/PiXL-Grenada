@@ -23,4 +23,7 @@ const Config = {
   TokenId: 1,
 }
 
+export * from './environments.development'
+//export * from './environments.local'
+
 export default Config;

@@ -349,16 +349,6 @@
           "type": "globalContexts"
         },
         {
-          "type": "renderModule",
-          "assetId": "30pT1P3pcW",
-          "checksum": "9b2f13084db098b483a64343e2b4daac"
-        },
-        {
-          "type": "cssRules",
-          "assetId": "30pT1P3pcW",
-          "checksum": "9b2f13084db098b483a64343e2b4daac"
-        },
-        {
           "assetId": "oYWp5DRpUvyyRAKjSJya8K",
           "type": "projectCss",
           "checksum": "57d154146655cdd06ea10bfab780dd9c"
