@@ -351,7 +351,17 @@
         {
           "assetId": "oYWp5DRpUvyyRAKjSJya8K",
           "type": "projectCss",
-          "checksum": "55c084a82aec9a469a5b7c560078e2cc"
+          "checksum": "57d154146655cdd06ea10bfab780dd9c"
+        },
+        {
+          "type": "renderModule",
+          "assetId": "30pT1P3pcW",
+          "checksum": "1890c1c9fd59f5024ca11d0571681a0e"
+        },
+        {
+          "type": "cssRules",
+          "assetId": "30pT1P3pcW",
+          "checksum": "1890c1c9fd59f5024ca11d0571681a0e"
         }
       ],
       "codegenVersion": "0.0.1"
