@@ -4,7 +4,7 @@ import { REACT_APP_BASE_URL } from "../config";
 const BASE_URL = REACT_APP_BASE_URL;
 const QuestArray = [{ value: "Talk to mom" }, {value: "Finish Beets 1"} ];
 
-const updateQuestStatus = async (questId: string, userAddress: string, status: string) {
+export const updateQuestStatus = async (questId: string, userAddress: string, status: string) => {
   const body = {
     walletAddress: userAddress,
     timestamp: new Date(),
