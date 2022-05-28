@@ -296,7 +296,7 @@ const UnityComponent = () => {
   }, [userAddress]);
 
   return (
-    <>
+    <div className="game-container">
       <div className="flex flex-col items-center ml-auto mr-auto unity-container">
         <Toaster />
         <Unity
@@ -308,7 +308,7 @@ const UnityComponent = () => {
             background: 'grey',
           }}
         />
-        {progression < 1 && <LoadingBar progression={1} />}
+        {progression < 1 && <LoadingBar progression={progression} />}
       </div>
       {/* show coin */}
       {coin.length > 0 && progression === 1 && connected && (
@@ -324,7 +324,7 @@ const UnityComponent = () => {
       {progression === 1 && walletReady && !connected && (
         <HelpMessage></HelpMessage>
       )}
-    </>
+    </div>
   );
 };
 

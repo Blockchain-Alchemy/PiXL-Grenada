@@ -1,5 +1,6 @@
 import { initPlasmicLoader } from "@plasmicapp/loader-react";
 import LoadingBar from "components/LoadingBar";
+import UnityComponent from "components/Unity";
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -21,3 +22,10 @@ PLASMIC.registerComponent(LoadingBar, {
     progression: 'number'
   }
 });
+
+PLASMIC.registerComponent(UnityComponent, {
+  name: 'UnityComponent',
+  props: {
+      
+  }
+})

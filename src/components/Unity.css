@@ -1,0 +1,21 @@
+.game-container {
+  background-image: url('../images/WEB3.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  font-family: 'DM Mono', monospace;
+  color: white;
+  background-color: rgb(2,0,36);
+  background-color: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgb(14, 14, 58) 35%, rgb(0, 0, 0) 100%);
+}
+
+.unity-container {
+  width:1200px;
+  height:540px;
+}
+
+#loading {
+  background: url('../images/loading.gif') no-repeat center center;
+  height: 100%;
+  width: 100%;
+  z-index: 9999999;
+}
