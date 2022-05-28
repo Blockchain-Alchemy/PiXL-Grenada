@@ -19,3 +19,11 @@ export interface TokenInfo {
   metadata: Metadata;
   amount: number;
 }
+
+export interface GraveyardEntry {
+  _id?: string;
+  walletAddress: string;
+  timestamp: Date;
+  enemy: string,
+  location: string
+}
