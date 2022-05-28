@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../../App.css';
 import Unity, { UnityContext } from 'react-unity-webgl';
 import { Tzip12Module } from '@taquito/tzip12';
 import { Tzip16Module } from '@taquito/tzip16';

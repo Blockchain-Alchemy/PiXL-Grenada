@@ -1,8 +1,8 @@
 import axios from "axios";
 import { char2Bytes } from "@taquito/utils";
+import { MichelsonMap, TezosToolkit } from "@taquito/taquito";
 import { ItemType } from "../types";
 import { REACT_APP_BASE_URL, REACT_APP_PIXL_GAME_CONTRACT } from "../config";
-import { MichelsonMap, TezosToolkit } from "@taquito/taquito";
 
 const BASE_URL = REACT_APP_BASE_URL;
 
@@ -171,12 +171,4 @@ export const shareQuest = async (questDetails: any, Id: any) => {
   });
   //result will be empty due to cors. Won't be an issue when both are hosted
   return result;
-};
-
-export const createImageSrc = (artifactUri: string | undefined) => {
-  if (artifactUri) {
-    return "https://cloudflare-ipfs.com/ipfs/" + artifactUri;
-  } else {
-    return "error";
-  }
 };
