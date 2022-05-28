@@ -9,6 +9,7 @@ import GameItems from './GameItems';
 import HelpMessage from './HelpMessage';
 import EntryCoin from './EntryCoin';
 import LoadingBar from './LoadingBar';
+import './Unity.css'
 import useBeacon from 'hooks/useBeacon';
 import {
   buildCards,
