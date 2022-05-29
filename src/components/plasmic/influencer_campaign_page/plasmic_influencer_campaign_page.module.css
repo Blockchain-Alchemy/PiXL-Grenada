@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=Inter%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=Inconsolata%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=VT323%3Aital%2Cwght%400%2C400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Rubik%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=Inter%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=Inconsolata%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=VT323%3Aital%2Cwght%400%2C400&display=swap');
 
 .plasmic_tokens {
   --token-yr1dE_U7BXXxgm: #010101;
@@ -31,10 +31,12 @@
   --plasmic-token-greens-dark: var(--token-QEWRsY0Wl);
   --token-T4TXS7e2a: #7deb86;
   --plasmic-token-greens-bright: var(--token-T4TXS7e2a);
+  --token-RClZ_17eG: 1px;
+  --plasmic-token-unnamed-style-token: var(--token-RClZ_17eG);
 }
 
 .plasmic_default_styles {
-  --mixin-9q2KZ6Ytz5we7m_font-family: "Rubik";
+  --mixin-9q2KZ6Ytz5we7m_font-family: 'Rubik';
   --mixin-9q2KZ6Ytz5we7m_font-size: 16px;
   --mixin-9q2KZ6Ytz5we7m_font-weight: 400;
   --mixin-9q2KZ6Ytz5we7m_font-style: normal;
@@ -51,25 +53,25 @@
   --mixin-PSaaFhbnT_i8AE_font-size: 50px;
   --mixin-PSaaFhbnT_i8AE_line-height: 1;
   --mixin-PSaaFhbnT_i8AE_letter-spacing: 0px;
-  --mixin-PSaaFhbnT_i8AE_font-family: "Rubik";
+  --mixin-PSaaFhbnT_i8AE_font-family: 'Rubik';
   --mixin-JwrNnoOxKJBKEQ_color: #000000;
   --mixin-JwrNnoOxKJBKEQ_font-weight: 600;
   --mixin-JwrNnoOxKJBKEQ_font-size: 40px;
   --mixin-JwrNnoOxKJBKEQ_line-height: 1.1;
   --mixin-JwrNnoOxKJBKEQ_letter-spacing: -1px;
-  --mixin-JwrNnoOxKJBKEQ_font-family: "Rubik";
+  --mixin-JwrNnoOxKJBKEQ_font-family: 'Rubik';
   --mixin-1gf8JMQ5PfMT-7_color: var(--token-GQDOf6FevecNcO);
-  --mixin-1gf8JMQ5PfMT-7_font-family: "Rubik";
+  --mixin-1gf8JMQ5PfMT-7_font-family: 'Rubik';
   --mixin-1gf8JMQ5PfMT-7_font-weight: 600;
   --mixin-1gf8JMQ5PfMT-7_font-size: 16px;
   --mixin-1gf8JMQ5PfMT-7_text-transform: uppercase;
-  --mixin-JGW2AATGAlvjGi_font-family: "Inter";
+  --mixin-JGW2AATGAlvjGi_font-family: 'Inter';
   --mixin-JGW2AATGAlvjGi_color: #000000;
   --mixin-JGW2AATGAlvjGi_font-size: 32px;
   --mixin-JGW2AATGAlvjGi_font-weight: 600;
   --mixin-JGW2AATGAlvjGi_letter-spacing: -0.8px;
   --mixin-JGW2AATGAlvjGi_line-height: 1.2;
-  --mixin-5ceBH_6azE6dl4_font-family: "Inter";
+  --mixin-5ceBH_6azE6dl4_font-family: 'Inter';
   --mixin-5ceBH_6azE6dl4_color: #000000;
   --mixin-5ceBH_6azE6dl4_font-size: 24px;
   --mixin-5ceBH_6azE6dl4_font-weight: 600;
@@ -92,7 +94,7 @@
   --mixin-L-pE8CwiMpGCBR_border-bottom-right-radius: 3px;
   --mixin-L-pE8CwiMpGCBR_border-top-left-radius: 3px;
   --mixin-L-pE8CwiMpGCBR_border-top-right-radius: 3px;
-  --mixin-L-pE8CwiMpGCBR_font-family: "Inconsolata";
+  --mixin-L-pE8CwiMpGCBR_font-family: 'Inconsolata';
   --mixin-L-pE8CwiMpGCBR_padding-bottom: 1px;
   --mixin-L-pE8CwiMpGCBR_padding-left: 4px;
   --mixin-L-pE8CwiMpGCBR_padding-right: 4px;
@@ -119,16 +121,16 @@
   --mixin-IkuAZgNNgQB4I4_border-bottom-right-radius: 3px;
   --mixin-IkuAZgNNgQB4I4_border-top-left-radius: 3px;
   --mixin-IkuAZgNNgQB4I4_border-top-right-radius: 3px;
-  --mixin-IkuAZgNNgQB4I4_font-family: "Inconsolata";
+  --mixin-IkuAZgNNgQB4I4_font-family: 'Inconsolata';
   --mixin-IkuAZgNNgQB4I4_padding-bottom: 3px;
   --mixin-IkuAZgNNgQB4I4_padding-left: 6px;
   --mixin-IkuAZgNNgQB4I4_padding-right: 6px;
   --mixin-IkuAZgNNgQB4I4_padding-top: 3px;
-  --mixin-mnCPJz0YSZbhlu_font-family: "Rubik";
+  --mixin-mnCPJz0YSZbhlu_font-family: 'Rubik';
   --mixin-mnCPJz0YSZbhlu_color: var(--token-yr1dE_U7BXXxgm);
   --mixin-mnCPJz0YSZbhlu_font-weight: 500;
   --mixin-mnCPJz0YSZbhlu_font-size: 20px;
-  --mixin-WWg8lzxv-AyAT2_font-family: "Inter";
+  --mixin-WWg8lzxv-AyAT2_font-family: 'Inter';
   --mixin-WWg8lzxv-AyAT2_color: #000000;
   --mixin-WWg8lzxv-AyAT2_font-size: 20px;
   --mixin-WWg8lzxv-AyAT2_font-weight: 600;

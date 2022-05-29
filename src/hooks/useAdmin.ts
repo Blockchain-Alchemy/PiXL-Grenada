@@ -1,8 +1,8 @@
-import {useCallback} from "react";
-import useBeacon from "./useBeacon";
+// import {useCallback} from "react";
+// import useBeacon from "./useBeacon";
 
 const useAdmin = () => {
-  const { contract } = useBeacon();
+  /*const { contract } = useBeacon();
 
   const mint = useCallback(() => {
     return contract?.methods
@@ -66,7 +66,9 @@ const useAdmin = () => {
     readyRace,
     startRace,
     finishRace,
-  };
+  };*/
+
+  return {};
 };
 
 export default useAdmin;

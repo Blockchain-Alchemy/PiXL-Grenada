@@ -7,7 +7,7 @@ import About from "./components/About";
 import DayPass from "./components/DayPass";
 import Items from "./components/Items";
 import Missions from "./components/Missions";
-import UnityComponent from "./components/Unity";
+import Play from "./components/Play";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
             <Missions />
           </Route>
           <Route path="/play">
-            <UnityComponent />
+            <Play />
           </Route>
           <Route path="/plasmic-host" render={() => <PlasmicCanvasHost />} />
           <Route path="/" exact>

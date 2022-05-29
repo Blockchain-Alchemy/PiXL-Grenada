@@ -407,6 +407,11 @@
           "id": "AfarJGV-x",
           "name": "image 3",
           "filePath": "plasmic/pi_xl_a/images/image3.png"
+        },
+        {
+          "id": "Kb9Khcgdx",
+          "name": "LOGO-PIXL.png",
+          "filePath": "plasmic/pi_xl_a/images/logoPixLpng.png"
         }
       ],
       "indirect": false,
