@@ -1,8 +1,12 @@
-import axios from "axios";
-import { char2Bytes } from "@taquito/utils";
-import { MichelsonMap, TezosToolkit } from "@taquito/taquito";
-import { ItemType } from "../types";
-import { REACT_APP_BASE_URL, REACT_APP_PIXL_GAME_CONTRACT } from "../config";
+import axios from 'axios';
+import { char2Bytes } from '@taquito/utils';
+import { MichelsonMap, TezosToolkit } from '@taquito/taquito';
+import { ItemType } from '../types';
+import {
+  REACT_APP_BASE_URL,
+  REACT_APP_PIXL_GAME_CONTRACT,
+  REACT_APP_PIXL_TOKENS_CONTRACT,
+} from '../config';
 
 const BASE_URL = REACT_APP_BASE_URL;
 
@@ -12,13 +16,13 @@ export const mintPixltez = async (address: string, amount: number) => {
     addresses: [address],
     amount,
   };
-  console.log("mintPixltez", address, amount);
+  console.log('mintPixltez', address, amount);
 
   // on a successful transfer the api should return use the object details so that we can display it to the user
   return axios
     .post(url, payload)
     .then((res) => {
-      console.log("res", res);
+      console.log('res', res);
       return res.data;
     })
     .catch((err) => {
@@ -33,13 +37,13 @@ export const mintItem = async (
   itemName: string
 ) => {
   const contractAddress = REACT_APP_PIXL_GAME_CONTRACT;
-  console.log("mintItem", contractAddress);
+  console.log('mintItem', contractAddress);
 
   try {
     const contract = await Tezos.wallet.at(contractAddress);
 
     const tokenId = await getTokenId(itemName);
-    console.log("tokenId", tokenId);
+    console.log('tokenId', tokenId);
 
     let data: any[] = [];
     if (tokenId === null || tokenId === undefined) {
@@ -50,7 +54,7 @@ export const mintItem = async (
           token: {
             new: MichelsonMap.fromLiteral({
               name: char2Bytes(itemName),
-              decimals: char2Bytes("0"),
+              decimals: char2Bytes('0'),
               symbol: char2Bytes(itemName),
             }),
           },
@@ -71,13 +75,72 @@ export const mintItem = async (
     const op = await contract.methods.mint(data).send();
     const result = await op.confirmation();
     if (result) {
-      console.log("result", result);
+      console.log('result', result);
       await updateMintResult(userAddress, itemName);
 
       return {
         name: itemName, //"Tezzard",
-        imageSrc: "/whitney-with-microphone.png",
-        alt: "Placeholder",
+        imageSrc: '/whitney-with-microphone.png',
+        alt: 'Placeholder',
+      } as ItemType;
+    }
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
+export const mintToken = async (
+  Tezos: TezosToolkit,
+  userAddress: string,
+  itemName: string
+) => {
+  const contractAddress = REACT_APP_PIXL_TOKENS_CONTRACT;
+  console.log('mintToken', contractAddress);
+
+  try {
+    const contract = await Tezos.wallet.at(contractAddress);
+
+    const tokenId = await getTokenId(itemName);
+    console.log('tokenId', tokenId);
+
+    let data: any[] = [];
+    if (tokenId === null || tokenId === undefined) {
+      data = [
+        {
+          amount: 1,
+          to_: userAddress,
+          token: {
+            new: MichelsonMap.fromLiteral({
+              name: char2Bytes(itemName),
+              decimals: char2Bytes('0'),
+              symbol: char2Bytes(itemName),
+            }),
+          },
+        },
+      ];
+    } else {
+      data = [
+        {
+          amount: 1,
+          to_: userAddress,
+          token: {
+            existing: tokenId,
+          },
+        },
+      ];
+    }
+
+    const op = await contract.methods.mint(data).send();
+    const result = await op.confirmation();
+    if (result) {
+      console.log('result', result);
+      await updateMintResult(userAddress, itemName);
+
+      return {
+        name: itemName, //"Tezzard",
+        imageSrc: '/whitney-with-microphone.png',
+        alt: 'Placeholder',
       } as ItemType;
     }
   } catch (err) {
@@ -126,7 +189,7 @@ export const getTokenId = async (itemName: string) => {
   return axios
     .post(url, { name: itemName })
     .then((res) => {
-      console.log("getTokenId-res", res);
+      console.log('getTokenId-res', res);
       return res.data?.token?.tokenId;
     })
     .catch((err) => {
@@ -150,7 +213,7 @@ export const updateMintResult = async (
   return axios
     .post(url, payload)
     .then((res) => {
-      console.log("res", res);
+      console.log('res', res);
       return res.data;
     })
     .catch((err) => {
@@ -162,11 +225,11 @@ export const updateMintResult = async (
 export const shareQuest = async (questDetails: any, Id: any) => {
   // on a successful transfer the api should return use the object details so that we can display it to the user
   const result = await fetch(`${BASE_URL}/api/transfer/shareQuest`, {
-    mode: "no-cors",
-    method: "POST",
+    mode: 'no-cors',
+    method: 'POST',
     body: JSON.stringify({ questDetails, Id }),
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
   //result will be empty due to cors. Won't be an issue when both are hosted
