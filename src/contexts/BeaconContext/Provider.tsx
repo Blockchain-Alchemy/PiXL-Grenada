@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { ContractAbstraction, TezosToolkit, Wallet } from "@taquito/taquito";
+import { TezosToolkit } from "@taquito/taquito";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import {
   NetworkType,
@@ -7,9 +7,9 @@ import {
   BeaconEvent,
   defaultEventCallbacks,
 } from "@airgap/beacon-sdk";
-import Config from "config";
 import { BeaconContextApi } from "./types";
 import { useEffect } from "react";
+import { REACT_APP_NETWORK_TYPE, REACT_APP_RPC } from "config";
 
 export const BeaconContext = createContext<BeaconContextApi>(
   {} as BeaconContextApi
@@ -22,8 +22,8 @@ const scopes: PermissionScope[] = [
 
 export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
   const [tezos, setTezos] = useState<TezosToolkit | undefined>(undefined);
-  const [networkType, setNetworkType] = useState<NetworkType>(Config.NetworkType);
-  const [rpcUrl, setRpcUrl] = useState(Config.RpcUrl);
+  const [networkType, setNetworkType] = useState<NetworkType>(REACT_APP_NETWORK_TYPE as NetworkType);
+  const [rpcUrl, setRpcUrl] = useState(REACT_APP_RPC);
 
   const [loading, setLoading] = useState(false);
   const [wallet, setWallet] = useState<BeaconWallet | undefined>(undefined);

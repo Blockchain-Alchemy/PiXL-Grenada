@@ -90,7 +90,7 @@ export const mintItem = async (
   }
 };
 
-export const mintToken = async (
+export const mintMultiToken = async (
   Tezos: TezosToolkit,
   userAddress: string,
   itemName: string
