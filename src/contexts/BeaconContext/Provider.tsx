@@ -39,8 +39,10 @@ export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
   }, [rpcUrl, setTezos]);
 
   useEffect(() => {
+    console.log('init-tezos-1', networkType)
     if (tezos) {
-      const _wallet = new BeaconWallet({
+      console.log('init-tezos-2')
+      const wallet = new BeaconWallet({
         name: "PiXL - Grenada",
         preferredNetwork: networkType,
         disableDefaultEvents: true, // Disable all events / UI. This also disables the pairing alert.
@@ -54,17 +56,20 @@ export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
           },
         },
       });
-      tezos?.setWalletProvider(_wallet);
-      setWallet(_wallet);
-      console.log("Tezos.setWalletProvider", _wallet, tezos);
+      console.log('init-tezos-3', wallet);
+      tezos?.setWalletProvider(wallet);
+      setWallet(wallet);
+      console.log("Tezos.setWalletProvider", wallet, tezos);
     }
   }, [tezos, networkType, setWallet]);
 
   const connectWallet = async (): Promise<void> => {
     try {
+      console.log('connectWallet-1', networkType);
       if (!wallet || !tezos) {
         return;
       }
+      console.log('connectWallet-2');
       setLoading(true);
 
       console.log("Request Permission", networkType, rpcUrl, tezos);
