@@ -416,7 +416,18 @@
       ],
       "indirect": false,
       "globalContextsFilePath": "plasmic/pi_xl_a/PlasmicGlobalContextsProvider.tsx",
-      "codeComponents": []
+      "codeComponents": [
+        {
+          "id": "P8taC2K9Tg",
+          "name": "CompP8TaC2K9Tg",
+          "componentImportPath": ""
+        },
+        {
+          "id": "b2hX0Kahvc",
+          "name": "Compb2HX0Kahvc",
+          "componentImportPath": ""
+        }
+      ]
     },
     {
       "projectId": "84wxoth5npGrp6RRXPL88z",
