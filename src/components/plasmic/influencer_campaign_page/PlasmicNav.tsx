@@ -40,8 +40,8 @@ import '@plasmicapp/react-web/lib/plasmic.css';
 import projectcss from './plasmic_influencer_campaign_page.module.css'; // plasmic-import: oYWp5DRpUvyyRAKjSJya8K/projectcss
 import sty from './PlasmicNav.module.css'; // plasmic-import: 1NPCYKvqMbV/css
 
-import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: IradBadVvV69_r/icon
-import logoPixLpngKb9Khcgdx from "../pi_xl_a/images/logoPixLpng.png"; // plasmic-import: Kb9Khcgdx/picture
+import ChecksvgIcon from './icons/PlasmicIcon__Checksvg'; // plasmic-import: IradBadVvV69_r/icon
+import logoPixLpngKb9Khcgdx from '../pi_xl_a/images/logoPixLpng.png'; // plasmic-import: Kb9Khcgdx/picture
 
 export type PlasmicNav__VariantMembers = {
   synced: 'synced';
@@ -140,7 +140,7 @@ function PlasmicNav__RenderFunc(props: {
               src: logoPixLpngKb9Khcgdx,
               fullWidth: 750,
               fullHeight: 750,
-              aspectRatio: undefined
+              aspectRatio: undefined,
             }}
           />
         </a>
