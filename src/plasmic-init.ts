@@ -14,8 +14,6 @@ export const PLASMIC = initPlasmicLoader({
   preview: true,
 })
 
-console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-
 PLASMIC.registerComponent(LoadingBar, {
   name: 'LoadingBar',
   props: {
