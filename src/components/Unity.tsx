@@ -56,6 +56,10 @@ const UnityComponent = () => {
     unityContext.setFullscreen(false);
   };
 
+  unityContext.on('ConnectWallet', () => {
+    console.log('ConnectWallet~~~~~~~~~~~')
+  });
+
   unityContext.on('WhereWallet', function (userName, score) {
     if (userAddress && !connected) {
       unityContext.send('AccessController', 'ConnectWallet', userAddress);

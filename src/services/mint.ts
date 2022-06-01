@@ -5,7 +5,7 @@ import { ItemType } from '../types';
 import {
   REACT_APP_BASE_URL,
   REACT_APP_PIXL_GAME_CONTRACT,
-  REACT_APP_PIXL_TOKENS_CONTRACT,
+  REACT_APP_PIXL_DAY_PASS_CONTRACT,
 } from '../config';
 
 const BASE_URL = REACT_APP_BASE_URL;
@@ -95,7 +95,7 @@ export const mintMultiToken = async (
   userAddress: string,
   itemName: string
 ) => {
-  const contractAddress = REACT_APP_PIXL_TOKENS_CONTRACT;
+  const contractAddress = REACT_APP_PIXL_DAY_PASS_CONTRACT;
   console.log('mintToken', contractAddress);
 
   try {

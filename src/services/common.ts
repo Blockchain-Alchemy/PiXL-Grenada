@@ -3,8 +3,8 @@ import { tzip12 } from "@taquito/tzip12";
 import { tzip16 } from "@taquito/tzip16";
 import { ItemType, Metadata, TokenInfo } from "../types";
 import {
-  REACT_APP_INITCOIN_CONTRACT,
-  REACT_APP_INITCOIN_TOKENID,
+  TOKEN_INITCOIN,
+  REACT_APP_PIXLTEZ_CONTRACT,
   REACT_APP_OBJKT_CONTRACT,
 } from "../config";
 import { getLegderKeys } from "./ledger";
@@ -22,10 +22,10 @@ export const findInitialCoin = async (
   Tezos: TezosToolkit,
   userAddress: string
 ) => {
-  let coins: { name: string; imageSrc: string; alt: string; id: number }[] = [];
-  // Contract Hard Coded here
-  const contractAddress = REACT_APP_INITCOIN_CONTRACT;
-  const tokenId = REACT_APP_INITCOIN_TOKENID;
+  const coins: { name: string; imageSrc: string; alt: string; id: number }[] = [];
+
+  const contractAddress = REACT_APP_PIXLTEZ_CONTRACT;
+  const tokenId = TOKEN_INITCOIN;
   const contract = await Tezos.contract.at(
     contractAddress,
     compose(tzip16, tzip12)
@@ -35,6 +35,7 @@ export const findInitialCoin = async (
   // const metatData = await contract.tzip12().getTokenMetadata(1);
   const storage: any = await contract.storage();
   const ledger = storage.ledger || storage.accounts;
+  
   // Token ID (1)
   const val = await ledger.get({ 0: userAddress, 1: tokenId });
   // Token ID (3)
@@ -163,8 +164,8 @@ export const getRequestedItem = async (
   );
   if (requestedTokenArray) {
     const coins: { name: string; imageSrc: string; alt: string; id: number }[] = [];
-    const contractAddress = REACT_APP_INITCOIN_CONTRACT;
-    const tokenId = 1;
+    const contractAddress = REACT_APP_PIXLTEZ_CONTRACT;
+    const tokenId = TOKEN_INITCOIN;
     const contract = await Tezos.contract.at(
       contractAddress,
       compose(tzip16, tzip12)

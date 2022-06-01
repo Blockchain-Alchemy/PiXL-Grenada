@@ -3,11 +3,7 @@ export const REACT_APP_NETWORK_TYPE = 'ithacanet';//'hangzhounet';
 
 export const REACT_APP_BASE_URL = 'https://pixl-server.herokuapp.com';  //Mine
 
-export const REACT_APP_PIXLTEZ_CONTRACT = 'KT1PCbAetMMNxzxCRuduydRvH6GSZ9kPCg3u';
-export const REACT_APP_PIXL_COIN_CONTRACT = 'KT1RbRQpgsh1omzV3iY852mhZPdDyAsnnkM9';
+export const REACT_APP_PIXLTEZ_CONTRACT = 'KT1MRn2mPk9XLZibGpMdWv5yU7VhLAS58CpJ';
 export const REACT_APP_PIXL_GAME_CONTRACT = 'KT1UVeCDrPB1F5hvfjioTSxXr8enFdreTLmW';
-export const REACT_APP_PIXL_TOKENS_CONTRACT = 'KT1Hjfh1vsK7iRHbAabivcX8pwKxLgxYRX6K';
+export const REACT_APP_PIXL_DAY_PASS_CONTRACT = 'KT1Hjfh1vsK7iRHbAabivcX8pwKxLgxYRX6K';
 export const REACT_APP_OBJKT_CONTRACT = REACT_APP_PIXL_GAME_CONTRACT;
-export const REACT_APP_INITCOIN_CONTRACT = REACT_APP_PIXL_COIN_CONTRACT;
-
-export const REACT_APP_INITCOIN_TOKENID = 0; //1
