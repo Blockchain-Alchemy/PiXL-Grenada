@@ -73,13 +73,50 @@ const UnityComponent = () => {
   });
 
   unityContext.on('MintThis', async (itemName: string) => {
+    console.log('MintThis:', itemName);
     if (itemName) {
-      await onMintThis(itemName);
+      if (!running && tezos && userAddress) {
+        setRunning(true);
+
+        const result = await mintItem(tezos, userAddress, itemName);
+        console.log('mintContract', result);
+        if (result) {
+          setGameItems([...gameItems, result]);
+          //setRerender(Math.random());
+
+          toast.success(`Item ${itemName} has been successfully minted`);
+          unityContext.send('GameController', 'ItemMinted', itemName);
+        } else {
+          toast.error(`Failed to mint item ${itemName}`);
+          unityContext.send('GameController', 'SendError', 'Failed to mint item');
+        }
+        setRunning(false);
+      }
     }
   });
 
   unityContext.on('MintPiXLtez', async (amount: number) => {
-    await onMintPixltez(amount);
+    console.log('MintPiXLtez', amount);
+    if (!running && userAddress) {
+      try {
+        setRunning(true);
+        const result = await mintPixltez(userAddress, amount);
+        if (result && result.success) {
+          toast.success('PiXLtez has been successfully minted');
+          unityContext.send('GameController', 'PiXLtezMinted', amount);
+        } else {
+          unityContext.send(
+            'GameController',
+            'SendError',
+            'Failed to mint PiXLtez'
+          );
+          toast.error('Failed to mint PiXLtez');
+        }
+      } catch (err) {
+        console.error(err);
+      }
+      setRunning(false);
+    }
   });
 
   unityContext.on('ShareQuest', async (questDetails, Id) => {
@@ -157,57 +194,6 @@ const UnityComponent = () => {
       ]);
     }
   });
-
-  const onMintThis = async (itemName: string) => {
-    console.log('MintThis:', itemName);
-    if (running) {
-      return;
-    }
-    if (tezos && userAddress) {
-      setRunning(true);
-
-      const result = await mintItem(tezos, userAddress, itemName);
-      console.log('mintContract', result);
-      if (result) {
-        setGameItems([...gameItems, result]);
-        //setRerender(Math.random());
-
-        toast.success(`Item ${itemName} has been successfully minted`);
-        unityContext.send('GameController', 'ItemMinted', itemName);
-      } else {
-        toast.error(`Failed to mint item ${itemName}`);
-        unityContext.send('GameController', 'SendError', 'Failed to mint item');
-      }
-      setRunning(false);
-    }
-  };
-
-  const onMintPixltez = async (amount: number) => {
-    console.log('MintPiXLtez', amount);
-    if (running) {
-      return;
-    }
-    if (userAddress) {
-      try {
-        setRunning(true);
-        const result = await mintPixltez(userAddress, amount);
-        if (result && result.success) {
-          toast.success('PiXLtez has been successfully minted');
-          unityContext.send('GameController', 'PiXLtezMinted', amount);
-        } else {
-          unityContext.send(
-            'GameController',
-            'SendError',
-            'Failed to mint PiXLtez'
-          );
-          toast.error('Failed to mint PiXLtez');
-        }
-      } catch (err) {
-        console.error(err);
-      }
-      setRunning(false);
-    }
-  };
 
   const gameOver = async (userName: string, score: string) => {
     const result = await setGraveyardEntry(userName, score).catch((error) => {
