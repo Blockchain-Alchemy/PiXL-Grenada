@@ -42,7 +42,7 @@ const unityContext = new UnityContext({
 });
 
 const UnityComponent = () => {
-  const { tezos, connected, address: userAddress } = useBeacon();
+  const { tezos, connected, walletAddress } = useBeacon();
   const [walletReady, setWhereWallet] = useState<boolean>(false);
   const [isLoadingCards, setIsLoadingCards] = useState<boolean>(false);
   const [progression, setProgression] = useState(0);
@@ -65,8 +65,8 @@ const UnityComponent = () => {
   });
 
   unityContext.on('WhereWallet', function (userName, score) {
-    if (userAddress && !connected) {
-      unityContext.send('AccessController', 'ConnectWallet', userAddress);
+    if (walletAddress && !connected) {
+      unityContext.send('AccessController', 'ConnectWallet', walletAddress);
     } else if (!walletReady) {
       setWhereWallet(true);
     }
@@ -79,10 +79,10 @@ const UnityComponent = () => {
   unityContext.on('MintThis', async (itemName: string) => {
     console.log('MintThis:', itemName);
     if (itemName) {
-      if (!running && tezos && userAddress) {
+      if (!running && tezos && walletAddress) {
         setRunning(true);
 
-        const result = await mintItem(tezos, userAddress, itemName);
+        const result = await mintItem(tezos, walletAddress, itemName);
         console.log('mintContract', result);
         if (result) {
           setGameItems([...gameItems, result]);
@@ -101,10 +101,10 @@ const UnityComponent = () => {
 
   unityContext.on('MintPiXLtez', async (amount: number) => {
     console.log('MintPiXLtez', amount);
-    if (!running && userAddress) {
+    if (!running && walletAddress) {
       try {
         setRunning(true);
-        const result = await mintPixltez(userAddress, amount);
+        const result = await mintPixltez(walletAddress, amount);
         if (result && result.success) {
           toast.success('PiXLtez has been successfully minted');
           unityContext.send('GameController', 'PiXLtezMinted', amount);
@@ -134,7 +134,7 @@ const UnityComponent = () => {
 
   unityContext.on('QuestCompleted', async function (questId: number) {
     console.log('OnQuestCompleted:', questId);
-    if (!running && userAddress) {
+    if (!running && walletAddress) {
       const isValid = await isQuestValid(questId);
       if (!isValid) {
         toast.error('Invalid Quest not saved');
@@ -144,7 +144,7 @@ const UnityComponent = () => {
         setRunning(true);
         const updateStatus = await updateQuestStatus(
           questId,
-          userAddress,
+          walletAddress,
           'COMPLETED'
         );
         if (updateStatus.errorMessage) {
@@ -174,10 +174,10 @@ const UnityComponent = () => {
 
   unityContext.on('RequestItem', async (item: string) => {
     console.log('OnRequestItem', item);
-    if (tezos && userAddress) {
+    if (tezos && walletAddress) {
       toast.success('Looking for Beets Entry Token');
 
-      const result = await getRequestedItem(tezos, userAddress, item);
+      const result = await getRequestedItem(tezos, walletAddress, item);
       if (result) {
         unityContext.send('GameController', 'ActivateEvent', 'Has Beets Token');
       }
@@ -212,10 +212,10 @@ const UnityComponent = () => {
   };
 
   const findOtherCards = async () => {
-    if (tezos && userAddress) {
+    if (tezos && walletAddress) {
       setIsLoadingCards(true);
       console.log('findOtherCards');
-      const tokenList = await findItems(tezos, userAddress);
+      const tokenList = await findItems(tezos, walletAddress);
       if (tokenList && tokenList.length > 0) {
         console.log('findOtherCards', tokenList);
         buildCards_(tokenList);
@@ -262,11 +262,11 @@ const UnityComponent = () => {
   };
 
   const findInitialCoins = async () => {
-    if (tezos && userAddress) {
+    if (tezos && walletAddress) {
       setIsLoadingCards(true);
       tezos.addExtension(new Tzip16Module());
       tezos.addExtension(new Tzip12Module());
-      const coins = await findInitialCoin(tezos, userAddress).catch(
+      const coins = await findInitialCoin(tezos, walletAddress).catch(
         async (error) => {
           toast.error('Error connecting to tezos mainnet');
         }
@@ -282,8 +282,8 @@ const UnityComponent = () => {
   };
 
   useEffect(() => {
-    userAddress && findInitialCoins();
-  }, [userAddress]);
+    walletAddress && findInitialCoins();
+  }, [walletAddress]);
 
   return (
     <div className="game-container">

@@ -7,7 +7,7 @@ export interface BeaconContextApi {
   wallet: BeaconWallet | undefined
   loading: boolean
   connected: boolean
-  address: string | undefined
+  walletAddress: string | undefined
   rpcUrl: string
   connectWallet: () => Promise<void>
   disconnectWallet: () => Promise<void>

@@ -27,13 +27,13 @@ export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
 
   const [loading, setLoading] = useState(false);
   const [wallet, setWallet] = useState<BeaconWallet | undefined>(undefined);
-  const [address, setAddress] = useState<string | undefined>(undefined);
+  const [walletAddress, setWalletAddress] = useState<string | undefined>(undefined);
   const [connected, setConnected] = useState<boolean>(false);
 
   useEffect(() => {
     console.log("create toolkit", rpcUrl);
     setWallet(undefined);
-    setAddress(undefined);
+    setWalletAddress(undefined);
     setConnected(false);
     setTezos(new TezosToolkit(rpcUrl));
   }, [rpcUrl, setTezos]);
@@ -78,7 +78,7 @@ export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
 
       const address = await wallet.getPKH();
       console.log("userAddress", address);
-      setAddress(address);
+      setWalletAddress(address);
 
       setConnected(true);
     } catch (error) {
@@ -105,7 +105,7 @@ export const BeaconProvider: React.FC<{ children: any }> = ({ children }) => {
         wallet,
         loading,
         connected,
-        address,
+        walletAddress,
         rpcUrl,
         connectWallet,
         disconnectWallet,
