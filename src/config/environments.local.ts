@@ -1,5 +1,5 @@
-export const REACT_APP_RPC = 'https://hangzhounet.smartpy.io';
-export const REACT_APP_NETWORK_TYPE = 'hangzhounet';
+export const REACT_APP_RPC = 'https://ithacanet.smartpy.io';//'https://hangzhounet.smartpy.io';
+export const REACT_APP_NETWORK_TYPE = 'ithacanet';//'hangzhounet';
 
 export const REACT_APP_BASE_URL = 'http://localhost:5000';
 
