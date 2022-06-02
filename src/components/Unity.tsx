@@ -56,6 +56,10 @@ const UnityComponent = () => {
     unityContext.setFullscreen(false);
   };
 
+  unityContext.on('progress', function (progression) {
+    setProgression(progression);
+  });
+
   unityContext.on('ConnectWallet', () => {
     console.log('ConnectWallet~~~~~~~~~~~')
   });
@@ -128,11 +132,7 @@ const UnityComponent = () => {
     }
   });
 
-  unityContext.on('progress', function (progression) {
-    setProgression(progression);
-  });
-
-  unityContext.on('QuestCompleted', async function (questId: string) {
+  unityContext.on('QuestCompleted', async function (questId: number) {
     console.log('OnQuestCompleted:', questId);
     if (!running && userAddress) {
       const isValid = await isQuestValid(questId);

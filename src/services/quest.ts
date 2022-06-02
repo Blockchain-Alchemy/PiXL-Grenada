@@ -2,14 +2,16 @@ import axios from "axios";
 import { REACT_APP_BASE_URL } from "../config";
 
 const BASE_URL = REACT_APP_BASE_URL;
-const QuestArray = [{ value: "Talk to mom" }, {value: "Finish Beets 1"} ];
+const QuestArray = [
+  { id: 1, value: "Talk to mom" }, 
+  { id: 2, value: "Finish Beets 1"}
+];
 
-export const updateQuestStatus = async (questId: string, userAddress: string, status: string) => {
+export const updateQuestStatus = async (questId: number, userAddress: string, status: string) => {
   const body = {
     walletAddress: userAddress,
-    timestamp: new Date(),
     status: status,
-    questName: questId,
+    questId: questId,
   }
 
   return await axios.post(`${BASE_URL}/api/quest/update`, body)
@@ -36,8 +38,8 @@ export const updateQuestStatus = async (questId: string, userAddress: string, st
   });*/
 }
 
-export const isQuestValid = async (questId: string) => {
-  const x = QuestArray.find((item) => item.value === questId);
+export const isQuestValid = async (questId: number) => {
+  const x = QuestArray.find((item) => item.id === questId);
   if (x) {
     return true
   } else {
