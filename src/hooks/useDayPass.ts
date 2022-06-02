@@ -7,13 +7,13 @@ const contractAddress = REACT_APP_PIXL_DAY_PASS_CONTRACT;
 const useDayPass = () => {
   const { tezos, walletAddress } = useBeacon();
 
-  const mintDayPass = useCallback(() => {
+  const mintToken = useCallback((tokenId: DayPassToken) => {
     if (tezos && walletAddress) {
       const params = [{
         amount: 1,
         to_: walletAddress,
         token: {
-          existing: DayPassToken.DayPass,
+          existing: tokenId,
         }
       }]
       return tezos.wallet.at(contractAddress)
@@ -29,7 +29,7 @@ const useDayPass = () => {
   }, [tezos, walletAddress]);
 
   return {
-    mintDayPass,
+    mintToken,
   };
 };
 
