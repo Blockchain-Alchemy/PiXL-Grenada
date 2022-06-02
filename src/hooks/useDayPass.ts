@@ -25,6 +25,8 @@ const useDayPass = () => {
           console.log("Mint result:", result)
           return result;
         })
+    } else {
+      return Promise.reject('Please connect your wallet');
     }
   }, [tezos, walletAddress]);
 
