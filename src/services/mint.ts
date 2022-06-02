@@ -37,13 +37,13 @@ export const mintItem = async (
   itemName: string
 ) => {
   const contractAddress = REACT_APP_PIXL_GAME_CONTRACT;
-  console.log('mintItem', contractAddress);
+  console.log('mintItem, contract:', contractAddress);
 
   try {
     const contract = await Tezos.wallet.at(contractAddress);
 
     const tokenId = await getTokenId(itemName);
-    console.log('tokenId', tokenId);
+    console.log('mintItem, tokenId', tokenId);
 
     let data: any[] = [];
     if (tokenId === null || tokenId === undefined) {
