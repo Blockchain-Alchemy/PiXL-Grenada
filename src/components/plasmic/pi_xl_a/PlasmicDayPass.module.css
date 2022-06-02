@@ -17,7 +17,7 @@
   z-index: 1;
   flex-shrink: 0;
 }
-.button:global(.__wab_instance) {
+.buyButton:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
   left: auto;
