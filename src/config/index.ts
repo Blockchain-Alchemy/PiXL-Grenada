@@ -8,5 +8,16 @@ export enum DayPassToken {
   SpecialEventPass = 3,
 }
 
+export enum PixlTokens {
+  Pixltez = 0,
+  InitCoin = 1,
+}
+
+export const Contracts = {
+  Pixltez: 'KT1MRn2mPk9XLZibGpMdWv5yU7VhLAS58CpJ',
+  PixlGame: 'KT1MQTLHYBBR8xNBQUs6wbXSfTfm9YhobWPT',
+  DayPass: 'KT1Hjfh1vsK7iRHbAabivcX8pwKxLgxYRX6K',
+}
+
 //export * from './environments.development'
 export * from './environments.local'

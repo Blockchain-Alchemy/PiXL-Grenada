@@ -1,12 +1,5 @@
 import axios from 'axios';
-import { char2Bytes } from '@taquito/utils';
-import { MichelsonMap, TezosToolkit } from '@taquito/taquito';
-import { ItemType } from '../types';
-import {
-  REACT_APP_BASE_URL,
-  REACT_APP_PIXL_GAME_CONTRACT,
-  REACT_APP_PIXL_DAY_PASS_CONTRACT,
-} from '../config';
+import { REACT_APP_BASE_URL } from '../config';
 
 const BASE_URL = REACT_APP_BASE_URL;
 
@@ -31,7 +24,7 @@ export const mintPixltez = async (address: string, amount: number) => {
     });
 };
 
-export const mintItem = async (
+/*export const mintItem = async (
   Tezos: TezosToolkit,
   userAddress: string,
   itemName: string
@@ -88,66 +81,7 @@ export const mintItem = async (
     console.error(err);
     return null;
   }
-};
-
-export const mintMultiToken = async (
-  Tezos: TezosToolkit,
-  userAddress: string,
-  itemName: string
-) => {
-  const contractAddress = REACT_APP_PIXL_DAY_PASS_CONTRACT;
-  console.log('mintToken', contractAddress);
-
-  try {
-    const contract = await Tezos.wallet.at(contractAddress);
-
-    const tokenId = await getTokenId(itemName);
-    console.log('tokenId', tokenId);
-
-    let data: any[] = [];
-    if (tokenId === null || tokenId === undefined) {
-      data = [
-        {
-          amount: 1,
-          to_: userAddress,
-          token: {
-            new: MichelsonMap.fromLiteral({
-              name: char2Bytes(itemName),
-              decimals: char2Bytes('0'),
-              symbol: char2Bytes(itemName),
-            }),
-          },
-        },
-      ];
-    } else {
-      data = [
-        {
-          amount: 1,
-          to_: userAddress,
-          token: {
-            existing: tokenId,
-          },
-        },
-      ];
-    }
-
-    const op = await contract.methods.mint(data).send();
-    const result = await op.confirmation();
-    if (result) {
-      console.log('result', result);
-      await updateMintResult(userAddress, itemName);
-
-      return {
-        name: itemName, //"Tezzard",
-        imageSrc: '/whitney-with-microphone.png',
-        alt: 'Placeholder',
-      } as ItemType;
-    }
-  } catch (err) {
-    console.error(err);
-    return null;
-  }
-};
+};*/
 
 /*async mintItemNFT(Tezos: TezosToolkit, userAddress: string, itemName: string) {
     const contractAddress = REACT_APP_PIXL_GAME_CONTRACT;

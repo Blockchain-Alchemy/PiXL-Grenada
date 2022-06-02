@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Unity, { UnityContext } from 'react-unity-webgl';
-import { Tzip12Module } from '@taquito/tzip12';
-import { Tzip16Module } from '@taquito/tzip16';
 import toast, { Toaster } from 'react-hot-toast';
 import Lang from 'lang/en';
 import Loading from './Loading';
@@ -13,18 +11,20 @@ import './Unity.css'
 import useBeacon from 'hooks/useBeacon';
 import {
   buildCards,
-  findInitialCoin,
   findItems,
   getRequestedItem,
+  getTokenId,
   isQuestValid,
-  mintItem,
   mintPixltez,
   reInsertCard,
   setGraveyardEntry,
   shareQuest,
+  updateMintResult,
   updateQuestStatus,
 } from 'services';
 import { TokenInfo } from 'types';
+import usePixltez from 'hooks/usePixltez';
+import useGame from 'hooks/useGame';
 
 export type ItemType = {
   name: string;
@@ -43,6 +43,8 @@ const unityContext = new UnityContext({
 
 const UnityComponent = () => {
   const { tezos, connected, walletAddress } = useBeacon();
+  const { findInitialCoin } = usePixltez();
+  const { mintItem } = useGame();
   const [walletReady, setWhereWallet] = useState<boolean>(false);
   const [isLoadingCards, setIsLoadingCards] = useState<boolean>(false);
   const [progression, setProgression] = useState(0);
@@ -78,15 +80,25 @@ const UnityComponent = () => {
 
   unityContext.on('MintThis', async (itemName: string) => {
     console.log('MintThis:', itemName);
-    if (itemName) {
-      if (!running && tezos && walletAddress) {
+    if (!itemName) {
+      return;
+    }
+    if (!running) {
+      try {
         setRunning(true);
 
-        const result = await mintItem(tezos, walletAddress, itemName);
+        const tokenId = await getTokenId(itemName);
+        const result = await mintItem(tokenId, itemName);
         console.log('mintContract', result);
         if (result) {
-          setGameItems([...gameItems, result]);
-          //setRerender(Math.random());
+          await updateMintResult(walletAddress as string, itemName);
+
+          const gameItem = {
+            name: itemName,
+            imageSrc: '/whitney-with-microphone.png',
+            alt: 'Placeholder',
+          } as ItemType
+          setGameItems([...gameItems, gameItem]);
 
           toast.success(`Item ${itemName} has been successfully minted`);
           unityContext.send('GameController', 'ItemMinted', itemName);
@@ -94,6 +106,11 @@ const UnityComponent = () => {
           toast.error(`Failed to mint item ${itemName}`);
           unityContext.send('GameController', 'SendError', 'Failed to mint item');
         }
+      }
+      catch(error) {
+        console.error(error);
+      }
+      finally {
         setRunning(false);
       }
     }
@@ -261,29 +278,30 @@ const UnityComponent = () => {
     }
   };
 
-  const findInitialCoins = async () => {
-    if (tezos && walletAddress) {
-      setIsLoadingCards(true);
-      tezos.addExtension(new Tzip16Module());
-      tezos.addExtension(new Tzip12Module());
-      const coins = await findInitialCoin(tezos, walletAddress).catch(
-        async (error) => {
-          toast.error('Error connecting to tezos mainnet');
-        }
-      );
-      if (coins && coins.length > 0) {
-        setCoin(coins);
-        setIsLoadingCards(false);
-        //setRerender(Math.random()); //TODO
-      } else {
-        toast.error('No entry coin found in wallet');
-      }
-    }
-  };
-
   useEffect(() => {
-    walletAddress && findInitialCoins();
-  }, [walletAddress]);
+    if (walletAddress) {
+      setIsLoadingCards(true);
+      findInitialCoin()
+        .then(result => {
+          if (result) {
+            const coins = [{
+              id: 0,
+              name: Lang.entryCoinName,
+              alt: Lang.entryCoinAlt,
+              imageSrc: "https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP",
+            }]
+            setCoin(coins);
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          toast.error('No entry coin found in wallet');
+        })
+        .finally(() => {
+          setIsLoadingCards(false);
+        })
+    }
+  }, [walletAddress, findInitialCoin]);
 
   return (
     <div className="game-container">

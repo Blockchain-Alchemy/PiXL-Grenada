@@ -18,7 +18,7 @@ const UtilityItemMapper = [
   { value: 0, tokenId: 1, description: "Health potion" },
 ];
 
-export const findInitialCoin = async (
+/*export const findInitialCoin = async (
   Tezos: TezosToolkit,
   userAddress: string
 ) => {
@@ -62,7 +62,7 @@ export const findInitialCoin = async (
     });
   }
   return coins;
-};
+};*/
 
 export const findItems = async (Tezos: TezosToolkit, userAddress: string) => {
   const contractAddress = REACT_APP_OBJKT_CONTRACT;
