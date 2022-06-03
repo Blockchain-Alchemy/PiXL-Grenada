@@ -2,7 +2,7 @@ import { Contracts, DayPassToken } from "config";
 import {useCallback} from "react";
 import useBeacon from "./useBeacon";
 
-const contractAddress = Contracts.Pixltez;
+const contractAddress = Contracts.DayPass;
 
 const useDayPass = () => {
   const { tezos, walletAddress } = useBeacon();

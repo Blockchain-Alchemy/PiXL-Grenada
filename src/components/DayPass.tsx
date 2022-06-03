@@ -1,4 +1,5 @@
 import * as React from "react";
+import toast, { Toaster } from 'react-hot-toast';
 import {
   PlasmicDayPass,
   DefaultDayPassProps
@@ -15,16 +16,25 @@ function DayPass_(props: DayPassProps, ref: HTMLElementRefOf<"div">) {
   const buyDayPass = (): void => {
     mintToken(DayPassToken.DayPass)
       .then(result => {
-        console.log('buyDayPass', result)
+        console.log('buyDayPass', result);
+        toast.success(`Day Pass Token has been successfully minted`);
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error);
+        toast.error(`Failed to mint Day Pass`);
+      });
   }
 
-  return <PlasmicDayPass 
-    root={{ ref }} 
-    buyButton={{ onClick: buyDayPass }}
-    {...props} 
-  />;
+  return (
+    <>
+      <PlasmicDayPass 
+        root={{ ref }} 
+        buyButton={{ onClick: buyDayPass }}
+        {...props} 
+        />
+      <Toaster />
+    </>
+  );
 }
 
 const DayPass = React.forwardRef(DayPass_);
