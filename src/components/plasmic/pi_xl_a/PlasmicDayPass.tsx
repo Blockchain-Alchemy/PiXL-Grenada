@@ -55,7 +55,7 @@ export type PlasmicDayPass__OverridesType = {
   root?: p.Flex<'div'>;
   nav?: p.Flex<typeof Nav>;
   buyButton?: p.Flex<typeof Button>;
-  text?: p.Flex<'div'>;
+  checkButton?: p.Flex<typeof Button>;
 };
 
 export interface DefaultDayPassProps {
@@ -108,15 +108,30 @@ function PlasmicDayPass__RenderFunc(props: {
             color={'blue' as const}
           >
             <div
-              data-plasmic-name={'text'}
-              data-plasmic-override={overrides.text}
               className={classNames(
                 projectcss.all,
                 projectcss.__wab_text,
-                sty.text
+                sty.text__fz7ER
               )}
             >
               {'BUY DAY PASS'}
+            </div>
+          </Button>
+
+          <Button
+            data-plasmic-name={'checkButton'}
+            data-plasmic-override={overrides.checkButton}
+            className={classNames('__wab_instance', sty.checkButton)}
+            color={'blue' as const}
+          >
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__slV4G
+              )}
+            >
+              {'CHECK DAY PASS'}
             </div>
           </Button>
         </div>
@@ -126,10 +141,10 @@ function PlasmicDayPass__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ['root', 'nav', 'buyButton', 'text'],
+  root: ['root', 'nav', 'buyButton', 'checkButton'],
   nav: ['nav'],
-  buyButton: ['buyButton', 'text'],
-  text: ['text'],
+  buyButton: ['buyButton'],
+  checkButton: ['checkButton'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -138,7 +153,7 @@ type NodeDefaultElementType = {
   root: 'div';
   nav: typeof Nav;
   buyButton: typeof Button;
-  text: 'div';
+  checkButton: typeof Button;
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -200,7 +215,7 @@ export const PlasmicDayPass = Object.assign(
     // Helper components rendering sub-elements
     nav: makeNodeComponent('nav'),
     buyButton: makeNodeComponent('buyButton'),
-    text: makeNodeComponent('text'),
+    checkButton: makeNodeComponent('checkButton'),
 
     // Metadata about props expected for PlasmicDayPass
     internalVariantProps: PlasmicDayPass__VariantProps,

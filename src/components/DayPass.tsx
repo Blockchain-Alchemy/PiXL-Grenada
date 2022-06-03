@@ -7,11 +7,12 @@ import {
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 import useDayPass from "hooks/useDayPass";
 import { DayPassToken } from "config";
+import moment from "moment";
 
 export interface DayPassProps extends DefaultDayPassProps {}
 
 function DayPass_(props: DayPassProps, ref: HTMLElementRefOf<"div">) {
-  const { mintToken } = useDayPass();
+  const { mintToken, getTokenTime } = useDayPass();
   
   const buyDayPass = (): void => {
     mintToken(DayPassToken.DayPass)
@@ -25,11 +26,34 @@ function DayPass_(props: DayPassProps, ref: HTMLElementRefOf<"div">) {
       });
   }
 
+  const checkDayPass = (): void => {
+    console.log('checkDayPass');
+    getTokenTime(DayPassToken.DayPass)
+      .then(tokenTime => {
+        console.log('checkDayPass', tokenTime);
+        if (!tokenTime) {
+          toast.error(`You have no Day Pass token`);
+          return;
+        }
+        const diff = moment().diff(tokenTime, 'day', true);
+        console.log('diff', diff);
+        if (diff > 1.0) {
+          toast.error(`The token is invalid, timeout`);
+        } else {
+          toast.success(`You have valid Day Pass token`);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   return (
     <>
       <PlasmicDayPass 
         root={{ ref }} 
         buyButton={{ onClick: buyDayPass }}
+        checkButton={{ onClick: checkDayPass }}
         {...props} 
         />
       <Toaster />
