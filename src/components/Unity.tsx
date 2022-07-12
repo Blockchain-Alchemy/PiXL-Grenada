@@ -50,6 +50,10 @@ const UnityComponent = () => {
     unityContext.send('GameController', methodName, parameter);
   }
 
+  const sendError = (parameter?: any) => {
+    sendGameController('SendError', parameter)
+  }
+
   unityContext.on('progress', function (progression) {
     setProgression(progression);
   });
@@ -66,8 +70,15 @@ const UnityComponent = () => {
     }
   });
 
-  unityContext.on('GameOver', function (userName, score) {
-    gameOver(userName, score);
+  unityContext.on('GameOver', async (userName, score) => {
+    try {
+      const result = await service.setGraveyardEntry(userName, score);
+      if (result) {
+        toast.success('Your death has been added to The Graveyard');
+      }
+    } catch (error) {
+      console.error(error);
+    }
   });
 
   unityContext.on('MintThis', async (itemName: string) => {
@@ -93,9 +104,9 @@ const UnityComponent = () => {
         throw new Error('Failed to get token ID from server');
       }
 
-      const result = await mintItem(tokenId, itemName);
-      console.log('mintItem', result);
-      if (!result) {
+      const transaction = await mintItem(tokenId, itemName);
+      console.log('mintItem', transaction);
+      if (!transaction) {
         throw new Error('Failed to mint item');
       }
 
@@ -113,7 +124,7 @@ const UnityComponent = () => {
     } catch(error) {
       console.error(error);
       toast.error(`Failed to mint item ${itemName}`);
-      sendGameController('SendError', 'Failed to mint item');
+      sendError('Failed to mint item');
     } finally {
       setRunning(false);
     }
@@ -130,16 +141,16 @@ const UnityComponent = () => {
     }
     try {
       setRunning(true);
+
       const result = await service.mintPixltez(walletAddress, amount);
-      if (result && result.success) {
-        toast.success(Lang.pixltezMinted);
-        sendGameController('PiXLtezMinted', amount);
-      } else {
+      if (!result || !result.success) {
         throw new Error('Server Error');
       }
+      toast.success(Lang.pixltezMinted);
+      sendGameController('PiXLtezMinted', amount);
     } catch (err) {
       console.error(err);
-      sendGameController('SendError', Lang.pixltezMintFailed);
+      sendError(Lang.pixltezMintFailed);
       toast.error(Lang.pixltezMintFailed);
     } finally {
       setRunning(false);
@@ -217,15 +228,6 @@ const UnityComponent = () => {
       ]);
     }*/
   });
-
-  const gameOver = async (userName: string, score: string) => {
-    const result = await service.setGraveyardEntry(userName, score).catch((error) => {
-      // toast.error("Graveyard is having issues");
-    });
-    if (result) {
-      alert('Your death has been added to The Graveyard');
-    }
-  };
 
   const buildCards_ = async (tokenList: TokenInfo[]) => {
     console.log('metaDataArray', tokenList);

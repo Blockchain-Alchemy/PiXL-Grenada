@@ -124,18 +124,13 @@ export const getTokenId = async (itemName: string) => {
     });
 };
 
-export const updateMintResult = async (
-  userAddress: string,
-  itemName: string
-) => {
+export const updateMintResult = async (userAddress: string, itemName: string) => {
   const url = `${API_BASE_URL}/api/contract/mint`;
-  const payload = [
-    {
-      name: itemName,
-      address: userAddress,
-      amount: 1,
-    },
-  ];
+  const payload = [{
+    name: itemName,
+    address: userAddress,
+    amount: 1,
+  }];
   return axios
     .post(url, payload)
     .then((res) => {
