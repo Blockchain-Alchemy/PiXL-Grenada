@@ -1,27 +1,19 @@
 import axios from 'axios';
-import { REACT_APP_BASE_URL } from '../config';
-
-const BASE_URL = REACT_APP_BASE_URL;
+import { API_BASE_URL } from '../config';
 
 export const mintPixltez = async (address: string, amount: number) => {
-  const url = `${BASE_URL}/api/contract/airdrop`;
+  const url = `${API_BASE_URL}/api/contract/airdrop`;
   const payload = {
     addresses: [address],
     amount,
   };
   console.log('mintPixltez', address, amount);
 
-  // on a successful transfer the api should return use the object details so that we can display it to the user
   return axios
     .post(url, payload)
-    .then((res) => {
-      console.log('res', res);
+    .then(res => {
       return res.data;
     })
-    .catch((err) => {
-      console.error(err);
-      return null;
-    });
 };
 
 /*export const mintItem = async (
@@ -119,7 +111,7 @@ export const mintPixltez = async (address: string, amount: number) => {
 }*/
 
 export const getTokenId = async (itemName: string) => {
-  const url = `${BASE_URL}/api/contract/token`;
+  const url = `${API_BASE_URL}/api/contract/token`;
   return axios
     .post(url, { name: itemName })
     .then((res) => {
@@ -136,7 +128,7 @@ export const updateMintResult = async (
   userAddress: string,
   itemName: string
 ) => {
-  const url = `${BASE_URL}/api/contract/mint`;
+  const url = `${API_BASE_URL}/api/contract/mint`;
   const payload = [
     {
       name: itemName,
@@ -158,7 +150,7 @@ export const updateMintResult = async (
 
 export const shareQuest = async (questDetails: any, Id: any) => {
   // on a successful transfer the api should return use the object details so that we can display it to the user
-  const result = await fetch(`${BASE_URL}/api/transfer/shareQuest`, {
+  const result = await fetch(`${API_BASE_URL}/api/transfer/shareQuest`, {
     mode: 'no-cors',
     method: 'POST',
     body: JSON.stringify({ questDetails, Id }),

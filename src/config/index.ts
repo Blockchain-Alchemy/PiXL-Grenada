@@ -1,3 +1,9 @@
+export const ENV = 'development';
+
+export const API_BASE_URL_SERVER = 'https://pixl-server.herokuapp.com';
+export const API_BASE_URL_LOCAL = 'http://localhost:5000';
+export const API_BASE_URL = API_BASE_URL_LOCAL;
+
 export const TOKEN_PIXLTEZ = 0;
 export const TOKEN_INITCOIN = 1;
 

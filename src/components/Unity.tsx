@@ -106,24 +106,27 @@ const UnityComponent = () => {
 
   unityContext.on('MintPiXLtez', async (amount: number) => {
     console.log('MintPiXLtez', amount);
-    if (!running && walletAddress) {
-      try {
-        setRunning(true);
-        const result = await service.mintPixltez(walletAddress, amount);
-        if (result && result.success) {
-          toast.success('PiXLtez has been successfully minted');
-          unityContext.send('GameController', 'PiXLtezMinted', amount);
-        } else {
-          unityContext.send(
-            'GameController',
-            'SendError',
-            'Failed to mint PiXLtez'
-          );
-          toast.error('Failed to mint PiXLtez');
-        }
-      } catch (err) {
-        console.error(err);
+    if (!walletAddress) {
+      toast.error(Lang.connectYourWallet);
+      return;
+    }
+    if (running) {
+      return;
+    }
+    try {
+      setRunning(true);
+      const result = await service.mintPixltez(walletAddress, amount);
+      if (result && result.success) {
+        toast.success(Lang.pixltezMinted);
+        unityContext.send('GameController', 'PiXLtezMinted', amount);
+      } else {
+        throw new Error();
       }
+    } catch (err) {
+      console.error(err);
+      unityContext.send('GameController', 'SendError', Lang.pixltezMintFailed);
+      toast.error(Lang.pixltezMintFailed);
+    } finally {
       setRunning(false);
     }
   });
@@ -281,7 +284,7 @@ const UnityComponent = () => {
         }
       } catch (error) {
         console.error(error);
-        toast.error('No entry coin found in wallet');
+        toast.error(Lang.noEntryCoinFound);
       } finally {
         setIsLoadingCards(false);
       }
