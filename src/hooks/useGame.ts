@@ -1,16 +1,8 @@
 import { useCallback } from 'react';
 import { MichelsonMap } from '@taquito/taquito';
 import { char2Bytes } from '@taquito/utils';
-import { compose } from "@taquito/taquito";
-import { tzip12 } from "@taquito/tzip12";
-import { tzip16 } from "@taquito/tzip16";
 import { Contracts } from 'config';
 import { useTezosContext } from "./useTezosContext";
-import {
-  TOKEN_INITCOIN,
-  REACT_APP_PIXLTEZ_CONTRACT,
-  REACT_APP_OBJKT_CONTRACT,
-} from "../config";
 
 const contractAddress = Contracts.PixlGame;
 
