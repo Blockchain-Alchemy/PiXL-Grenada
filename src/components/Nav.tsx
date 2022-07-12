@@ -4,18 +4,17 @@ import {
   DefaultNavProps,
 } from "./plasmic/influencer_campaign_page/PlasmicNav";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
-import useBeacon from "hooks/useBeacon";
+import useWallet from "hooks/useWallet";
 
 export interface NavProps extends DefaultNavProps {}
 
 function Nav_(props: NavProps, ref: HTMLElementRefOf<"div">) {
-  const { connected, connectWallet, disconnectWallet } = useBeacon();
-  console.log('connected', connected)
+  const { walletAddress, connectWallet, disconnectWallet } = useWallet();
 
   return (
     <>
     {
-      connected? (
+      walletAddress? (
         <PlasmicNav
           root={{ ref }}
           syncButton={{ onClick: () => disconnectWallet() }}
