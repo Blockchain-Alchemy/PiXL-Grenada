@@ -58,52 +58,35 @@ const useGame = () => {
     }
   };*/
 
-  const mintItem = useCallback(
-    (tokenId, itemName) => {
-      if (tezos && walletAddress) {
-        const params =
-          tokenId === null || tokenId === undefined
-            ? [
-                {
-                  amount: 1,
-                  to_: walletAddress,
-                  token: {
-                    new: MichelsonMap.fromLiteral({
-                      name: char2Bytes(itemName),
-                      decimals: char2Bytes('0'),
-                      symbol: char2Bytes(itemName),
-                    }),
-                  },
-                },
-              ]
-            : [
-                {
-                  amount: 1,
-                  to_: walletAddress,
-                  token: {
-                    existing: tokenId,
-                  },
-                },
-              ];
-
-        return tezos.wallet
-          .at(contractAddress)
-          .then((contract) => {
-            return contract.methods.mint(params).send();
-          })
-          .then((op) => {
-            return op.confirmation();
-          })
-          .then((result) => {
-            console.log('mintItem', result);
-            return result;
-          });
-      } else {
-        return Promise.reject('Please connect your wallet');
+  const mintItem = useCallback((tokenId, itemName) => {
+    const mint = async () => {
+      let params: any = [{
+        amount: 1,
+        to_: walletAddress,
+        token: {
+          existing: tokenId,
+        },
+      }];
+      if (tokenId === null || tokenId === undefined) {
+        params = [{
+          amount: 1,
+          to_: walletAddress,
+          token: {
+            new: MichelsonMap.fromLiteral({
+              name: char2Bytes(itemName),
+              decimals: char2Bytes('0'),
+              symbol: char2Bytes(itemName),
+            }),
+          },
+        }];
       }
-    },
-    [tezos, walletAddress]
-  );
+
+      const contract = await tezos.wallet.at(contractAddress);
+      const op = await contract.methods.mint(params).send();
+      return await op.confirmation();
+    }
+    return mint();
+  }, [tezos, walletAddress]);
 
   return {
     mintItem,

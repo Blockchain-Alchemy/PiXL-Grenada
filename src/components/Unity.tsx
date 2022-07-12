@@ -46,6 +46,10 @@ const UnityComponent = () => {
     unityContext.setFullscreen(false);
   };
 
+  const sendGameController = (methodName: string, parameter?: any) => {
+    unityContext.send('GameController', methodName, parameter);
+  }
+
   unityContext.on('progress', function (progression) {
     setProgression(progression);
   });
@@ -68,39 +72,50 @@ const UnityComponent = () => {
 
   unityContext.on('MintThis', async (itemName: string) => {
     console.log('MintThis:', itemName);
+    if (!walletAddress) {
+      toast.error(Lang.connectYourWallet);
+      return;
+    }
     if (!itemName) {
+      console.error('Invalid item name');
       return;
     }
     if (!running) {
-      try {
-        setRunning(true);
+      console.error('Already running now');
+      return;
+    }
 
-        const tokenId = await service.getTokenId(itemName);
-        const result = await mintItem(tokenId, itemName);
-        console.log('mintContract', result);
-        if (result) {
-          await service.updateMintResult(walletAddress as string, itemName);
+    try {
+      setRunning(true);
 
-          const gameItem = {
-            name: itemName,
-            imageSrc: '/whitney-with-microphone.png',
-            alt: 'Placeholder',
-          } as ItemType
-          setGameItems([...gameItems, gameItem]);
+      const tokenId = await service.getTokenId(itemName);
+      if (!tokenId) {
+        throw new Error('Failed to get token ID from server');
+      }
 
-          toast.success(`Item ${itemName} has been successfully minted`);
-          unityContext.send('GameController', 'ItemMinted', itemName);
-        } else {
-          toast.error(`Failed to mint item ${itemName}`);
-          unityContext.send('GameController', 'SendError', 'Failed to mint item');
-        }
+      const result = await mintItem(tokenId, itemName);
+      console.log('mintItem', result);
+      if (!result) {
+        throw new Error('Failed to mint item');
       }
-      catch(error) {
-        console.error(error);
-      }
-      finally {
-        setRunning(false);
-      }
+
+      await service.updateMintResult(walletAddress as string, itemName);
+
+      const mintedItem = {
+        name: itemName,
+        imageSrc: '/whitney-with-microphone.png',
+        alt: 'Game Item',
+      } as ItemType
+      setGameItems([...gameItems, mintedItem]);
+
+      toast.success(`Item ${itemName} has been successfully minted`);
+      sendGameController('ItemMinted', itemName);
+    } catch(error) {
+      console.error(error);
+      toast.error(`Failed to mint item ${itemName}`);
+      sendGameController('SendError', 'Failed to mint item');
+    } finally {
+      setRunning(false);
     }
   });
 
@@ -118,13 +133,13 @@ const UnityComponent = () => {
       const result = await service.mintPixltez(walletAddress, amount);
       if (result && result.success) {
         toast.success(Lang.pixltezMinted);
-        unityContext.send('GameController', 'PiXLtezMinted', amount);
+        sendGameController('PiXLtezMinted', amount);
       } else {
-        throw new Error();
+        throw new Error('Server Error');
       }
     } catch (err) {
       console.error(err);
-      unityContext.send('GameController', 'SendError', Lang.pixltezMintFailed);
+      sendGameController('SendError', Lang.pixltezMintFailed);
       toast.error(Lang.pixltezMintFailed);
     } finally {
       setRunning(false);
@@ -187,7 +202,7 @@ const UnityComponent = () => {
 
       const result = await getRequestedItem(tezos, walletAddress, item);
       if (result) {
-        unityContext.send('GameController', 'ActivateEvent', 'Has Beets Token');
+        sendGameController('ActivateEvent', 'Has Beets Token');
       }
       toast.success('Beets Entry token found click on the token to enter');
 
@@ -242,7 +257,7 @@ const UnityComponent = () => {
       if (element) {
         element.className = 'card animate__animated animate__backOutUp';
       }
-      unityContext.send('GameController', 'AddItem', cardId);
+      sendGameController('AddItem', cardId);
       setSentItemId(id);
       setInventoryFull(true);
     } else {
