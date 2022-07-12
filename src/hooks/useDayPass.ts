@@ -1,12 +1,12 @@
 import { Contracts, DayPassToken } from "config";
 import {useCallback} from "react";
-import useBeacon from "./useBeacon";
 import moment from "moment";
+import { useTezosContext } from "./useTezosContext";
 
 const contractAddress = Contracts.DayPass;
 
 const useDayPass = () => {
-  const { tezos, walletAddress } = useBeacon();
+  const { tezos, walletAddress } = useTezosContext()!;
 
   const mintToken = useCallback((tokenId: DayPassToken) => {
     console.log('mintToken', tokenId);
