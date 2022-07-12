@@ -3,7 +3,7 @@ import { ParallaxProviderWrapper } from '@plasmicpkgs/react-scroll-parallax';
 import { NetworkOptions, TezosProvider } from './components/TezosContext';
 
 const options = {
-  appName: 'Mechz',
+  appName: 'PiXL',
   networkType: 'mainnet',
   rpc: 'https://mainnet.api.tez.ie',
 } as NetworkOptions;
