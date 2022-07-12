@@ -1,13 +1,13 @@
+import { useCallback } from 'react';
 import { MichelsonMap } from '@taquito/taquito';
 import { char2Bytes } from '@taquito/utils';
 import { Contracts } from 'config';
-import { useCallback } from 'react';
-import useBeacon from './useBeacon';
+import { useTezosContext } from "./useTezosContext";
 
 const contractAddress = Contracts.PixlGame;
 
 const useGame = () => {
-  const { tezos, walletAddress } = useBeacon();
+  const { tezos, walletAddress } = useTezosContext()!;
 
   const mintItem = useCallback(
     (tokenId, itemName) => {

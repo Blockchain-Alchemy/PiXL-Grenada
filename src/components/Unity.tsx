@@ -8,7 +8,7 @@ import HelpMessage from './HelpMessage';
 import EntryCoin from './EntryCoin';
 import LoadingBar from './LoadingBar';
 import './Unity.css'
-import useBeacon from 'hooks/useBeacon';
+import useWallet from 'hooks/useWallet';
 import {
   buildCards,
   findItems,
@@ -42,7 +42,7 @@ const unityContext = new UnityContext({
 });
 
 const UnityComponent = () => {
-  const { tezos, connected, walletAddress } = useBeacon();
+  const { walletAddress } = useWallet();
   const { findInitialCoin } = usePixltez();
   const { mintItem } = useGame();
   const [walletReady, setWhereWallet] = useState<boolean>(false);
@@ -67,7 +67,7 @@ const UnityComponent = () => {
   });
 
   unityContext.on('WhereWallet', function (userName, score) {
-    if (walletAddress && !connected) {
+    if (walletAddress) {
       unityContext.send('AccessController', 'ConnectWallet', walletAddress);
     } else if (!walletReady) {
       setWhereWallet(true);
@@ -190,7 +190,7 @@ const UnityComponent = () => {
   });
 
   unityContext.on('RequestItem', async (item: string) => {
-    console.log('OnRequestItem', item);
+    /*console.log('OnRequestItem', item);
     if (tezos && walletAddress) {
       toast.success('Looking for Beets Entry Token');
 
@@ -209,7 +209,7 @@ const UnityComponent = () => {
           id: 1,
         },
       ]);
-    }
+    }*/
   });
 
   const gameOver = async (userName: string, score: string) => {
@@ -229,7 +229,7 @@ const UnityComponent = () => {
   };
 
   const findOtherCards = async () => {
-    if (tezos && walletAddress) {
+    if (walletAddress) {
       setIsLoadingCards(true);
       console.log('findOtherCards');
       const tokenList = await findItems(tezos, walletAddress);
@@ -319,17 +319,17 @@ const UnityComponent = () => {
         {progression < 1 && <LoadingBar progression={progression} />}
       </div>
       {/* show coin */}
-      {coin.length > 0 && progression === 1 && connected && (
+      {coin.length > 0 && progression === 1 && walletAddress && (
         <EntryCoin coin={coin} sendCoin={sendCoin}></EntryCoin>
       )}
       {/* show other Items */}
-      {gameItems.length > 0 && progression === 1 && connected && (
+      {gameItems.length > 0 && progression === 1 && walletAddress && (
         <GameItems items={gameItems} addCard={addCard}></GameItems>
       )}
       {(isLoadingCards || progression < 1 || !walletReady) && (
         <Loading></Loading>
       )}
-      {progression === 1 && walletReady && !connected && (
+      {progression === 1 && walletReady && !walletAddress && (
         <HelpMessage></HelpMessage>
       )}
     </div>

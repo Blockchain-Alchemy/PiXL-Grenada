@@ -1,14 +1,14 @@
+import { useCallback } from "react";
 import { compose } from "@taquito/taquito";
 import { tzip12 } from "@taquito/tzip12";
 import { tzip16 } from "@taquito/tzip16";
 import { Contracts, PixlTokens } from "config";
-import {useCallback} from "react";
-import useBeacon from "./useBeacon";
+import { useTezosContext } from "./useTezosContext";
 
 const contractAddress = Contracts.Pixltez;
 
 const usePixltez = () => {
-  const { tezos, walletAddress } = useBeacon();
+  const { tezos, walletAddress } = useTezosContext()!;
 
   const findInitialCoin = useCallback(() => {
     if (tezos && walletAddress) {
