@@ -34,9 +34,9 @@ export type ItemType = {
 
 const unityContext = new UnityContext({
   loaderUrl: 'Build/1.loader.js',
-  dataUrl: 'Build/1.data',
-  frameworkUrl: 'Build/1.framework.js',
-  codeUrl: 'Build/1.wasm',
+  dataUrl: 'Build/1.data.unityweb',
+  frameworkUrl: 'Build/1.framework.js.unityweb',
+  codeUrl: 'Build/1.wasm.unityweb',
 });
 
 const UnityComponent = () => {
