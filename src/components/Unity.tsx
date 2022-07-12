@@ -24,9 +24,9 @@ export type ItemType = {
 
 const unityContext = new UnityContext({
   loaderUrl: 'Build/1.loader.js',
-  dataUrl: 'Build/1.data.unityweb',
-  frameworkUrl: 'Build/1.framework.js.unityweb',
-  codeUrl: 'Build/1.wasm.unityweb',
+  dataUrl: 'Build/1.data',
+  frameworkUrl: 'Build/1.framework.js',
+  codeUrl: 'Build/1.wasm',
 });
 
 const UnityComponent = () => {
@@ -54,23 +54,23 @@ const UnityComponent = () => {
     sendGameController('SendError', parameter)
   }
 
-  unityContext.on('progress', function (progression) {
+  const handleUnityProgress = (progression) => {
     setProgression(progression);
-  });
+  }
 
-  unityContext.on('ConnectWallet', () => {
+  const handleConnectWallet = () => {
     console.log('ConnectWallet~~~~~~~~~~~')
-  });
+  }
 
-  unityContext.on('WhereWallet', function (userName, score) {
-    if (walletAddress) {
+  const handleWhereWallet = (userName, score) => {
+    /*if (walletAddress) {
       unityContext.send('AccessController', 'ConnectWallet', walletAddress);
     } else if (!walletReady) {
       setWhereWallet(true);
-    }
-  });
+    }*/
+  }
 
-  unityContext.on('GameOver', async (userName, score) => {
+  const handleGameOver = async (userName, score) => {
     try {
       const result = await service.setGraveyardEntry(userName, score);
       if (result) {
@@ -79,9 +79,9 @@ const UnityComponent = () => {
     } catch (error) {
       console.error(error);
     }
-  });
+  }
 
-  unityContext.on('MintThis', async (itemName: string) => {
+  const handleMintItem = async (itemName: string) => {
     console.log('MintThis:', itemName);
     if (!walletAddress) {
       toast.error(Lang.connectYourWallet);
@@ -128,9 +128,9 @@ const UnityComponent = () => {
     } finally {
       setRunning(false);
     }
-  });
+  };
 
-  unityContext.on('MintPiXLtez', async (amount: number) => {
+  const handleMintPiXLtez = async (amount: number) => {
     console.log('MintPiXLtez', amount);
     if (!walletAddress) {
       toast.error(Lang.connectYourWallet);
@@ -155,18 +155,18 @@ const UnityComponent = () => {
     } finally {
       setRunning(false);
     }
-  });
+  };
 
-  unityContext.on('ShareQuest', async (questDetails, Id) => {
+  const handleShareQuest = async (questDetails, Id) => {
     const result = await service.shareQuest(questDetails, Id).catch((error) => {
       toast.error("Server Didn't Respond, contact the admin");
     });
     if (result) {
       alert('Quest has been shared');
     }
-  });
+  };
 
-  unityContext.on('QuestCompleted', async function (questId: number) {
+  const handleQuestCompleted = async function (questId: number) {
     console.log('OnQuestCompleted:', questId);
     if (!running && walletAddress) {
       const isValid = await service.isQuestValid(questId);
@@ -191,22 +191,22 @@ const UnityComponent = () => {
       }
       setRunning(false);
     }
-  });
+  };
 
-  unityContext.on('GotItem', function (itemId: number) {
+  const handleGotItem = (itemId: number) => {
     console.log('OnGotItem', itemId);
     const items = gameItems.filter((item) => item.alt !== itemId.toString());
     setGameItems(items);
     setInventoryFull(false);
     toast.success('Item has been added your inventory');
-  });
+  };
 
-  unityContext.on('InventoryFull', function () {
+  const handleInventoryFull = () => {
     // setInventoryFull(true); //not sure if this is needed
     service.reInsertCard(sentItemId);
-  });
+  }
 
-  unityContext.on('RequestItem', async (item: string) => {
+  const handleRequestItem = async (item: string) => {
     /*console.log('OnRequestItem', item);
     if (tezos && walletAddress) {
       toast.success('Looking for Beets Entry Token');
@@ -227,7 +227,19 @@ const UnityComponent = () => {
         },
       ]);
     }*/
-  });
+  }
+
+  unityContext.on('progress', handleUnityProgress);
+  unityContext.on('ConnectWallet', handleConnectWallet);
+  unityContext.on('WhereWallet', handleWhereWallet);
+  unityContext.on('GameOver', handleGameOver);
+  unityContext.on('MintThis', handleMintItem);
+  unityContext.on('MintPiXLtez', handleMintPiXLtez);
+  unityContext.on('ShareQuest', handleShareQuest);
+  unityContext.on('QuestCompleted', handleQuestCompleted);
+  unityContext.on('GotItem', handleGotItem);
+  unityContext.on('InventoryFull', handleInventoryFull);
+  unityContext.on('RequestItem', handleRequestItem);
 
   const buildCards_ = async (tokenList: TokenInfo[]) => {
     console.log('metaDataArray', tokenList);
