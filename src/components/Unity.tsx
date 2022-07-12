@@ -277,28 +277,27 @@ const UnityComponent = () => {
   };
 
   useEffect(() => {
-    if (walletAddress) {
-      setIsLoadingCards(true);
-      findInitialCoin()
-        .then(result => {
-          if (result) {
-            const coins = [{
-              id: 0,
-              name: Lang.entryCoinName,
-              alt: Lang.entryCoinAlt,
-              imageSrc: "https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP",
-            }]
-            setCoin(coins);
-          }
-        })
-        .catch(error => {
-          console.error(error);
-          toast.error('No entry coin found in wallet');
-        })
-        .finally(() => {
-          setIsLoadingCards(false);
-        })
+    const getInitialCoins = async () => {
+      try {
+        setIsLoadingCards(true);
+        const result = await findInitialCoin();
+        if (result) {
+          const coins = [{
+            id: 0,
+            name: Lang.entryCoinName,
+            alt: Lang.entryCoinAlt,
+            imageSrc: "https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP",
+          }]
+          setCoin(coins);
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error('No entry coin found in wallet');
+      } finally {
+        setIsLoadingCards(false);
+      }
     }
+    walletAddress && getInitialCoins();
   }, [walletAddress, findInitialCoin]);
 
   return (
