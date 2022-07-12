@@ -143,7 +143,7 @@ const UnityComponent = () => {
       setRunning(true);
 
       const result = await service.mintPixltez(walletAddress, amount);
-      if (!result || !result.success) {
+      if (!result) {
         throw new Error('Server Error');
       }
       toast.success(Lang.pixltezMinted);
@@ -168,27 +168,29 @@ const UnityComponent = () => {
 
   const handleQuestCompleted = async function (questId: number) {
     console.log('OnQuestCompleted:', questId);
-    if (!running && walletAddress) {
-      const isValid = await service.isQuestValid(questId);
-      if (!isValid) {
-        toast.error('Invalid Quest not saved');
-        return;
+    if (!walletAddress) {
+      toast.error(Lang.connectYourWallet);
+      return;
+    }
+    if (running) {
+      return;
+    }
+    try {
+      setRunning(true);
+
+      const result = await service.updateQuestStatus(
+        questId,
+        walletAddress,
+        'COMPLETED'
+      );
+      if (!result || !result.data) {
+        throw new Error('Server Error');
       }
-      try {
-        setRunning(true);
-        const updateStatus = await service.updateQuestStatus(
-          questId,
-          walletAddress,
-          'COMPLETED'
-        );
-        if (updateStatus.errorMessage) {
-          toast.error(updateStatus.errorMessage);
-        } else {
-          toast.success(`Quest ${updateStatus.questName} completed and saved`);
-        }
-      } catch (err) {
-        console.error(err);
-      }
+      toast.success(`Quest ${questId} has been updated succesfully`);
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to update quest state');
+    } finally {
       setRunning(false);
     }
   };
@@ -229,17 +231,19 @@ const UnityComponent = () => {
     }*/
   }
 
-  unityContext.on('progress', handleUnityProgress);
-  unityContext.on('ConnectWallet', handleConnectWallet);
-  unityContext.on('WhereWallet', handleWhereWallet);
-  unityContext.on('GameOver', handleGameOver);
-  unityContext.on('MintThis', handleMintItem);
-  unityContext.on('MintPiXLtez', handleMintPiXLtez);
-  unityContext.on('ShareQuest', handleShareQuest);
-  unityContext.on('QuestCompleted', handleQuestCompleted);
-  unityContext.on('GotItem', handleGotItem);
-  unityContext.on('InventoryFull', handleInventoryFull);
-  unityContext.on('RequestItem', handleRequestItem);
+  useEffect(() => {
+    unityContext.on('progress', handleUnityProgress);
+    unityContext.on('ConnectWallet', handleConnectWallet);
+    unityContext.on('WhereWallet', handleWhereWallet);
+    unityContext.on('GameOver', handleGameOver);
+    unityContext.on('MintThis', handleMintItem);
+    unityContext.on('MintPiXLtez', handleMintPiXLtez);
+    unityContext.on('ShareQuest', handleShareQuest);
+    unityContext.on('QuestCompleted', handleQuestCompleted);
+    unityContext.on('GotItem', handleGotItem);
+    unityContext.on('InventoryFull', handleInventoryFull);
+    unityContext.on('RequestItem', handleRequestItem);
+  })
 
   const buildCards_ = async (tokenList: TokenInfo[]) => {
     console.log('metaDataArray', tokenList);

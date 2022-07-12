@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_BASE_URL } from '../config';
 
 export const mintPixltez = async (address: string, amount: number) => {
-  const url = `${API_BASE_URL}/api/contract/airdrop`;
+  const url = `${API_BASE_URL}/api/contract/airdrop/pixltez`;
   const payload = {
     addresses: [address],
     amount,
@@ -12,6 +12,7 @@ export const mintPixltez = async (address: string, amount: number) => {
   return axios
     .post(url, payload)
     .then(res => {
+      console.log('~~~~~~~~~~~~~~~~~res', res)
       return res.data;
     })
 };
