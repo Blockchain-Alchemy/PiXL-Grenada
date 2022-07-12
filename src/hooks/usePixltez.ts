@@ -17,7 +17,7 @@ const usePixltez = () => {
           return contract.storage()
         })
         .then((storage: any) => {
-          return storage.ledger || storage.accounts;
+          return storage.ledger;
         })
         .then(ledger => {
           return ledger.get({ 0: walletAddress, 1: PixlTokens.InitCoin })
