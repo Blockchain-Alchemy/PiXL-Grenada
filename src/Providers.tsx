@@ -1,15 +1,21 @@
-import React from "react";
+import React from 'react';
 import { ParallaxProviderWrapper } from '@plasmicpkgs/react-scroll-parallax';
-import { BeaconProvider } from "contexts/BeaconContext";
+import { NetworkOptions, TezosProvider } from './components/TezosContext';
+
+const options = {
+  appName: 'Mechz',
+  networkType: 'mainnet',
+  rpc: 'https://mainnet.api.tez.ie',
+} as NetworkOptions;
 
 const Providers: React.FC<{ children?: JSX.Element | JSX.Element[] }> = ({
   children,
 }) => {
   return (
     <ParallaxProviderWrapper>
-      <BeaconProvider>
+      <TezosProvider options={options}>
         {children}
-      </BeaconProvider>
+      </TezosProvider>
     </ParallaxProviderWrapper>
   );
 };
