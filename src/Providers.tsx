@@ -4,8 +4,8 @@ import { NetworkOptions, TezosProvider } from './components/TezosContext';
 
 const options = {
   appName: 'PiXL',
-  networkType: 'ithacanet',
-  rpc: 'https://ithacanet.ecadinfra.com',
+  networkType: 'ghostnet',
+  rpc: 'https://rpc.ghostnet.teztnets.xyz',
 } as NetworkOptions;
 
 const Providers: React.FC<{ children?: JSX.Element | JSX.Element[] }> = ({

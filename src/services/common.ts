@@ -64,6 +64,7 @@ const UtilityItemMapper = [
   return coins;
 };*/
 
+/*
 export const findItems = async (Tezos: TezosToolkit, userAddress: string) => {
   const contractAddress = REACT_APP_OBJKT_CONTRACT;
   console.log("findItems", contractAddress);
@@ -106,7 +107,7 @@ export const findItems = async (Tezos: TezosToolkit, userAddress: string) => {
     console.error(err);
     return null;
   }
-};
+};*/
 
 export const counter = (count: number) => {
   return new Array(count).fill(0);

@@ -11,8 +11,6 @@ import './Unity.css'
 import useWallet from 'hooks/useWallet';
 import {
   buildCards,
-  findItems,
-  getRequestedItem,
   getTokenId,
   isQuestValid,
   mintPixltez,
@@ -229,7 +227,7 @@ const UnityComponent = () => {
   };
 
   const findOtherCards = async () => {
-    if (walletAddress) {
+    /*if (walletAddress) {
       setIsLoadingCards(true);
       console.log('findOtherCards');
       const tokenList = await findItems(tezos, walletAddress);
@@ -238,7 +236,7 @@ const UnityComponent = () => {
         buildCards_(tokenList);
         setIsLoadingCards(false);
       }
-    }
+    }*/
   };
 
   const addCard = (
