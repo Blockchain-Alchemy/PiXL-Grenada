@@ -1,7 +1,7 @@
 import { ItemType } from "../types";
 
 type EntryCoinProps = {
-  coin: ItemType[];
+  coins: ItemType[];
   sendCoin: (
     id: string,
     e: React.MouseEvent<HTMLElement, MouseEvent>,
@@ -10,11 +10,11 @@ type EntryCoinProps = {
   ) => void;
 };
 
-const EntryCoin = ({ coin, sendCoin }: EntryCoinProps): JSX.Element => {
-  console.log("entrycoin", coin);
+const EntryCoin = ({ coins, sendCoin }: EntryCoinProps): JSX.Element => {
+  console.log("entrycoin", coins);
   return (
     <section className="card-list mt-2 ml-auto mr-auto items-center justify-center">
-      {coin.map((data, index) => (
+      {coins.map((data, index) => (
         <div key={index}>
           {data.id === 0 && (
             <div

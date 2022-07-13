@@ -33,7 +33,6 @@ const UnityComponent = () => {
   const { walletAddress } = useWallet();
   const { findInitialCoin } = usePixltez();
   const { mintItem } = useGame();
-  const [walletReady, setWhereWallet] = useState<boolean>(false);
   const [isLoadingCards, setIsLoadingCards] = useState<boolean>(false);
   const [progression, setProgression] = useState(0);
   const [isInventoryFull, setInventoryFull] = useState(false);
@@ -321,16 +320,7 @@ const UnityComponent = () => {
       } finally {
         setIsLoadingCards(false);
       }
-    }
-
-    const coins = [{
-      id: 0,
-      name: Lang.entryCoinName,
-      alt: Lang.entryCoinAlt,
-      imageSrc: "https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP",
-    }]
-    setCoins(coins);
-    
+    };
     walletAddress && getInitialCoins();
   }, [walletAddress, findInitialCoin]);
 
@@ -342,7 +332,7 @@ const UnityComponent = () => {
       <>
         {/* show coins */}
         {coins.length > 0 && (
-          <EntryCoin coin={coins} sendCoin={sendCoin}></EntryCoin>
+          <EntryCoin coins={coins} sendCoin={sendCoin}></EntryCoin>
         )}
         {/* show other Items */}
         {gameItems.length > 0 && (
@@ -368,6 +358,9 @@ const UnityComponent = () => {
         {progression < 1 && <LoadingBar progression={progression} />}
       </div>
       { progression === 1 && gameLoadedView() }
+      {(isLoadingCards || progression < 1 || !walletAddress) && (
+        <Loading></Loading>
+      )}
     </div>
   );
 };
