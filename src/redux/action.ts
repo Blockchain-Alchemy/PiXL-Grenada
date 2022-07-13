@@ -1,6 +1,6 @@
-export const GAME_PLAY_COIN_LOAD = "GAME_PLAY_COIN_LOAD";
+export const GAME_ENTRY_COIN_LOAD = "GAME_ENTRY_COIN_LOAD";
 
-export const loadPlayCoinAction = (status) => ({
-  type: GAME_PLAY_COIN_LOAD,
+export const loadEntryCoinAction = (status) => ({
+  type: GAME_ENTRY_COIN_LOAD,
   payload: status,
 });

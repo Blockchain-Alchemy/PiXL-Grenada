@@ -14,7 +14,7 @@ import * as service from 'services';
 import { TokenInfo } from 'types';
 import usePixltez from 'hooks/usePixltez';
 import useGame from 'hooks/useGame';
-import { loadPlayCoinAction } from 'redux/action';
+import { loadEntryCoinAction } from 'redux/action';
 
 export type ItemType = {
   name: string;
@@ -308,7 +308,7 @@ const UnityComponent = () => {
   useEffect(() => {
     const getInitialCoins = async () => {
       try {
-        dispatch(loadPlayCoinAction(true));
+        dispatch(loadEntryCoinAction(true));
         if (await findInitialCoin()) {
           const coins = [{
             id: 0,
@@ -322,10 +322,9 @@ const UnityComponent = () => {
         console.error(error);
         toast.error(Lang.noEntryCoinFound);
       } finally {
-        dispatch(loadPlayCoinAction(false));
+        dispatch(loadEntryCoinAction(false));
       }
     };
-    console.log('~~~~~~~~~~~~~~~~~~~', walletAddress)
     walletAddress && getInitialCoins();
   }, [dispatch, walletAddress, findInitialCoin]);
 
