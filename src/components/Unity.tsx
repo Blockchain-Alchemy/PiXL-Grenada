@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Unity, { UnityContext } from 'react-unity-webgl';
 import toast, { Toaster } from 'react-hot-toast';
 import Lang from 'lang/en';
-import Loading from './Loading';
+import LoadingItem from './LoadingItem';
 import GameItems from './GameItems';
 import HelpMessage from './HelpMessage';
 import EntryCoin from './EntryCoin';
@@ -13,6 +14,7 @@ import * as service from 'services';
 import { TokenInfo } from 'types';
 import usePixltez from 'hooks/usePixltez';
 import useGame from 'hooks/useGame';
+import { loadPlayCoinAction } from 'redux/action';
 
 export type ItemType = {
   name: string;
@@ -30,10 +32,12 @@ const unityContext = new UnityContext({
 });
 
 const UnityComponent = () => {
+  const dispatch = useDispatch();
+  const gameState = useSelector((state: any) => state.gameState);
+  console.log('gameState', gameState)
   const { walletAddress } = useWallet();
   const { findInitialCoin } = usePixltez();
   const { mintItem } = useGame();
-  const [isLoadingCards, setIsLoadingCards] = useState<boolean>(false);
   const [progression, setProgression] = useState(0);
   const [isInventoryFull, setInventoryFull] = useState(false);
   const [sentItemId, setSentItemId] = useState('');
@@ -304,7 +308,7 @@ const UnityComponent = () => {
   useEffect(() => {
     const getInitialCoins = async () => {
       try {
-        setIsLoadingCards(true);
+        dispatch(loadPlayCoinAction(true));
         if (await findInitialCoin()) {
           const coins = [{
             id: 0,
@@ -318,11 +322,12 @@ const UnityComponent = () => {
         console.error(error);
         toast.error(Lang.noEntryCoinFound);
       } finally {
-        setIsLoadingCards(false);
+        dispatch(loadPlayCoinAction(false));
       }
     };
+    console.log('~~~~~~~~~~~~~~~~~~~', walletAddress)
     walletAddress && getInitialCoins();
-  }, [walletAddress, findInitialCoin]);
+  }, [dispatch, walletAddress, findInitialCoin]);
 
   const gameLoadedView = () => {
     if (!walletAddress) {
@@ -337,6 +342,9 @@ const UnityComponent = () => {
         {/* show other Items */}
         {gameItems.length > 0 && (
           <GameItems items={gameItems} addCard={addCard}></GameItems>
+        )}
+        {gameState.loadingStatus && (
+          <LoadingItem></LoadingItem>
         )}
       </>
     )
@@ -358,9 +366,6 @@ const UnityComponent = () => {
         {progression < 1 && <LoadingBar progression={progression} />}
       </div>
       { progression === 1 && gameLoadedView() }
-      {(isLoadingCards || progression < 1 || !walletAddress) && (
-        <Loading></Loading>
-      )}
     </div>
   );
 };

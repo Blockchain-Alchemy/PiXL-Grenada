@@ -1,6 +1,8 @@
 import React from 'react';
+import { Provider } from 'react-redux'
 import { ParallaxProviderWrapper } from '@plasmicpkgs/react-scroll-parallax';
 import { NetworkOptions, TezosProvider } from './components/TezosContext';
+import store from './redux/store'
 
 const options = {
   appName: 'PiXL',
@@ -13,9 +15,11 @@ const Providers: React.FC<{ children?: JSX.Element | JSX.Element[] }> = ({
 }) => {
   return (
     <ParallaxProviderWrapper>
-      <TezosProvider options={options}>
-        {children}
-      </TezosProvider>
+      <Provider store={store}>
+        <TezosProvider options={options}>
+          {children}
+        </TezosProvider>
+      </Provider>
     </ParallaxProviderWrapper>
   );
 };
