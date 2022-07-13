@@ -1,9 +1,9 @@
 const HelpMessage = () => {
   return (
     <div className="flex flex-col ml-auto mr-auto mt-10 w-6/12 h-96 justify-start">
-      <h1 className="text-white ">
+      <h1 className="text-white bg-black p-4">
         {" "}
-        Oh no! We can't find any tokens,Please make sure your wallet is synced
+        Oh no! We can't find any tokens, Please make sure your wallet is synced
         and you have purchased the token
         <a
           className="underline ml-2"

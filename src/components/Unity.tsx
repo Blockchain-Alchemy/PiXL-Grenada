@@ -322,8 +322,35 @@ const UnityComponent = () => {
         setIsLoadingCards(false);
       }
     }
+
+    const coins = [{
+      id: 0,
+      name: Lang.entryCoinName,
+      alt: Lang.entryCoinAlt,
+      imageSrc: "https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP",
+    }]
+    setCoins(coins);
+    
     walletAddress && getInitialCoins();
   }, [walletAddress, findInitialCoin]);
+
+  const gameLoadedView = () => {
+    if (!walletAddress) {
+      return <HelpMessage></HelpMessage>;
+    }
+    return (
+      <>
+        {/* show coins */}
+        {coins.length > 0 && (
+          <EntryCoin coin={coins} sendCoin={sendCoin}></EntryCoin>
+        )}
+        {/* show other Items */}
+        {gameItems.length > 0 && (
+          <GameItems items={gameItems} addCard={addCard}></GameItems>
+        )}
+      </>
+    )
+  }
 
   return (
     <div className="game-container">
@@ -340,20 +367,7 @@ const UnityComponent = () => {
         />
         {progression < 1 && <LoadingBar progression={progression} />}
       </div>
-      {/* show coins */}
-      {coins.length > 0 && progression === 1 && walletAddress && (
-        <EntryCoin coin={coins} sendCoin={sendCoin}></EntryCoin>
-      )}
-      {/* show other Items */}
-      {gameItems.length > 0 && progression === 1 && walletAddress && (
-        <GameItems items={gameItems} addCard={addCard}></GameItems>
-      )}
-      {(isLoadingCards || progression < 1 || !walletReady) && (
-        <Loading></Loading>
-      )}
-      {progression === 1 && walletReady && !walletAddress && (
-        <HelpMessage></HelpMessage>
-      )}
+      { progression === 1 && gameLoadedView() }
     </div>
   );
 };
