@@ -11,10 +11,14 @@ import LoadingBar from './LoadingBar';
 import './Unity.css';
 import useWallet from 'hooks/useWallet';
 import * as service from 'services';
-import { TokenInfo } from 'types';
 import usePixltez from 'hooks/usePixltez';
 import useGame from 'hooks/useGame';
-import { loadEntryCoinAction, setEntryCoinAction } from 'redux/action';
+import {
+  loadEntryCoinAction,
+  setEntryCoinAction,
+  addGameItemsAction,
+  setGameItemsAction,
+} from 'redux/action';
 
 export type ItemType = {
   name: string;
@@ -200,7 +204,7 @@ const UnityComponent = () => {
   const handleGotItem = (itemId: number) => {
     console.log('OnGotItem', itemId);
     const items = gameItems.filter((item) => item.alt !== itemId.toString());
-    setGameItems(items);
+    dispatch(addGameItemsAction(items));
     setInventoryFull(false);
     toast.success('Item has been added your inventory');
   };
@@ -273,20 +277,21 @@ const UnityComponent = () => {
     }, 1000);
   };
 
-  const buildCards_ = async (tokenList: TokenInfo[]) => {
-    console.log('metaDataArray', tokenList);
-    const cards = service.buildCards(tokenList);
-    console.log('metaDataArray-cards', cards);
-    setGameItems(cards);
-  };
-
   const findGameItems = async () => {
     try {
       dispatch(loadEntryCoinAction(true));
 
       const item = await getWalletItems(0);
+      console.log('walletItem', item)
       if (item) {
-        buildCards_(items);
+        const { metadata } = item;
+        const gameItem = {
+          name: item.metadata.name as string,
+          imageSrc: service.createImageSrc(metadata.displayUri) as string,
+          alt: `${metadata.token_id.toString()}`,
+          unityCardIdentifier: service.findUnityCardIdentifier(metadata.token_id),
+        } as ItemType;
+        dispatch(addGameItemsAction([gameItem]));
       }
     } catch (error) {
       console.error(error);
@@ -297,7 +302,7 @@ const UnityComponent = () => {
   };
 
   useEffect(() => {
-    const getInitialCoins = async () => {
+    /*const getInitialCoins = async () => {
       try {
         dispatch(loadEntryCoinAction(true));
         if (await findEntryCoin()) {
@@ -319,7 +324,19 @@ const UnityComponent = () => {
         dispatch(loadEntryCoinAction(false));
       }
     };
-    walletAddress && getInitialCoins();
+    walletAddress && getInitialCoins();*/
+
+    if (walletAddress) {
+      const gameItems = [
+        {
+            "name": "Health Potion",
+            "imageSrc": "https://cloudflare-ipfs.com/ipfs/QmNNtaYpP1N8tPdJCiDSCnzx8n8yEd8Qm6rx7vYwFji2qy",
+            "alt": "0",
+            "unityCardIdentifier": 1
+        }
+      ];
+      dispatch(setGameItemsAction(gameItems));
+    }
   }, [dispatch, walletAddress, findEntryCoin]);
 
   const gameLoadedView = () => {
@@ -333,8 +350,8 @@ const UnityComponent = () => {
           <EntryCoin sendCoin={sendCoin}></EntryCoin>
         )}
         {/* show other Items */}
-        {gameItems.length > 0 && (
-          <GameItems items={gameItems} addCard={addCard}></GameItems>
+        {gameState.gameItems.length > 0 && (
+          <GameItems addCard={addCard}></GameItems>
         )}
         {gameState.loadingStatus && <LoadingItem></LoadingItem>}
       </>

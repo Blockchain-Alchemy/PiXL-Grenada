@@ -16,10 +16,15 @@ const useGame = () => {
       const value = await storage.ledger.get({ 0: walletAddress, 1: tokenId });
       console.log('value', value);
       if (value) {
-        const metadata = await contract.tzip12().getTokenMetadata(tokenId);
+        //const metadata = await contract.tzip12().getTokenMetadata(tokenId);
         return {
           tokenId,
-          metadata,
+          metadata: {
+            token_id: tokenId,
+            decimals: 0,
+            name: "Health Potion",
+            displayUri: "ipfs://QmNNtaYpP1N8tPdJCiDSCnzx8n8yEd8Qm6rx7vYwFji2qy",
+          },//metadata as Metadata,
           amount: value,
         };
       }

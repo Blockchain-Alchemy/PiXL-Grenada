@@ -1,7 +1,6 @@
-import { ItemType } from 'types';
+import { useSelector } from 'react-redux';
 
 type GameItemsProps = {
-  items: ItemType[];
   addCard: (
     id: string,
     e: React.MouseEvent<HTMLElement, MouseEvent>,
@@ -9,19 +8,22 @@ type GameItemsProps = {
   ) => void;
 };
 
-const GameItems = ({ items, addCard }: GameItemsProps): JSX.Element => {
+const GameItems = ({ addCard }: GameItemsProps): JSX.Element => {
+  const gameState = useSelector((state: any) => state.gameState);
+  console.log('gameItems', gameState.gameItems)
+
   return (
     <section className="card-list mt-2 ml-auto mr-auto items-center justify-center">
-      {items.map((user) => (
+      {gameState.gameItems.map((item, index) => (
         <div
-          key={user.alt}
-          id={user.alt}
-          onClick={(e) => addCard(user.alt, e, user.unityCardIdentifier)}
+          key={index}
+          id={item.alt}
+          onClick={(e) => addCard(item.alt, e, item.unityCardIdentifier)}
           className="card"
         >
           <img
             className="ml-auto mr-auto"
-            src={user.imageSrc}
+            src={item.imageSrc}
             alt="this slowpoke moves"
             style={{
               height: '202px',
