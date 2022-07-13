@@ -39,7 +39,7 @@ const UnityComponent = () => {
   const [isInventoryFull, setInventoryFull] = useState(false);
   const [sentItemId, setSentItemId] = useState('');
   const [running, setRunning] = useState(false);
-  const [coin, setCoin] = useState<Array<ItemType>>([]);
+  const [coins, setCoins] = useState<Array<ItemType>>([]);
   const [gameItems, setGameItems] = useState<Array<ItemType>>([]);
 
   document.onfullscreenchange = function (event) {
@@ -297,7 +297,7 @@ const UnityComponent = () => {
     findOtherCards(); //don't look for other coins on this build
     if (cardNumber === 0) {
       setTimeout(() => {
-        setCoin([]);
+        setCoins([]);
       }, 1000);
     }
   };
@@ -313,7 +313,7 @@ const UnityComponent = () => {
             alt: Lang.entryCoinAlt,
             imageSrc: "https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP",
           }]
-          setCoin(coins);
+          setCoins(coins);
         }
       } catch (error) {
         console.error(error);
@@ -340,9 +340,9 @@ const UnityComponent = () => {
         />
         {progression < 1 && <LoadingBar progression={progression} />}
       </div>
-      {/* show coin */}
-      {coin.length > 0 && progression === 1 && walletAddress && (
-        <EntryCoin coin={coin} sendCoin={sendCoin}></EntryCoin>
+      {/* show coins */}
+      {coins.length > 0 && progression === 1 && walletAddress && (
+        <EntryCoin coin={coins} sendCoin={sendCoin}></EntryCoin>
       )}
       {/* show other Items */}
       {gameItems.length > 0 && progression === 1 && walletAddress && (
