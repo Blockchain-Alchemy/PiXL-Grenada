@@ -3,12 +3,14 @@ import {
   GAME_SET_ENTRY_COINS,
   GAME_SET_GAME_ITEMS,
   GAME_ADD_GAME_ITEMS,
+  GAME_SET_INVENTORY_FULL,
 } from '../action';
 
 const initialState = {
   loadingStatus: false,
   entryCoins: [],
   gameItems: [],
+  inventoryFull: false,
 };
 
 const gameReducer = (state = initialState, action: any) => {
@@ -35,6 +37,12 @@ const gameReducer = (state = initialState, action: any) => {
       return {
         ...state,
         gameItems: [...state.gameItems, ...action.payload],
+      };
+    }
+    case GAME_SET_INVENTORY_FULL: {
+      return {
+        ...state,
+        inventoryFull: action.payload,
       };
     }
     default: {

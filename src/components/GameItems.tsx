@@ -1,16 +1,38 @@
 import { useSelector } from 'react-redux';
 
 type GameItemsProps = {
-  addCard: (
-    id: string,
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    cardId: number | undefined
-  ) => void;
+  consumeItem: (item: any) => void;
 };
 
-const GameItems = ({ addCard }: GameItemsProps): JSX.Element => {
+const GameItems = ({ consumeItem }: GameItemsProps): JSX.Element => {
   const gameState = useSelector((state: any) => state.gameState);
-  console.log('gameItems', gameState.gameItems)
+  console.log('gameItems', gameState.gameItems);
+
+  // const handleItemClicked = (
+  //   id: string,
+  //   e: React.MouseEvent<HTMLElement, MouseEvent>,
+  //   cardId: number | undefined
+  // ) => {
+  //   if (!isInventoryFull && cardId) {
+  //     const element = document.getElementById(id);
+  //     if (element) {
+  //       element.className = 'card animate__animated animate__backOutUp';
+  //     }
+  //     sendGameController('AddItem', cardId);
+  //     setSentItemId(id);
+  //     setInventoryFull(true);
+  //   } else {
+  //     toast.error('Inventory is full could not complete request');
+  //   }
+  // };
+
+  const handleItemClicked = (item: any) => {
+    const element = document.getElementById(item.alt);
+    if (element) {
+      element.className = 'card animate__animated animate__backOutUp';
+    }
+    consumeItem(item);
+  };
 
   return (
     <section className="card-list mt-2 ml-auto mr-auto items-center justify-center">
@@ -18,7 +40,7 @@ const GameItems = ({ addCard }: GameItemsProps): JSX.Element => {
         <div
           key={index}
           id={item.alt}
-          onClick={(e) => addCard(item.alt, e, item.unityCardIdentifier)}
+          onClick={(e) => handleItemClicked(item)}
           className="card"
         >
           <img

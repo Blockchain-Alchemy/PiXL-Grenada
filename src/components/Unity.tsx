@@ -18,6 +18,7 @@ import {
   setEntryCoinAction,
   addGameItemsAction,
   setGameItemsAction,
+  setInventoryFullAction,
 } from 'redux/action';
 
 export type ItemType = {
@@ -38,13 +39,10 @@ const unityContext = new UnityContext({
 const UnityComponent = () => {
   const dispatch = useDispatch();
   const gameState = useSelector((state: any) => state.gameState);
-  console.log('gameState', gameState);
   const { walletAddress } = useWallet();
   const { findEntryCoin } = usePixltez();
   const { mintItem, getWalletItems } = useGame();
   const [progression, setProgression] = useState(0);
-  const [isInventoryFull, setInventoryFull] = useState(false);
-  const [sentItemId, setSentItemId] = useState('');
   const [running, setRunning] = useState(false);
   const [gameItems, setGameItems] = useState<Array<ItemType>>([]);
 
@@ -205,13 +203,13 @@ const UnityComponent = () => {
     console.log('OnGotItem', itemId);
     const items = gameItems.filter((item) => item.alt !== itemId.toString());
     dispatch(addGameItemsAction(items));
-    setInventoryFull(false);
+    dispatch(setInventoryFullAction(false));
     toast.success('Item has been added your inventory');
   };
 
   const handleInventoryFull = () => {
-    // setInventoryFull(true); //not sure if this is needed
-    service.reInsertCard(sentItemId);
+    dispatch(setInventoryFullAction(true));
+    //service.reInsertCard(sentItemId); //TODO
   };
 
   const handleRequestItem = async (item: string) => {
@@ -251,22 +249,11 @@ const UnityComponent = () => {
     unityContext.on('RequestItem', handleRequestItem);
   });
 
-  const addCard = (
-    id: string,
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    cardId: number | undefined
-  ) => {
-    if (!isInventoryFull && cardId) {
-      const element = document.getElementById(id);
-      if (element) {
-        element.className = 'card animate__animated animate__backOutUp';
-      }
-      sendGameController('AddItem', cardId);
-      setSentItemId(id);
-      setInventoryFull(true);
-    } else {
-      toast.error('Inventory is full could not complete request');
-    }
+  const consumeItem = (item: any) => {
+    console.log('consumeItem', item);
+    //sendGameController('AddItem', cardId);
+    //setSentItemId(id);
+    //setInventoryFull(true);
   };
 
   const sendCoin = (coin: ItemType) => {
@@ -351,7 +338,7 @@ const UnityComponent = () => {
         )}
         {/* show other Items */}
         {gameState.gameItems.length > 0 && (
-          <GameItems addCard={addCard}></GameItems>
+          <GameItems consumeItem={consumeItem}></GameItems>
         )}
         {gameState.loadingStatus && <LoadingItem></LoadingItem>}
       </>
