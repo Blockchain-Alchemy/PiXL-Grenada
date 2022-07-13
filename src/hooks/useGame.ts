@@ -1,54 +1,32 @@
 import { useCallback } from 'react';
-import { MichelsonMap } from '@taquito/taquito';
+import { MichelsonMap, compose } from '@taquito/taquito';
 import { char2Bytes } from '@taquito/utils';
+import { tzip12 } from "@taquito/tzip12";
+import { tzip16 } from "@taquito/tzip16";
 import { Contracts } from 'config';
 import { useTezosContext } from "./useTezosContext";
-
-const contractAddress = Contracts.PixlGame;
 
 const useGame = () => {
   const { tezos, walletAddress } = useTezosContext()!;
 
-  /*const findItems = useCallback(() => {
-    const contractAddress = REACT_APP_OBJKT_CONTRACT;
-    console.log("findItems", contractAddress);
-  
-    try {
-      const keysRes = await getLegderKeys(contractAddress, userAddress);
-      console.log("ledger-keys", keysRes);
-      if (!keysRes || !keysRes.success) {
-        return null;
-      }
-      const tokenIds = keysRes.keys.map((it: any) => it.key);
-      console.log("ledger-keys-tokenIds", tokenIds);
-  
-      const contract = await tezos.contract.at(contractAddress, compose(tzip16, tzip12));
+  const getWalletItems = useCallback((tokenId: number) => {
+    const walletItems = async () => {
+      const contract = await tezos.contract.at(Contracts.PixlGame, compose(tzip16, tzip12));
       const storage: any = await contract.storage();
-      const ledger = storage.ledger || storage.accounts;
-      console.log("ledger", ledger);
-  
-      const tokenList: TokenInfo[] = [];
-      for (let tokenId of tokenIds) {
-        console.log(`Request tokenId: ${tokenId}`);
-        const amount = await ledger.get(tokenId);
-        if (amount) {
-          console.log(`tokenId: ${tokenId}, value: ${amount}`);
-          // Get val [bigmap], Find Quantity, create object to return.
-          const metadata = await contract.tzip12().getTokenMetadata(tokenId);
-          console.log("metadata", metadata);
-          tokenList.push({
-            tokenId,
-            metadata: metadata as Metadata,
-            amount: 1,
-          } as TokenInfo);
-        }
+      const value = await storage.ledger.get({ 0: walletAddress, 1: tokenId });
+      console.log('value', value);
+      if (value) {
+        const metadata = await contract.tzip12().getTokenMetadata(tokenId);
+        return {
+          tokenId,
+          metadata,
+          amount: value,
+        };
       }
-      return tokenList;
-    } catch (err) {
-      console.error(err);
       return null;
     }
-  };*/
+    return walletItems();
+  }, [tezos, walletAddress]);
 
   const mintItem = useCallback((tokenId, itemName) => {
     const mint = async () => {
@@ -73,7 +51,7 @@ const useGame = () => {
         }];
       }
 
-      const contract = await tezos.wallet.at(contractAddress);
+      const contract = await tezos.wallet.at(Contracts.PixlGame);
       const op = await contract.methods.mint(params).send();
       return await op.confirmation();
     }
@@ -82,6 +60,7 @@ const useGame = () => {
 
   return {
     mintItem,
+    getWalletItems,
   };
 };
 

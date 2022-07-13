@@ -8,13 +8,13 @@ import GameItems from './GameItems';
 import HelpMessage from './HelpMessage';
 import EntryCoin from './EntryCoin';
 import LoadingBar from './LoadingBar';
-import './Unity.css'
+import './Unity.css';
 import useWallet from 'hooks/useWallet';
 import * as service from 'services';
 import { TokenInfo } from 'types';
 import usePixltez from 'hooks/usePixltez';
 import useGame from 'hooks/useGame';
-import { loadEntryCoinAction } from 'redux/action';
+import { loadEntryCoinAction, setEntryCoinAction } from 'redux/action';
 
 export type ItemType = {
   name: string;
@@ -34,15 +34,14 @@ const unityContext = new UnityContext({
 const UnityComponent = () => {
   const dispatch = useDispatch();
   const gameState = useSelector((state: any) => state.gameState);
-  console.log('gameState', gameState)
+  console.log('gameState', gameState);
   const { walletAddress } = useWallet();
-  const { findInitialCoin } = usePixltez();
-  const { mintItem } = useGame();
+  const { findEntryCoin } = usePixltez();
+  const { mintItem, getWalletItems } = useGame();
   const [progression, setProgression] = useState(0);
   const [isInventoryFull, setInventoryFull] = useState(false);
   const [sentItemId, setSentItemId] = useState('');
   const [running, setRunning] = useState(false);
-  const [coins, setCoins] = useState<Array<ItemType>>([]);
   const [gameItems, setGameItems] = useState<Array<ItemType>>([]);
 
   document.onfullscreenchange = function (event) {
@@ -51,19 +50,19 @@ const UnityComponent = () => {
 
   const sendGameController = (methodName: string, parameter?: any) => {
     unityContext.send('GameController', methodName, parameter);
-  }
+  };
 
   const sendError = (parameter?: any) => {
-    sendGameController('SendError', parameter)
-  }
+    sendGameController('SendError', parameter);
+  };
 
   const handleUnityProgress = (progression) => {
     setProgression(progression);
-  }
+  };
 
   const handleConnectWallet = () => {
-    console.log('ConnectWallet~~~~~~~~~~~')
-  }
+    console.log('ConnectWallet~~~~~~~~~~~');
+  };
 
   const handleWhereWallet = (userName, score) => {
     /*if (walletAddress) {
@@ -71,7 +70,7 @@ const UnityComponent = () => {
     } else if (!walletReady) {
       setWhereWallet(true);
     }*/
-  }
+  };
 
   const handleGameOver = async (userName, score) => {
     try {
@@ -82,7 +81,7 @@ const UnityComponent = () => {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   const handleMintItem = async (itemName: string) => {
     console.log('MintThis:', itemName);
@@ -119,12 +118,12 @@ const UnityComponent = () => {
         name: itemName,
         imageSrc: '/whitney-with-microphone.png',
         alt: 'Game Item',
-      } as ItemType
+      } as ItemType;
       setGameItems([...gameItems, mintedItem]);
 
       toast.success(`Item ${itemName} has been successfully minted`);
       sendGameController('ItemMinted', itemName);
-    } catch(error) {
+    } catch (error) {
       console.error(error);
       toast.error(`Failed to mint item ${itemName}`);
       sendError('Failed to mint item');
@@ -209,7 +208,7 @@ const UnityComponent = () => {
   const handleInventoryFull = () => {
     // setInventoryFull(true); //not sure if this is needed
     service.reInsertCard(sentItemId);
-  }
+  };
 
   const handleRequestItem = async (item: string) => {
     /*console.log('OnRequestItem', item);
@@ -232,7 +231,7 @@ const UnityComponent = () => {
         },
       ]);
     }*/
-  }
+  };
 
   useEffect(() => {
     unityContext.on('progress', handleUnityProgress);
@@ -246,27 +245,7 @@ const UnityComponent = () => {
     unityContext.on('GotItem', handleGotItem);
     unityContext.on('InventoryFull', handleInventoryFull);
     unityContext.on('RequestItem', handleRequestItem);
-  })
-
-  const buildCards_ = async (tokenList: TokenInfo[]) => {
-    console.log('metaDataArray', tokenList);
-    const cards = service.buildCards(tokenList);
-    console.log('metaDataArray-cards', cards);
-    setGameItems(cards);
-  };
-
-  const findOtherCards = async () => {
-    /*if (walletAddress) {
-      setIsLoadingCards(true);
-      console.log('findOtherCards');
-      const tokenList = await findItems(tezos, walletAddress);
-      if (tokenList && tokenList.length > 0) {
-        console.log('findOtherCards', tokenList);
-        buildCards_(tokenList);
-        setIsLoadingCards(false);
-      }
-    }*/
-  };
+  });
 
   const addCard = (
     id: string,
@@ -286,22 +265,34 @@ const UnityComponent = () => {
     }
   };
 
-  const sendCoin = (
-    id: string,
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    cardId: string,
-    cardNumber: number | undefined
-  ) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.className = 'card animate__animated animate__backOutUp';
-    }
-    unityContext.send('AccessController', 'InsertCoin', cardNumber);
-    findOtherCards(); //don't look for other coins on this build
-    if (cardNumber === 0) {
-      setTimeout(() => {
-        setCoins([]);
-      }, 1000);
+  const sendCoin = (coin: ItemType) => {
+    unityContext.send('AccessController', 'InsertCoin', coin.id);
+    setTimeout(() => {
+      dispatch(setEntryCoinAction([]));
+      findGameItems();
+    }, 1000);
+  };
+
+  const buildCards_ = async (tokenList: TokenInfo[]) => {
+    console.log('metaDataArray', tokenList);
+    const cards = service.buildCards(tokenList);
+    console.log('metaDataArray-cards', cards);
+    setGameItems(cards);
+  };
+
+  const findGameItems = async () => {
+    try {
+      dispatch(loadEntryCoinAction(true));
+
+      const item = await getWalletItems(0);
+      if (item) {
+        buildCards_(items);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(Lang.noEntryCoinFound);
+    } finally {
+      dispatch(loadEntryCoinAction(false));
     }
   };
 
@@ -309,14 +300,17 @@ const UnityComponent = () => {
     const getInitialCoins = async () => {
       try {
         dispatch(loadEntryCoinAction(true));
-        if (await findInitialCoin()) {
-          const coins = [{
-            id: 0,
-            name: Lang.entryCoinName,
-            alt: Lang.entryCoinAlt,
-            imageSrc: "https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP",
-          }]
-          setCoins(coins);
+        if (await findEntryCoin()) {
+          const coins = [
+            {
+              id: 0,
+              name: Lang.entryCoinName,
+              alt: Lang.entryCoinAlt,
+              imageSrc:
+                'https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP',
+            },
+          ];
+          dispatch(setEntryCoinAction(coins));
         }
       } catch (error) {
         console.error(error);
@@ -326,7 +320,7 @@ const UnityComponent = () => {
       }
     };
     walletAddress && getInitialCoins();
-  }, [dispatch, walletAddress, findInitialCoin]);
+  }, [dispatch, walletAddress, findEntryCoin]);
 
   const gameLoadedView = () => {
     if (!walletAddress) {
@@ -335,19 +329,17 @@ const UnityComponent = () => {
     return (
       <>
         {/* show coins */}
-        {coins.length > 0 && (
-          <EntryCoin coins={coins} sendCoin={sendCoin}></EntryCoin>
+        {gameState.entryCoins.length > 0 && (
+          <EntryCoin sendCoin={sendCoin}></EntryCoin>
         )}
         {/* show other Items */}
         {gameItems.length > 0 && (
           <GameItems items={gameItems} addCard={addCard}></GameItems>
         )}
-        {gameState.loadingStatus && (
-          <LoadingItem></LoadingItem>
-        )}
+        {gameState.loadingStatus && <LoadingItem></LoadingItem>}
       </>
-    )
-  }
+    );
+  };
 
   return (
     <div className="game-container">
@@ -364,7 +356,7 @@ const UnityComponent = () => {
         />
         {progression < 1 && <LoadingBar progression={progression} />}
       </div>
-      { progression === 1 && gameLoadedView() }
+      {progression === 1 && gameLoadedView()}
     </div>
   );
 };

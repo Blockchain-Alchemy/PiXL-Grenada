@@ -10,7 +10,7 @@ const contractAddress = Contracts.Pixltez;
 const usePixltez = () => {
   const { tezos, walletAddress } = useTezosContext()!;
 
-  const findInitialCoin = useCallback(() => {
+  const findEntryCoin = useCallback(() => {
     if (tezos && walletAddress) {
       return tezos.contract.at(contractAddress, compose(tzip16, tzip12))
         .then(contract => {
@@ -28,7 +28,7 @@ const usePixltez = () => {
   }, [tezos, walletAddress]);
 
   return {
-    findInitialCoin,
+    findEntryCoin,
   };
 };
 

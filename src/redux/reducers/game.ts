@@ -1,7 +1,8 @@
-import { GAME_ENTRY_COIN_LOAD } from "../action";
+import { GAME_ENTRY_COIN_LOAD, GAME_SET_ENTRY_COINS } from "../action";
 
 const initialState = {
   loadingStatus: false,
+  entryCoins: [],
 };
 
 const gameReducer = (state = initialState, action: any) => {
@@ -10,6 +11,12 @@ const gameReducer = (state = initialState, action: any) => {
       return {
         ...state,
         loadingStatus: action.payload,
+      };
+    }
+    case GAME_SET_ENTRY_COINS: {
+      return {
+        ...state,
+        entryCoins: action.payload,
       };
     }
     default: {
