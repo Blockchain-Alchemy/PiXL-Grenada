@@ -1,0 +1,16 @@
+Battle_Theme_Intro.mp3
+Battle_Theme_Loop.mp3
+Boss_Battle_Intro.mp3
+Boss_Battle_Loop.mp3
+Deep_Forest.mp3
+Evil_Gloating_Intro.mp3
+Evil_Gloating_Loop.mp3
+Lullaby_Intro.mp3
+Lullaby_Loop.mp3
+Overworld_Theme.mp3
+Time_Cave.mp3
+Title_Screen.mp3
+Town_Theme.mp3
+Victory_Fanfare_Intro.mp3
+Victory_Fanfare_Loop.mp3
+Game Over.mp3

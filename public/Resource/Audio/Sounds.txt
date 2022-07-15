@@ -1,0 +1,10 @@
+Menu Confirm.ogg
+Item Confirm.ogg
+Item Use.ogg
+Menu Cancel.ogg
+Menu Move.ogg
+Item Discard.ogg
+Recover.ogg
+Hit.ogg
+Prompt.ogg
+Open.ogg

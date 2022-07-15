@@ -10,7 +10,7 @@ const useDayPass = () => {
 
   const mintToken = useCallback(
     (tokenId: DayPassToken) => {
-      console.log('mintToken', tokenId);
+      console.log(`mintToken tokenId=${tokenId}`);
       const mint = async () => {
         const params = [
           {
@@ -36,7 +36,7 @@ const useDayPass = () => {
 
   const getTokenTime = useCallback(
     (tokenId: DayPassToken) => {
-      console.log('checkTokenTime', tokenId);
+      console.log(`checkTokenTime tokenId=${tokenId}`);
       const getToken = async () => {
         const contract = await tezos.wallet.at(contractAddress);
         const storage: any = await contract.storage();
