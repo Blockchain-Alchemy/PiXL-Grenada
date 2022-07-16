@@ -115,13 +115,13 @@
     display: flex;
   }
 }
-.button__rTYny:global(.__wab_instance) {
+.aboutButton:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
   display: flex;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .button__rTYny:global(.__wab_instance) {
+  .aboutButton:global(.__wab_instance) {
     width: 111px;
     flex-shrink: 0;
   }
@@ -138,13 +138,13 @@
   width: 1em;
   height: 1em;
 }
-.button__ynUuJ:global(.__wab_instance) {
+.dayPassButton:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
   display: flex;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .button__ynUuJ:global(.__wab_instance) {
+  .dayPassButton:global(.__wab_instance) {
     width: 135px;
     flex-shrink: 0;
   }
@@ -161,13 +161,13 @@
   width: 1em;
   height: 1em;
 }
-.button__vEbLh:global(.__wab_instance) {
+.itemsButton:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
   display: flex;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .button__vEbLh:global(.__wab_instance) {
+  .itemsButton:global(.__wab_instance) {
     width: 71px;
     flex-shrink: 0;
     display: none;
@@ -185,13 +185,13 @@
   width: 1em;
   height: 1em;
 }
-.button__fqR2T:global(.__wab_instance) {
+.missionsButton:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
   display: flex;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .button__fqR2T:global(.__wab_instance) {
+  .missionsButton:global(.__wab_instance) {
     width: 86px;
     flex-shrink: 0;
     display: none;
@@ -209,13 +209,13 @@
   width: 1em;
   height: 1em;
 }
-.button__cthf9:global(.__wab_instance) {
+.yourPlayerButton:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
   plasmic-display-none: false;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .buttonsynced__cthf9R2Qli:global(.__wab_instance) {
+  .yourPlayerButtonsynced:global(.__wab_instance) {
     display: none;
   }
 }

@@ -13,30 +13,22 @@ function Nav_(props: NavProps, ref: HTMLElementRefOf<"div">) {
   const history = useHistory();
   const { walletAddress, connectWallet, disconnectWallet } = useWallet();
 
-  const handlePlayButton = () => {
-    history.push("/play");
+  const handleSyncButton = () => {
+    !walletAddress? connectWallet() : disconnectWallet();
   }
 
   return (
-    <>
-    {
-      walletAddress? (
-        <PlasmicNav
-          root={{ ref }}
-          syncButton={{ onClick: () => disconnectWallet() }}
-          {...props}
-          synced
-          playButton={{ onClick: () => handlePlayButton() }}
-        />
-      ) : (
-        <PlasmicNav
-          root={{ ref }}
-          syncButton={{ onClick: () => connectWallet() }}
-          {...props}
-        />
-      )
-    }
-    </>
+    <PlasmicNav
+      root={{ ref }}
+      {...props}
+      synced={walletAddress? true : undefined}
+      syncButton={{ onClick: handleSyncButton }}
+      aboutButton={{ onClick: () => history.push("/about") }}
+      dayPassButton={{ onClick: () => history.push("/day-pass") }}
+      missionsButton={{ onClick: () => history.push("/missions") }}
+      itemsButton={{ onClick: () => history.push("/items") }}
+      playButton={{ onClick: () => history.push("/play") }}
+    />
   );
 }
 

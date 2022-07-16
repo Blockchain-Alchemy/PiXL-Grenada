@@ -64,6 +64,11 @@ export type PlasmicNav__OverridesType = {
   link?: p.Flex<'a'>;
   img?: p.Flex<typeof p.PlasmicImg>;
   spacer?: p.Flex<'div'>;
+  aboutButton?: p.Flex<typeof Button>;
+  dayPassButton?: p.Flex<typeof Button>;
+  itemsButton?: p.Flex<typeof Button>;
+  missionsButton?: p.Flex<typeof Button>;
+  yourPlayerButton?: p.Flex<typeof Button>;
   playButton?: p.Flex<typeof Button>;
   syncButton?: p.Flex<typeof Button>;
   text?: p.Flex<'div'>;
@@ -164,7 +169,11 @@ function PlasmicNav__RenderFunc(props: {
         ) : null}
         {true ? (
           <Button
-            className={classNames('__wab_instance', sty.button__rTYny)}
+            data-plasmic-name={'aboutButton'}
+            data-plasmic-override={overrides.aboutButton}
+            className={classNames('__wab_instance', sty.aboutButton, {
+              [sty.aboutButtonsynced]: hasVariant(variants, 'synced', 'synced'),
+            })}
             color={'blue' as const}
             link={'/about' as const}
           >
@@ -173,7 +182,9 @@ function PlasmicNav__RenderFunc(props: {
         ) : null}
         {true ? (
           <Button
-            className={classNames('__wab_instance', sty.button__ynUuJ)}
+            data-plasmic-name={'dayPassButton'}
+            data-plasmic-override={overrides.dayPassButton}
+            className={classNames('__wab_instance', sty.dayPassButton)}
             color={'blue' as const}
             link={'/day-pass' as const}
           >
@@ -182,7 +193,9 @@ function PlasmicNav__RenderFunc(props: {
         ) : null}
         {(hasVariant(globalVariants, 'screen', 'mobileOnly') ? true : true) ? (
           <Button
-            className={classNames('__wab_instance', sty.button__vEbLh)}
+            data-plasmic-name={'itemsButton'}
+            data-plasmic-override={overrides.itemsButton}
+            className={classNames('__wab_instance', sty.itemsButton)}
             color={'blue' as const}
             link={'/items' as const}
           >
@@ -191,7 +204,9 @@ function PlasmicNav__RenderFunc(props: {
         ) : null}
         {(hasVariant(globalVariants, 'screen', 'mobileOnly') ? true : true) ? (
           <Button
-            className={classNames('__wab_instance', sty.button__fqR2T)}
+            data-plasmic-name={'missionsButton'}
+            data-plasmic-override={overrides.missionsButton}
+            className={classNames('__wab_instance', sty.missionsButton)}
             color={'blue' as const}
             link={'/missions' as const}
           >
@@ -207,8 +222,10 @@ function PlasmicNav__RenderFunc(props: {
             : false
         ) ? (
           <Button
-            className={classNames('__wab_instance', sty.button__cthf9, {
-              [sty.buttonsynced__cthf9R2Qli]: hasVariant(
+            data-plasmic-name={'yourPlayerButton'}
+            data-plasmic-override={overrides.yourPlayerButton}
+            className={classNames('__wab_instance', sty.yourPlayerButton, {
+              [sty.yourPlayerButtonsynced]: hasVariant(
                 variants,
                 'synced',
                 'synced'
@@ -282,6 +299,11 @@ const PlasmicDescendants = {
     'link',
     'img',
     'spacer',
+    'aboutButton',
+    'dayPassButton',
+    'itemsButton',
+    'missionsButton',
+    'yourPlayerButton',
     'playButton',
     'syncButton',
     'text',
@@ -292,6 +314,11 @@ const PlasmicDescendants = {
     'link',
     'img',
     'spacer',
+    'aboutButton',
+    'dayPassButton',
+    'itemsButton',
+    'missionsButton',
+    'yourPlayerButton',
     'playButton',
     'syncButton',
     'text',
@@ -300,6 +327,11 @@ const PlasmicDescendants = {
   link: ['link', 'img'],
   img: ['img'],
   spacer: ['spacer'],
+  aboutButton: ['aboutButton'],
+  dayPassButton: ['dayPassButton'],
+  itemsButton: ['itemsButton'],
+  missionsButton: ['missionsButton'],
+  yourPlayerButton: ['yourPlayerButton'],
   playButton: ['playButton'],
   syncButton: ['syncButton', 'text', 'svg'],
   text: ['text'],
@@ -314,6 +346,11 @@ type NodeDefaultElementType = {
   link: 'a';
   img: typeof p.PlasmicImg;
   spacer: 'div';
+  aboutButton: typeof Button;
+  dayPassButton: typeof Button;
+  itemsButton: typeof Button;
+  missionsButton: typeof Button;
+  yourPlayerButton: typeof Button;
   playButton: typeof Button;
   syncButton: typeof Button;
   text: 'div';
@@ -385,6 +422,11 @@ export const PlasmicNav = Object.assign(
     link: makeNodeComponent('link'),
     img: makeNodeComponent('img'),
     spacer: makeNodeComponent('spacer'),
+    aboutButton: makeNodeComponent('aboutButton'),
+    dayPassButton: makeNodeComponent('dayPassButton'),
+    itemsButton: makeNodeComponent('itemsButton'),
+    missionsButton: makeNodeComponent('missionsButton'),
+    yourPlayerButton: makeNodeComponent('yourPlayerButton'),
     playButton: makeNodeComponent('playButton'),
     syncButton: makeNodeComponent('syncButton'),
     text: makeNodeComponent('text'),
