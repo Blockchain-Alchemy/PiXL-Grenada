@@ -255,7 +255,7 @@ const UnityComponent = () => {
   };
 
   const sendCoin = (coin: ItemType) => {
-    unityContext.send('AccessController', 'InsertCoin', coin.id);
+    sendAccessController('InsertCoin', coin.id);
     setTimeout(() => {
       dispatch(setEntryCoinAction([]));
       findGameItems();
@@ -287,7 +287,7 @@ const UnityComponent = () => {
   };
 
   useEffect(() => {
-    /*const getInitialCoins = async () => {
+    const getInitialCoins = async () => {
       try {
         dispatch(loadEntryCoinAction(true));
         if (await findEntryCoin()) {
@@ -296,8 +296,7 @@ const UnityComponent = () => {
               id: 0,
               name: Lang.entryCoinName,
               alt: Lang.entryCoinAlt,
-              imageSrc:
-                'https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP',
+              imageSrc: 'https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP',
             },
           ];
           dispatch(setEntryCoinAction(coins));
@@ -309,9 +308,9 @@ const UnityComponent = () => {
         dispatch(loadEntryCoinAction(false));
       }
     };
-    walletAddress && getInitialCoins();*/
+    walletAddress && getInitialCoins();
 
-    if (walletAddress) {
+    /*if (walletAddress) {
       const gameItems = [
         {
             "name": "Health Potion",
@@ -321,7 +320,7 @@ const UnityComponent = () => {
         }
       ];
       dispatch(setGameItemsAction(gameItems));
-    }
+    }*/
   }, [dispatch, walletAddress, findEntryCoin]);
 
   const gameLoadedView = () => {

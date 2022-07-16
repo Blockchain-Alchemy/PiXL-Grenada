@@ -7,6 +7,7 @@ type EntryCoinProps = {
 
 const EntryCoin = ({ sendCoin }: EntryCoinProps): JSX.Element => {
   const gameState = useSelector((state: any) => state.gameState);
+  console.log('gameState.entryCoins', gameState.entryCoins)
 
   const handleSendCoin = (coin: ItemType) => {
     const element = document.getElementById(coin.alt);
