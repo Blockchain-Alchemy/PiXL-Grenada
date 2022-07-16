@@ -11,7 +11,7 @@ import {
 
 interface ButtonProps extends DefaultButtonProps {
   children?: never;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
 }
 
 function Button_(props: ButtonProps, ref: ButtonRef) {
