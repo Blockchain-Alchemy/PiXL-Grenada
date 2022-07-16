@@ -29,14 +29,14 @@ import {
   useTrigger,
   StrictProps,
   deriveRenderOpts,
-  ensureGlobalVariants
-} from "@plasmicapp/react-web";
-import Nav from "../../Nav"; // plasmic-import: 1NPCYKvqMbV/component
-import { ParallaxWrapper } from "@plasmicpkgs/react-scroll-parallax"; // plasmic-import: bozP4lLlAZ/codeComponent
-import { Reveal } from "@plasmicpkgs/react-awesome-reveal"; // plasmic-import: R6s1FdhksG/codeComponent
-import Button from "../../Button"; // plasmic-import: S20px5CzyEuzZP/component
-import Tilt from "@plasmicpkgs/react-parallax-tilt"; // plasmic-import: PfY466VIuq/codeComponent
-import Select from "../../Select"; // plasmic-import: cpYU5wUK7lP6LN/component
+  ensureGlobalVariants,
+} from '@plasmicapp/react-web';
+import Nav from '../../Nav'; // plasmic-import: 1NPCYKvqMbV/component
+import { ParallaxWrapper } from '@plasmicpkgs/react-scroll-parallax'; // plasmic-import: bozP4lLlAZ/codeComponent
+import { Reveal } from '@plasmicpkgs/react-awesome-reveal'; // plasmic-import: R6s1FdhksG/codeComponent
+import Button from '../../Button'; // plasmic-import: S20px5CzyEuzZP/component
+import Tilt from '@plasmicpkgs/react-parallax-tilt'; // plasmic-import: PfY466VIuq/codeComponent
+import Select from '../../Select'; // plasmic-import: cpYU5wUK7lP6LN/component
 
 import { useScreenVariants as useScreenVariantse9M6Sv34SLfhdD } from './PlasmicGlobalVariant__Screen'; // plasmic-import: E9M6Sv34sLfhdD/globalVariant
 
@@ -69,20 +69,18 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>();
 export type PlasmicHome__OverridesType = {
   root?: p.Flex<'div'>;
   nav?: p.Flex<typeof Nav>;
-  hero?: p.Flex<"div">;
-  body1?: p.Flex<"div">;
-  getDayPass?: p.Flex<"div">;
-  h1?: p.Flex<"h1">;
+  hero?: p.Flex<'div'>;
+  body1?: p.Flex<'div'>;
+  getDayPass?: p.Flex<'div'>;
+  h1?: p.Flex<'h1'>;
   tilt?: p.Flex<typeof Tilt>;
-  features?: p.Flex<"div">;
+  features?: p.Flex<'div'>;
 };
 
 export interface DefaultHomeProps {
   synced?: SingleBooleanChoiceArg<'synced'>;
   className?: string;
 }
-
-export const defaultHome__Args: Partial<PlasmicHome__ArgsType> = {};
 
 function PlasmicHome__RenderFunc(props: {
   variants: PlasmicHome__VariantsArgs;
@@ -92,7 +90,18 @@ function PlasmicHome__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultHome__Args, props.args);
+
+  const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
   const $props = args;
 
   const globalVariants = ensureGlobalVariants({
@@ -350,7 +359,7 @@ function PlasmicHome__RenderFunc(props: {
                   />
                 ) : null}
                 {(
-                  hasVariant(globalVariants, "screen", "mobileOnly")
+                  hasVariant(globalVariants, 'screen', 'mobileOnly')
                     ? true
                     : true
                 ) ? (
@@ -358,7 +367,7 @@ function PlasmicHome__RenderFunc(props: {
                     className={classNames(projectcss.all, sty.freeBox__vj96X)}
                   >
                     <Reveal
-                      className={classNames("__wab_instance", sty.reveal__vUcD)}
+                      className={classNames('__wab_instance', sty.reveal__vUcD)}
                       triggerOnce={true}
                     >
                       <div
@@ -369,7 +378,7 @@ function PlasmicHome__RenderFunc(props: {
                         )}
                       >
                         {
-                          "In PiXL you battle dirty NFTs\n\nPiXL is the first evolving NFT RPG. It’s a love letter to Tezos - the technology, the artists, the community and the planet. It’s a play-to-earn game that changes every week - accessible to all (with an Entry Coin)."
+                          'In PiXL you battle dirty NFTs\n\nPiXL is the first evolving NFT RPG. It’s a love letter to Tezos - the technology, the artists, the community and the planet. It’s a play-to-earn game that changes every week - accessible to all (with an Entry Coin).'
                         }
                       </div>
                     </Reveal>
@@ -379,12 +388,12 @@ function PlasmicHome__RenderFunc(props: {
             ) : null}
             {true ? (
               <div
-                data-plasmic-name={"getDayPass"}
+                data-plasmic-name={'getDayPass'}
                 data-plasmic-override={overrides.getDayPass}
                 className={classNames(projectcss.all, sty.getDayPass)}
               >
                 {(
-                  hasVariant(globalVariants, "screen", "mobileOnly")
+                  hasVariant(globalVariants, 'screen', 'mobileOnly')
                     ? true
                     : true
                 ) ? (
@@ -432,7 +441,7 @@ function PlasmicHome__RenderFunc(props: {
                               )}
                             >
                               <h1
-                                data-plasmic-name={"h1"}
+                                data-plasmic-name={'h1'}
                                 data-plasmic-override={overrides.h1}
                                 className={classNames(
                                   projectcss.all,
@@ -441,7 +450,7 @@ function PlasmicHome__RenderFunc(props: {
                                   sty.h1
                                 )}
                               >
-                                {"Get a Day Pass!"}
+                                {'Get a Day Pass!'}
                               </h1>
                             </div>
                           </h2>
@@ -459,7 +468,7 @@ function PlasmicHome__RenderFunc(props: {
                                 sty.text___1RPup
                               )}
                             >
-                              {"Get access to PiXL for 24 hours"}
+                              {'Get access to PiXL for 24 hours'}
                             </div>
                           </div>
 
@@ -496,7 +505,7 @@ function PlasmicHome__RenderFunc(props: {
                                     )}
                                   >
                                     {
-                                      "You keep all your winnings and are are able to explore the whole PiXL world for 24 hours!"
+                                      'You keep all your winnings and are are able to explore the whole PiXL world for 24 hours!'
                                     }
                                   </div>
                                 </div>
@@ -536,8 +545,8 @@ function PlasmicHome__RenderFunc(props: {
                                     '__wab_instance',
                                     sty.button__le0ZQ
                                   )}
-                                  color={"blue" as const}
-                                  link={"/day-pass" as const}
+                                  color={'blue' as const}
+                                  link={'/day-pass' as const}
                                 >
                                   <div
                                     className={classNames(
@@ -566,24 +575,24 @@ function PlasmicHome__RenderFunc(props: {
                             className={classNames('__wab_instance', sty.tilt)}
                           >
                             {(
-                              hasVariant(globalVariants, "screen", "mobileOnly")
+                              hasVariant(globalVariants, 'screen', 'mobileOnly')
                                 ? true
                                 : true
                             ) ? (
                               <p.PlasmicImg
-                                alt={""}
+                                alt={''}
                                 className={classNames(sty.img__kpJmm)}
-                                displayHeight={"auto" as const}
-                                displayMaxHeight={"none" as const}
-                                displayMaxWidth={"none" as const}
-                                displayMinHeight={"0" as const}
-                                displayMinWidth={"0" as const}
-                                displayWidth={"auto" as const}
+                                displayHeight={'auto' as const}
+                                displayMaxHeight={'none' as const}
+                                displayMaxWidth={'none' as const}
+                                displayMinHeight={'0' as const}
+                                displayMinWidth={'0' as const}
+                                displayWidth={'auto' as const}
                                 src={{
                                   src: image3AfarJgvX,
                                   fullWidth: 512,
                                   fullHeight: 512,
-                                  aspectRatio: undefined
+                                  aspectRatio: undefined,
                                 }}
                               />
                             ) : null}
@@ -602,8 +611,8 @@ function PlasmicHome__RenderFunc(props: {
             ) : null}
             {true ? (
               <p.Stack
-                as={"div"}
-                data-plasmic-name={"features"}
+                as={'div'}
+                data-plasmic-name={'features'}
                 data-plasmic-override={overrides.features}
                 hasGap={true}
                 className={classNames(projectcss.all, sty.features)}
@@ -1184,7 +1193,7 @@ function PlasmicHome__RenderFunc(props: {
                         sty.text___5MCi
                       )}
                     >
-                      {"© BLOCKCHAIN ALCHEMY"}
+                      {'© BLOCKCHAIN ALCHEMY'}
                     </div>
                   </p.Stack>
                 </div>
@@ -1199,22 +1208,22 @@ function PlasmicHome__RenderFunc(props: {
 
 const PlasmicDescendants = {
   root: [
-    "root",
-    "nav",
-    "hero",
-    "body1",
-    "getDayPass",
-    "h1",
-    "tilt",
-    "features"
+    'root',
+    'nav',
+    'hero',
+    'body1',
+    'getDayPass',
+    'h1',
+    'tilt',
+    'features',
   ],
-  nav: ["nav"],
-  hero: ["hero"],
-  body1: ["body1"],
-  getDayPass: ["getDayPass", "h1", "tilt"],
-  h1: ["h1"],
-  tilt: ["tilt"],
-  features: ["features"]
+  nav: ['nav'],
+  hero: ['hero'],
+  body1: ['body1'],
+  getDayPass: ['getDayPass', 'h1', 'tilt'],
+  h1: ['h1'],
+  tilt: ['tilt'],
+  features: ['features'],
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1222,12 +1231,12 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: 'div';
   nav: typeof Nav;
-  hero: "div";
-  body1: "div";
-  getDayPass: "div";
-  h1: "h1";
+  hero: 'div';
+  body1: 'div';
+  getDayPass: 'div';
+  h1: 'h1';
   tilt: typeof Tilt;
-  features: "div";
+  features: 'div';
 };
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
@@ -1260,12 +1269,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicHome__ArgProps,
-      internalVariantPropNames: PlasmicHome__VariantProps,
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicHome__ArgProps,
+          internalVariantPropNames: PlasmicHome__VariantProps,
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicHome__RenderFunc({
       variants,
@@ -1287,13 +1300,13 @@ export const PlasmicHome = Object.assign(
   makeNodeComponent('root'),
   {
     // Helper components rendering sub-elements
-    nav: makeNodeComponent("nav"),
-    hero: makeNodeComponent("hero"),
-    body1: makeNodeComponent("body1"),
-    getDayPass: makeNodeComponent("getDayPass"),
-    h1: makeNodeComponent("h1"),
-    tilt: makeNodeComponent("tilt"),
-    features: makeNodeComponent("features"),
+    nav: makeNodeComponent('nav'),
+    hero: makeNodeComponent('hero'),
+    body1: makeNodeComponent('body1'),
+    getDayPass: makeNodeComponent('getDayPass'),
+    h1: makeNodeComponent('h1'),
+    tilt: makeNodeComponent('tilt'),
+    features: makeNodeComponent('features'),
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,

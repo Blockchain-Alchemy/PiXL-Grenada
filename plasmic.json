@@ -440,8 +440,7 @@
           "name": "ParallaxProviderWrapper",
           "componentImportPath": "@plasmicpkgs/react-scroll-parallax"
         }
-      ],
-      "jsBundleThemes": []
+      ]
     }
   ],
   "globalVariants": {
@@ -461,6 +460,6 @@
     ]
   },
   "wrapPagesWithGlobalContexts": true,
-  "cliVersion": "0.1.178",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.178/dist/plasmic.schema.json"
+  "cliVersion": "0.1.183",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.183/dist/plasmic.schema.json"
 }

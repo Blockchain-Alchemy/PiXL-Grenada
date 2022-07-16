@@ -58,8 +58,6 @@ export interface DefaultPlayProps {
   className?: string;
 }
 
-export const defaultPlay__Args: Partial<PlasmicPlay__ArgsType> = {};
-
 function PlasmicPlay__RenderFunc(props: {
   variants: PlasmicPlay__VariantsArgs;
   args: PlasmicPlay__ArgsType;
@@ -68,7 +66,18 @@ function PlasmicPlay__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultPlay__Args, props.args);
+
+  const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
   const $props = args;
 
   return (
@@ -152,12 +161,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicPlay__ArgProps,
-      internalVariantPropNames: PlasmicPlay__VariantProps,
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicPlay__ArgProps,
+          internalVariantPropNames: PlasmicPlay__VariantProps,
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicPlay__RenderFunc({
       variants,

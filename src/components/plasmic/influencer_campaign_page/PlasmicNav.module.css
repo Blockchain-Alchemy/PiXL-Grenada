@@ -231,13 +231,13 @@
   width: 1em;
   height: 1em;
 }
-.button__av88F:global(.__wab_instance) {
+.playButton:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
   plasmic-display-none: false;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .buttonsynced__av88Fr2Qli:global(.__wab_instance) {
+  .playButtonsynced:global(.__wab_instance) {
     display: none;
   }
 }

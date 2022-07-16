@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 import {
   PlasmicNav,
   DefaultNavProps,
@@ -9,7 +10,12 @@ import useWallet from "hooks/useWallet";
 export interface NavProps extends DefaultNavProps {}
 
 function Nav_(props: NavProps, ref: HTMLElementRefOf<"div">) {
+  const history = useHistory();
   const { walletAddress, connectWallet, disconnectWallet } = useWallet();
+
+  const handlePlayButton = () => {
+    history.push("/play");
+  }
 
   return (
     <>
@@ -20,6 +26,7 @@ function Nav_(props: NavProps, ref: HTMLElementRefOf<"div">) {
           syncButton={{ onClick: () => disconnectWallet() }}
           {...props}
           synced
+          playButton={{ onClick: () => handlePlayButton() }}
         />
       ) : (
         <PlasmicNav

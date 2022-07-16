@@ -62,8 +62,6 @@ export interface DefaultDayPassProps {
   className?: string;
 }
 
-export const defaultDayPass__Args: Partial<PlasmicDayPass__ArgsType> = {};
-
 function PlasmicDayPass__RenderFunc(props: {
   variants: PlasmicDayPass__VariantsArgs;
   args: PlasmicDayPass__ArgsType;
@@ -72,7 +70,18 @@ function PlasmicDayPass__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultDayPass__Args, props.args);
+
+  const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
   const $props = args;
 
   return (
@@ -186,12 +195,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicDayPass__ArgProps,
-      internalVariantPropNames: PlasmicDayPass__VariantProps,
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicDayPass__ArgProps,
+          internalVariantPropNames: PlasmicDayPass__VariantProps,
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicDayPass__RenderFunc({
       variants,

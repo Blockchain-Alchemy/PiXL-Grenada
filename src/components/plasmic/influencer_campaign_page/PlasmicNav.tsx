@@ -64,6 +64,7 @@ export type PlasmicNav__OverridesType = {
   link?: p.Flex<'a'>;
   img?: p.Flex<typeof p.PlasmicImg>;
   spacer?: p.Flex<'div'>;
+  playButton?: p.Flex<typeof Button>;
   syncButton?: p.Flex<typeof Button>;
   text?: p.Flex<'div'>;
   svg?: p.Flex<'svg'>;
@@ -74,8 +75,6 @@ export interface DefaultNavProps {
   className?: string;
 }
 
-export const defaultNav__Args: Partial<PlasmicNav__ArgsType> = {};
-
 function PlasmicNav__RenderFunc(props: {
   variants: PlasmicNav__VariantsArgs;
   args: PlasmicNav__ArgsType;
@@ -84,7 +83,18 @@ function PlasmicNav__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
-  const args = Object.assign({}, defaultNav__Args, props.args);
+
+  const $ctx = ph.useDataEnv?.() || {};
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+
+        props.args
+      ),
+    [props.args]
+  );
+
   const $props = args;
 
   const globalVariants = ensureGlobalVariants({
@@ -218,12 +228,10 @@ function PlasmicNav__RenderFunc(props: {
             : false
         ) ? (
           <Button
-            className={classNames('__wab_instance', sty.button__av88F, {
-              [sty.buttonsynced__av88Fr2Qli]: hasVariant(
-                variants,
-                'synced',
-                'synced'
-              ),
+            data-plasmic-name={'playButton'}
+            data-plasmic-override={overrides.playButton}
+            className={classNames('__wab_instance', sty.playButton, {
+              [sty.playButtonsynced]: hasVariant(variants, 'synced', 'synced'),
             })}
             color={'red' as const}
             link={'/play' as const}
@@ -274,14 +282,25 @@ const PlasmicDescendants = {
     'link',
     'img',
     'spacer',
+    'playButton',
     'syncButton',
     'text',
     'svg',
   ],
-  freeBox: ['freeBox', 'link', 'img', 'spacer', 'syncButton', 'text', 'svg'],
+  freeBox: [
+    'freeBox',
+    'link',
+    'img',
+    'spacer',
+    'playButton',
+    'syncButton',
+    'text',
+    'svg',
+  ],
   link: ['link', 'img'],
   img: ['img'],
   spacer: ['spacer'],
+  playButton: ['playButton'],
   syncButton: ['syncButton', 'text', 'svg'],
   text: ['text'],
   svg: ['svg'],
@@ -295,6 +314,7 @@ type NodeDefaultElementType = {
   link: 'a';
   img: typeof p.PlasmicImg;
   spacer: 'div';
+  playButton: typeof Button;
   syncButton: typeof Button;
   text: 'div';
   svg: 'svg';
@@ -330,12 +350,16 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   const func = function <T extends PropsType>(
     props: T & StrictProps<T, PropsType>
   ) {
-    const { variants, args, overrides } = deriveRenderOpts(props, {
-      name: nodeName,
-      descendantNames: [...PlasmicDescendants[nodeName]],
-      internalArgPropNames: PlasmicNav__ArgProps,
-      internalVariantPropNames: PlasmicNav__VariantProps,
-    });
+    const { variants, args, overrides } = React.useMemo(
+      () =>
+        deriveRenderOpts(props, {
+          name: nodeName,
+          descendantNames: [...PlasmicDescendants[nodeName]],
+          internalArgPropNames: PlasmicNav__ArgProps,
+          internalVariantPropNames: PlasmicNav__VariantProps,
+        }),
+      [props, nodeName]
+    );
 
     return PlasmicNav__RenderFunc({
       variants,
@@ -361,6 +385,7 @@ export const PlasmicNav = Object.assign(
     link: makeNodeComponent('link'),
     img: makeNodeComponent('img'),
     spacer: makeNodeComponent('spacer'),
+    playButton: makeNodeComponent('playButton'),
     syncButton: makeNodeComponent('syncButton'),
     text: makeNodeComponent('text'),
     svg: makeNodeComponent('svg'),
