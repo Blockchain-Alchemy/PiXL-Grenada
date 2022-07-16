@@ -1,7 +1,5 @@
 import { GraveyardEntry } from "../types";
-import { REACT_APP_BASE_URL } from "../config";
-
-const BASE_URL = REACT_APP_BASE_URL;
+import { API_BASE_URL } from "../config";
 
 export const sanitizeEntries = (
   entries: GraveyardEntry[]
@@ -14,7 +12,7 @@ export const sanitizeEntries = (
 };
 
 export const getGraveyardEntries = async () => {
-  return await fetch(`${BASE_URL}/api/graveyard`, {
+  return await fetch(`${API_BASE_URL}/api/graveyard`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -49,7 +47,7 @@ export const setGraveyardEntry = async (name: string, score: string) => {
     enemy: enemies[(enemies.length * Math.random()) | 0],
     location: locations[(locations.length * Math.random()) | 0],
   };
-  return await fetch(`${BASE_URL}/api/graveyard/insert`, {
+  return await fetch(`${API_BASE_URL}/api/graveyard/insert`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

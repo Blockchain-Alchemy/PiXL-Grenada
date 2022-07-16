@@ -6,25 +6,6 @@ type GameItemsProps = {
 
 const GameItems = ({ consumeItem }: GameItemsProps): JSX.Element => {
   const gameState = useSelector((state: any) => state.gameState);
-  console.log('gameItems', gameState.gameItems);
-
-  // const handleItemClicked = (
-  //   id: string,
-  //   e: React.MouseEvent<HTMLElement, MouseEvent>,
-  //   cardId: number | undefined
-  // ) => {
-  //   if (!isInventoryFull && cardId) {
-  //     const element = document.getElementById(id);
-  //     if (element) {
-  //       element.className = 'card animate__animated animate__backOutUp';
-  //     }
-  //     sendGameController('AddItem', cardId);
-  //     setSentItemId(id);
-  //     setInventoryFull(true);
-  //   } else {
-  //     toast.error('Inventory is full could not complete request');
-  //   }
-  // };
 
   const handleItemClicked = (item: any) => {
     const element = document.getElementById(item.alt);

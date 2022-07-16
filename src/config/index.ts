@@ -1,8 +1,8 @@
-export const ENV = 'development';
+export const ENV = 'production';
 
-export const API_BASE_URL_SERVER = 'https://pixl-server.herokuapp.com';
+export const API_BASE_URL_SERVER = 'https://pixl-dev.herokuapp.com';
 export const API_BASE_URL_LOCAL = 'http://localhost:5000';
-export const API_BASE_URL = API_BASE_URL_LOCAL;
+export const API_BASE_URL = API_BASE_URL_SERVER;
 
 export const TOKEN_PIXLTEZ = 0;
 export const TOKEN_INITCOIN = 1;
@@ -25,5 +25,3 @@ export const Contracts = {
   DayPass: 'KT19jQhzpQNpsUrKYaRZQYapku8p8ML1FueD',
 }
 
-//export * from './environments.development'
-export * from './environments.local'

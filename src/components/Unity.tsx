@@ -39,7 +39,7 @@ const unityContext = new UnityContext({
 const UnityComponent = () => {
   const dispatch = useDispatch();
   const gameState = useSelector((state: any) => state.gameState);
-  const { walletAddress } = useWallet();
+  const { walletAddress, connectWallet } = useWallet();
   const { findEntryCoin } = usePixltez();
   const { mintItem, getWalletItems } = useGame();
   const [progression, setProgression] = useState(0);
@@ -54,24 +54,27 @@ const UnityComponent = () => {
     unityContext.send('GameController', methodName, parameter);
   };
 
+  const sendAccessController = (methodName: string, parameter?: any) => {
+    unityContext.send('AccessController', methodName, parameter);
+  };
+
   const sendError = (parameter?: any) => {
     sendGameController('SendError', parameter);
   };
 
+  useEffect(() => {
+    sendAccessController('WalletConnected', walletAddress || '');
+  }, [walletAddress])
+
   const handleUnityProgress = (progression) => {
+    console.log('progression', progression)
     setProgression(progression);
   };
 
   const handleConnectWallet = () => {
-    console.log('ConnectWallet~~~~~~~~~~~');
-  };
-
-  const handleWhereWallet = (userName, score) => {
-    /*if (walletAddress) {
-      unityContext.send('AccessController', 'ConnectWallet', walletAddress);
-    } else if (!walletReady) {
-      setWhereWallet(true);
-    }*/
+    if (!walletAddress) {
+      connectWallet();
+    }
   };
 
   const handleGameOver = async (userName, score) => {
@@ -235,25 +238,20 @@ const UnityComponent = () => {
     }*/
   };
 
-  useEffect(() => {
-    unityContext.on('progress', handleUnityProgress);
-    unityContext.on('ConnectWallet', handleConnectWallet);
-    unityContext.on('WhereWallet', handleWhereWallet);
-    unityContext.on('GameOver', handleGameOver);
-    unityContext.on('MintThis', handleMintItem);
-    unityContext.on('MintPiXLtez', handleMintPiXLtez);
-    unityContext.on('ShareQuest', handleShareQuest);
-    unityContext.on('QuestCompleted', handleQuestCompleted);
-    unityContext.on('GotItem', handleGotItem);
-    unityContext.on('InventoryFull', handleInventoryFull);
-    unityContext.on('RequestItem', handleRequestItem);
-  });
+  unityContext.on('progress', handleUnityProgress);
+  unityContext.on('ConnectWallet', handleConnectWallet);
+  unityContext.on('GameOver', handleGameOver);
+  unityContext.on('MintThis', handleMintItem);
+  unityContext.on('MintPiXLtez', handleMintPiXLtez);
+  unityContext.on('ShareQuest', handleShareQuest);
+  unityContext.on('QuestCompleted', handleQuestCompleted);
+  unityContext.on('GotItem', handleGotItem);
+  unityContext.on('InventoryFull', handleInventoryFull);
+  unityContext.on('RequestItem', handleRequestItem);
 
   const consumeItem = (item: any) => {
     console.log('consumeItem', item);
-    //sendGameController('AddItem', cardId);
-    //setSentItemId(id);
-    //setInventoryFull(true);
+    sendAccessController('InsertCoin', 0);
   };
 
   const sendCoin = (coin: ItemType) => {
