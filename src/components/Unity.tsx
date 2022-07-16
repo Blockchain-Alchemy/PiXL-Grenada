@@ -17,7 +17,6 @@ import {
   loadEntryCoinAction,
   setEntryCoinAction,
   addGameItemsAction,
-  setGameItemsAction,
   setInventoryFullAction,
 } from 'redux/action';
 
@@ -43,6 +42,7 @@ const UnityComponent = () => {
   const { findEntryCoin } = usePixltez();
   const { mintItem, getWalletItems } = useGame();
   const [progression, setProgression] = useState(0);
+  const [gameStarted, setGameStarted] = useState(false);
   const [running, setRunning] = useState(false);
   const [gameItems, setGameItems] = useState<Array<ItemType>>([]);
 
@@ -67,7 +67,6 @@ const UnityComponent = () => {
   }, [walletAddress])
 
   const handleUnityProgress = (progression) => {
-    console.log('progression', progression)
     setProgression(progression);
   };
 
@@ -76,6 +75,10 @@ const UnityComponent = () => {
       connectWallet();
     }
   };
+
+  const handleGameStarted = () => {
+    setGameStarted(true);
+  }
 
   const handleGameOver = async (userName, score) => {
     try {
@@ -248,7 +251,8 @@ const UnityComponent = () => {
   unityContext.on('GotItem', handleGotItem);
   unityContext.on('InventoryFull', handleInventoryFull);
   unityContext.on('RequestItem', handleRequestItem);
-
+  unityContext.on('GameStarted', handleGameStarted);
+  
   const consumeItem = (item: any) => {
     console.log('consumeItem', item);
     sendAccessController('InsertCoin', 0);
@@ -334,7 +338,7 @@ const UnityComponent = () => {
           <EntryCoin sendCoin={sendCoin}></EntryCoin>
         )}
         {/* show other Items */}
-        {gameState.gameItems.length > 0 && (
+        {gameStarted && gameState.gameItems.length > 0 && (
           <GameItems consumeItem={consumeItem}></GameItems>
         )}
         {gameState.loadingStatus && <LoadingItem></LoadingItem>}
